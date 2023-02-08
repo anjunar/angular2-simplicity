@@ -1,0 +1,19 @@
+app-root {
+  display: block;
+  height: 100%;
+}
+
+app-root ul {
+  list-style: none;
+}
+
+app-root ul li .row {
+  display: flex;
+  justify-content: space-between
+}
+
+@media only screen and (max-width: 800px) {
+  .browsers {
+    display: none
+  }
+}

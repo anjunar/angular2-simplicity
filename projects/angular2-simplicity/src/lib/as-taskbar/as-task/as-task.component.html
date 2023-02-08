@@ -1,0 +1,5 @@
+<div style="display: flex; justify-content: center;" (click)="onClick()">
+  <div *ngIf="options" style="line-height: 38px" [style.color]="isTopWindow() ? 'var(--main-selected-color)' : 'var(--main-font-color)'">
+    {{options.header}}
+  </div>
+</div>

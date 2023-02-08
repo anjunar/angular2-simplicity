@@ -1,0 +1,8 @@
+app-basic {
+  display: block;
+  height: 100%;
+}
+
+app-basic nav a.active {
+  color: var(--main-selected-color);
+}

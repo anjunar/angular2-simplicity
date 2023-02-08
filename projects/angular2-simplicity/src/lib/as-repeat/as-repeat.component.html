@@ -1,0 +1,8 @@
+<div *ngFor="let item of ngModel">
+  <div style="display: flex">
+    <ng-container *ngTemplateOutlet="templateRef; context: {$implicit: item}"></ng-container>
+    <button type="button" *ngIf="! disabled" (click)="removeItem(item)" style="height: 36px" class="material-icons">delete</button>
+  </div>
+</div>
+<button *ngIf="! disabled" type="button" (click)="addItem()" class="material-icons">add</button>
+

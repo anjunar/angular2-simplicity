@@ -1,0 +1,24 @@
+<div (click)="openOverlay($event)" style="width: 100%;">
+  <input type="text" style="width: 100%" disabled [placeholder]="placeholder" [ngModel]="display" tabindex="-1"/>
+</div>
+<div style="position: relative">
+  <div *ngIf="open" #overlay class="overlay" style="width: 100%">
+    <div style="display: flex; width: 100%; justify-content: space-between">
+      <input type="text" placeholder="Search" (click)="searchBox($event)" [(ngModel)]="search" style="padding: 12px; margin-left: 4px" tabindex="-1"/>
+      <button class="material-icons" translate="no" type="button" [style.display]="0 < index ? 'block' : 'none'" style="width: 100%; flex: 1" (click)="up($event)">arrow_drop_up</button>
+      <button type="button" class="material-icons" style="margin-right: 4px" (click)="showSelectedClick($event)" [style.color]="showSelected ? 'var(--main-font-color)' : 'var(--main-dark1-color)'">manage_search</button>
+    </div>
+    <div (wheel)="onWheel($event)">
+      <div *ngFor="let item of window" (click)="onItemClicked($event, item);">
+        <div style="display: flex; align-items: center">
+          <input type="checkbox" [checked]="selected(item)" style="width: 16px; height: 16px; margin: 13px" (click)="checkbox($event, item)" tabindex="-1"/>
+          <div class="item">
+            <ng-container *ngTemplateOutlet="templateRef; context: {$implicit: item}"></ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="material-icons" translate="no" type="button" [style.display]="(index + limit) < size ? 'block' : 'none'" style="width: 100%" (click)="down($event)">arrow_drop_down</button>
+  </div>
+
+</div>

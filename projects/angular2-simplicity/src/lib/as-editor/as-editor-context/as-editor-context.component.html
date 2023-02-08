@@ -1,0 +1,78 @@
+<div content>
+  <div style="width: 150px">
+    <button type="button" class="normal" (click)="cut()" [disabled]="isCollapsed">
+      <div style="display: flex; align-items: center;width: 100%">
+        <i class="material-icons" translate="no">content_cut</i>
+        Cut
+      </div>
+    </button>
+    <br/>
+    <button type="button" class="normal" (click)="copy()" [disabled]="isCollapsed">
+      <div style="display: flex; align-items: center;width: 100%">
+        <i class="material-icons" translate="no">file_copy</i>
+        Copy
+      </div>
+    </button>
+    <br/>
+    <button type="button" class="normal" (click)="paste()">
+      <div style="display: flex; align-items: center; width: 100%">
+        <i class="material-icons" translate="no">content_paste</i>
+        Paste
+      </div>
+    </button>
+    <br/>
+    <hr/>
+    <button type="button" class="normal" (click)="extension()" [style.display]="isExtensionContext ? 'block' : 'none'">
+      <div style="display: flex; align-items: center; width: 100%">
+        <i class="material-icons" translate="no">extension</i>
+        Extension
+      </div>
+    </button>
+    <div *ngIf="isTableContext">
+      <hr/>
+      <button type="button" class="normal" (click)="addTableRow()">
+        <div style="display: flex; align-items: center; width: 100%">
+          <img src="assets/as-editor/icons8-add-row-24.png" style="filter: invert(100)">
+          Add Row
+        </div>
+      </button>
+      <br/>
+      <button type="button" class="normal" (click)="addTableColumns()">
+        <div style="display: flex; align-items: center; width: 100%">
+          <img src="assets/as-editor/icons8-add-column-24.png" style="filter: invert(100)">
+          Add Columns
+        </div>
+      </button>
+      <br/>
+      <button type="button" class="normal" (click)="removeTableRow()">
+        <div style="display: flex; align-items: center; width: 100%">
+          <img src="assets/as-editor/icons8-delete-row-24.png" style="filter: invert(100)">
+          Remove Row
+        </div>
+      </button>
+      <br/>
+      <button type="button" class="normal" (click)="removeTableColumns()">
+        <div style="display: flex; align-items: center; width: 100%">
+          <img src="assets/as-editor/icons8-delete-column-24.png" style="filter: invert(100)">
+          Remove Columns
+        </div>
+      </button>
+    </div>
+    <div *ngIf="isFlexBoxContext">
+      <hr/>
+      <button type="button" class="normal" (click)="addFlexColumn()">
+        <div style="display: flex; align-items: center; width: 100%">
+          <img src="assets/as-editor/icons8-add-column-24.png" style="filter: invert(100)">
+          Add Columns
+        </div>
+      </button>
+      <br/>
+      <button type="button" class="normal" (click)="removeFlexColumn()">
+        <div style="display: flex; align-items: center; width: 100%">
+          <img src="assets/as-editor/icons8-delete-column-24.png" style="filter: invert(100)">
+          Remove Columns
+        </div>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+as-filter {
+  display: block;
+}
+
+as-filter input {
+  border: 1px solid var(--main-background-color);
+}

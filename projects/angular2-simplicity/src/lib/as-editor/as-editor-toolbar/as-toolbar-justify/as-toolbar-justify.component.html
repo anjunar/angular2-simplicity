@@ -1,0 +1,29 @@
+<div style="display: flex">
+  <div style="flex: 1;"></div>
+  <button [ngClass]="{ active : justify.active} "  class="material-icons" type="button" title="Justify Full"
+          (click)="justify.click()">format_align_justify
+  </button>
+  <button [ngClass]="{active  : justifyLeft.active}"  class="material-icons" type="button" title="Justify Left"
+          (click)="justifyLeft.click()">format_align_left
+  </button>
+  <button [ngClass]="{active : justifyRight.active}"  class="material-icons" type="button" title="Justify Right"
+          (click)="justifyRight.click()">format_align_right
+  </button>
+  <button  [ngClass]="{active  : justifyCenter.active}" class="material-icons" type="button" title="Justify Center"
+           (click)="justifyCenter.click()">format_align_center
+  </button>
+  <button [ngClass]="{active : indent.active}" class="material-icons"  type="button" title="Indent"
+          (click)="indent.click()">format_indent_increase
+  </button>
+  <button [ngClass]="{ active : outdent.active}" class="material-icons"  type="button" title="Outdent"
+          (click)="outdent.click()">format_indent_decrease
+  </button>
+  <button [ngClass]="{active : floatLeft.active}"  class="material-icons" type="button" title="Float Left"
+          (click)="floatLeft.click()">
+    view_sidebar
+  </button>
+  <button [ngClass]="{ active : floatRight.active}"  class="material-icons" type="button" title="Float Right"
+          (click)="floatRight.click()">
+    vertical_split
+  </button>
+</div>

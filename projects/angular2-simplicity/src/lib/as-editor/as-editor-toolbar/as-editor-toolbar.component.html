@@ -1,0 +1,28 @@
+<div>
+  <as-tabs [(page)]="page">
+    <as-tab>Font</as-tab>
+    <as-tab>Colors</as-tab>
+    <as-tab>Justify</as-tab>
+    <as-tab>Tools</as-tab>
+    <as-tab>Inserts</as-tab>
+  </as-tabs>
+  <as-pages [page]="page">
+    <as-page>
+      <as-toolbar-font class="row" [content]="content"></as-toolbar-font>
+    </as-page>
+    <as-page>
+      <as-toolbar-colors class="row" [content]="content"></as-toolbar-colors>
+    </as-page>
+    <as-page>
+      <as-toolbar-justify class="row" [content]="content"></as-toolbar-justify>
+    </as-page>
+    <as-page>
+      <as-toolbar-tools class="row" [content]="content"></as-toolbar-tools>
+    </as-page>
+    <as-page>
+      <as-toolbar-inserts class="row" [content]="content"></as-toolbar-inserts>
+    </as-page>
+  </as-pages>
+</div>
+
+

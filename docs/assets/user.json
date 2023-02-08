@@ -1,0 +1,124 @@
+{
+  "$schema": {
+    "properties": {
+      "form": {
+        "widget": "form",
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "title": "First Name",
+            "widget": "text",
+            "validators" : {
+              "required" : true,
+              "size" : {
+                "min" : 4,
+                "max" : 80
+              }
+            }},
+          "lastName": {
+            "type": "string",
+            "title": "Last Name",
+            "widget": "text",
+            "validators" : {
+              "required" : true,
+              "size" : {
+                "min" : 4,
+                "max" : 80
+              }
+            }},
+          "birthDate": {
+            "type": "string",
+            "title": "Birthdate",
+            "widget": "date",
+            "validators" : {
+              "required" : true
+            }
+          },
+          "role" : {
+            "type" : "object",
+            "title" : "Role",
+            "widget" : "lazy-select",
+            "properties" : {
+              "name" : {
+                "type" : "string",
+                "title" : "Name",
+                "naming" : true
+              }
+            },
+            "links" : {
+              "list" : {
+                "url" : "assets/roles.json"
+              }
+            }
+          },
+          "views" : {
+            "type" : "number",
+            "title" : "Views",
+            "widget" : "number",
+            "validators" : {
+              "min" : {
+                "value" : 0
+              },
+              "max" : {
+                "value" : 100
+              }
+            }
+          },
+          "emails": {
+            "type": "array",
+            "widget": "array",
+            "items": {
+              "type": "object",
+              "widget": "form",
+              "properties": {
+                "value": {
+                  "type": "string",
+                  "title": "Email",
+                  "widget": "email",
+                  "validators" : {
+                    "email" : true
+                  }
+                }
+              }
+            }
+          },
+          "text" : {
+            "type" : "object",
+            "widget" : "editor",
+            "properties" : {
+              "html" : {
+                "type" : "string"
+              },
+              "text" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "form": {
+    "firstName": "Patrick",
+    "lastName": "Bittner",
+    "birthDate": "1980-04-01",
+    "views" : 10,
+    "role" : {
+      "id" : 1,
+      "name" : "Administrator"
+    },
+    "emails": [
+      {
+        "value": "patrick.bittner@hamburg.de"
+      },
+      {
+        "value": "anjunar@gmx.de"
+      }
+    ],
+    "text" : {
+      "html" : "Test",
+      "text" : "Test"
+    }
+  }
+}

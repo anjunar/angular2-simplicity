@@ -1,0 +1,36 @@
+<div style="height: 38px"></div>
+<as-toolbar style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);position: absolute; z-index: 9999">
+  <div left style="display: flex">
+    <a routerLink="home" routerLinkActive="active" class="material-icons">home</a>
+    <a routerLink="basic" routerLinkActive="active" class="normal">Basic</a>
+    <a routerLink="advanced" routerLinkActive="active" class="normal">Advanced</a>
+  </div>
+  <div middle>ng Simplicity v0.9beta</div>
+  <div right>
+    <div class="browsers">
+      <a href="https://www.google.de/chrome" target="_blank">
+        <img src="assets/app-root/chrome_logo.png"
+             style="height: 32px; width: 32px; margin-right: 5px; vertical-align: bottom"/>
+      </a>
+      <a href="https://www.microsoft.com/de-de/edge" target="_blank">
+        <img src="assets/app-root/edge.png"
+             style="height: 32px; width: 32px; margin-right: 12px; vertical-align: bottom"/>
+      </a>
+      <a href="https://www.mozilla.org" target="_blank">
+        <img src="assets/app-root/firefox_logo.png"
+             style="height: 32px; width: 32px; margin-right: 12px; vertical-align: bottom"/>
+      </a>
+      <a href="https://github.com/anjunar/simplicity" target="_blank">
+        <img src="assets/app-root/github-circle-white-transparent.svg"/>
+      </a>
+    </div>
+  </div>
+</as-toolbar>
+<as-viewport style="position: relative; height: calc(100% - 38px)">
+  <router-outlet></router-outlet>
+</as-viewport>
+
+<as-footer>
+  <as-taskbar left></as-taskbar>
+</as-footer>
+

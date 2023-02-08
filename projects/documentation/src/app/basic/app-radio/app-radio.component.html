@@ -1,0 +1,74 @@
+<div style="margin: auto; flex-wrap: wrap; display: flex">
+
+  <div style="flex: 1; padding: 20px; min-width : 400px">
+
+    <h2 style="margin-left: 0;">As Radio</h2>
+    <hr class="line">
+
+    <p >
+      A native radio implementation with associated mat radio container to switch to material design.
+      With the attribute bind: model, the attribute value can be linked to the selected property.
+    </p>
+
+    <h3>DOM-API</h3>
+    <table style="width: 100%; font-size: small">
+      <thead>
+      <tr>
+        <td><strong >Element</strong></td>
+        <td><strong >Attribute</strong></td>
+        <td><strong >Description</strong></td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>as-radio-container</td>
+        <td>placeholder</td>
+        <td >The placeholder text</td>
+      </tr>
+      <tr>
+        <td>input</td>
+        <td>model</td>
+        <td >Two-way data bound to a Property</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <br/>
+
+    <div style="margin: auto;">
+      <form>
+        <as-radio-container placeholder="Male">
+          <input [(ngModel)]="gender" is="dom-input" name="gender" type="radio" value="male">
+        </as-radio-container>
+        <as-radio-container placeholder="Female">
+          <input [(ngModel)]="gender" is="dom-input" name="gender" type="radio" value="female">
+        </as-radio-container>
+        <as-radio-container placeholder="Other">
+          <input [(ngModel)]="gender" is="dom-input" name="gender" type="radio" value="other">
+        </as-radio-container>
+      </form>
+      <div style="margin-top: 20px;">Selected Gender: <span>{{gender}}</span></div>
+    </div>
+
+
+  </div>
+
+  <div style="flex: 1; padding: 20px; min-width : 400px">
+
+    <h2>Source Code</h2>
+    <hr class="line">
+    <h3>HTML5</h3>
+    <p >The rest of the HTML file is not displayed</p>
+    <div style="margin-top: 20px;">
+      <div>
+        <as-code [code]="html" type="xml"></as-code>
+      </div>
+    </div>
+    <h3>Javascript</h3>
+    <div>
+      <div>
+        <as-code [code]="typescript" type="typescript"></as-code>
+      </div>
+    </div>
+  </div>
+</div>

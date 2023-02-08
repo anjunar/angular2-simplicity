@@ -1,0 +1,62 @@
+<div style="margin: auto; flex-wrap: wrap; display: flex">
+
+  <div style="flex: 1; padding: 20px; min-width : 400px">
+
+    <h2 style="margin-left: 0;">As Image Upload</h2>
+    <hr class="line">
+
+    <p >
+      This is an image upload component to upload images. The object that is bound via bind: model
+      contains the name, lastModified and data. Data is a base64 representation of the image.
+    </p>
+
+    <h3>DOM-API</h3>
+    <table style="width: 100%; font-size: small">
+      <thead>
+      <tr>
+        <td><strong >Element</strong></td>
+        <td><strong >Attribute</strong></td>
+        <td><strong >Description</strong></td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>as-image-upload</td>
+        <td>model</td>
+        <td >The value object</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div style="margin: 20px;">
+      <div>
+        <as-image-upload placeholder="click" [(ngModel)]="image" style="width: 320px; height: 200px"></as-image-upload>
+        <div>
+          <span>{{image.name}}</span>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+  <div style="flex: 1; padding: 20px; min-width : 400px">
+
+    <h2>Source Code</h2>
+    <hr class="line">
+    <h3>HTML5</h3>
+    <p >The rest of the HTML file is not displayed</p>
+    <div style="margin-top: 20px;">
+      <div>
+        <as-code [code]="html" type="html"></as-code>
+      </div>
+    </div>
+    <h3>Javascript</h3>
+    <div>
+      <div>
+        <as-code [code]="typescript" type="typescript">
+        </as-code>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<as-input-container placeholder="Click here...">
+  <as-lazy-select [items]="items" [(ngModel)]="value" trackBy="position">
+    <ng-template #option let-item>
+      {{item.name}}
+    </ng-template>
+  </as-lazy-select>
+</as-input-container>
+
+<as-input-container placeholder="Click here...">
+  <as-lazy-select [items]="items" [(ngModel)]="values" [multiSelect]="true" trackBy="position">
+    <ng-template #option let-item>
+      {{item.name}}
+    </ng-template>
+  </as-lazy-select>
+</as-input-container>

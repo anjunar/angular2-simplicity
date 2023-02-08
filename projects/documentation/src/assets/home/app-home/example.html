@@ -1,0 +1,12 @@
+<as-input-container placeholder="Email">
+  <input type="email" [(ngModel)]="email" required minlength="4" pattern="\d+">
+  <as-container-error name="required">
+    This field is Required
+  </as-container-error>
+  <as-container-error name="minlength">
+    This field must be minimum 4 chars long
+  </as-container-error>
+  <as-container-error name="pattern">
+    Only numbers
+  </as-container-error>
+</as-input-container>

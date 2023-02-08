@@ -1,0 +1,23 @@
+as-radio-container {
+  display: block;
+}
+
+as-radio-container input[type=radio] {
+  -webkit-appearance: none;
+  -webkit-font-smoothing: antialiased;
+  font-family: 'Material Icons', fantasy;
+  font-size: large;
+  margin: 0;
+  display: inline;
+  outline: 0;
+}
+
+as-radio-container input[type=radio]::before {
+  content: "radio_button_unchecked";
+  color: var(--main-font-color);
+}
+
+as-radio-container input[type=radio]:checked::before {
+  content: "radio_button_checked";
+  color: var(--main-selected-color);
+}

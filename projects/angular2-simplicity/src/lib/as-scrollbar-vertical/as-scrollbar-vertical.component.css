@@ -1,0 +1,19 @@
+as-scrollbar-vertical {
+  display: block;
+  height: 100%;
+}
+
+as-scrollbar-vertical .bar {
+  position: relative;
+  height: 100%;
+  width: 16px;
+  background-color: var(--main-dark2-color);
+}
+
+as-scrollbar-vertical .cursor {
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  background-color: var(--main-dark1-color);
+  cursor: move;
+}

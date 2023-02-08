@@ -1,0 +1,20 @@
+<div header>Extended Dom</div>
+<div content>
+  <as-tabs [(page)]="page">
+    <as-tab *ngFor="let segment of path">
+      <div>
+        {{segment.localName}}
+      </div>
+    </as-tab>
+  </as-tabs>
+  <as-pages [page]="page">
+    <as-page *ngFor="let segment of path">
+      <div>
+        <as-context-margins [node]="segment"></as-context-margins>
+        <as-context-paddings [node]="segment"></as-context-paddings>
+        <as-context-sizing [node]="segment"></as-context-sizing>
+        <as-context-flex-box *ngIf="segment.className === 'flex'" [node]="segment"></as-context-flex-box>
+      </div>
+    </as-page>
+  </as-pages>
+</div>

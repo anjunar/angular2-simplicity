@@ -1,0 +1,35 @@
+<div style="height: 20px; margin: -10px" [style.cursor]="resizable && ! maximized ? 'n-resize' : 'default'" (mousedown)="nResizeTopMouseDown($event)"></div>
+<div style="display: flex; height: 100%">
+  <div style="width: 20px; margin: -10px">
+    <div style="width: 20px; height: 20px" [style.cursor]="resizable && ! maximized ? 'se-resize' : 'default'" (mousedown)="seResizeMouseDown($event)"></div>
+    <div style="width: 20px; height: calc(100% - 40px)" [style.cursor]="resizable && ! maximized ? 'e-resize' : 'default'" (mousedown)="eResizeLeftMouseDown($event)"></div>
+    <div style="width: 20px; height: 20px" [style.cursor]="resizable && ! maximized ? 'ne-resize' : 'default'" (mousedown)="neResizeMouseDown($event)"></div>
+  </div>
+  <div style="flex: 1; align-items: stretch; width: 100%">
+    <div style="line-height: 24px; padding-left: 3px; display: flex" [style.color]="isTopWindow() ? 'var(--main-background-color)' : 'var(--main-font-color)'" [style.background-color]="isTopWindow() ? 'var(--main-grey-color)' : 'var(--main-dark1-color)'" [style.cursor]="! maximized || draggable ? 'all-scroll' : 'default'" (mousedown)="dragElementMouseDown($event)">
+      <div>
+        <ng-content select="[header]"></ng-content>
+      </div>
+      <div style="flex: 1"></div>
+      <div style="margin-bottom: -7px">
+        <button translate="no" type="button" class="material-icons" (click)="minimize()" [style.display]="resizable ? 'inline' : 'none'">minimize</button>
+        <button translate="no" type="button" class="material-icons" (click)="maximize()" [style.display]="resizable ? 'inline' : 'none'">maximize</button>
+        <button translate="no" type="button" class="material-icons" (click)="close()">close</button>
+      </div>
+    </div>
+    <as-scroll-area style="height: calc(100% - 40px); width: 100%">
+      <div>
+        <ng-content select="[content]"></ng-content>
+      </div>
+    </as-scroll-area>
+    <div style="height: 20px; background-color: var(--main-dark1-color)">
+      <ng-content select="[footer]"></ng-content>
+    </div>
+  </div>
+  <div style="width: 20px; margin: -10px">
+    <div style="width: 20px; height: 20px" [style.cursor]="resizable && ! maximized ? 'sw-resize' : 'default'" (mousedown)="swResizeMouseDown($event)"></div>
+    <div style="width: 20px; height: calc(100% - 40px)" [style.cursor]="resizable && ! maximized ? 'e-resize' : 'default'" (mousedown)="eResizeRightMouseDown($event)"></div>
+    <div style="width: 20px; height: 20px" [style.cursor]="resizable && ! maximized ? 'nw-resize' : 'default'" (mousedown)="nwResizeMouseDown($event)"></div>
+  </div>
+</div>
+<div style="height: 20px; margin: -10px" [style.cursor]="resizable && ! maximized ? 'n-resize' : 'default'" (mousedown)="nResizeBottomMouseDown($event)"></div>

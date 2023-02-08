@@ -1,0 +1,7 @@
+as-taskbar {
+  display: block;
+}
+
+as-taskbar div {
+  display: flex;
+}

@@ -1,0 +1,31 @@
+<div header>Table Configuration</div>
+<div content>
+  <table>
+    <thead>
+    <tr>
+      <td>Column</td>
+      <td>Visibility</td>
+      <td>Search</td>
+      <td>Order</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let row of table.columns; let index = index; let length = count">
+      <td>
+        <ng-container *ngTemplateOutlet="table.templateRefHeader(row.index)"></ng-container>
+      </td>
+      <td>
+        <input type="checkbox" [(ngModel)]="row.visible"/>
+      </td>
+      <td>
+        <ng-container *ngTemplateOutlet="table.templateRefFilter(row.index); context: {$implicit: row}"></ng-container>
+      </td>
+      <td>
+        <button class="material-icons" type="button" (click)="table.left(index)" [disabled]="index === 0" >chevron_left</button>
+        <button class="material-icons" type="button" (click)="table.right(index)" [disabled]="index === length -1">chevron_right</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div footer></div>

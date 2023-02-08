@@ -1,0 +1,18 @@
+as-scroll-area {
+  display: block;
+}
+
+as-scroll-area .container {
+  display : flex;
+  height: 100%;
+}
+
+as-scroll-area .viewport {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+}
+
+as-scroll-area .content {
+  width: fit-content;
+}

@@ -1,0 +1,68 @@
+<as-table [items]="items">
+  <ng-template #filter let-filter>
+    <as-filter [filter]="filter" [widget]="'number'">
+      <div style="display: flex">
+        <input type="number" [(ngModel)]="filter.search.from" style="width: 85px">
+        <input type="number" [(ngModel)]="filter.search.to" style="width: 85px">
+      </div>
+    </as-filter>
+  </ng-template>
+  <ng-template #filter let-filter>
+    <as-filter [filter]="filter" [widget]="'text'">
+      <input type="text" [(ngModel)]="filter.search">
+    </as-filter>
+  </ng-template>
+  <ng-template #filter let-filter>
+    <as-filter [filter]="filter" [widget]="'number'">
+      <div style="display: flex">
+        <input type="number" [(ngModel)]="filter.search.from" style="width: 85px">
+        <input type="number" [(ngModel)]="filter.search.to" style="width: 85px">
+      </div>
+    </as-filter>
+  </ng-template>
+  <ng-template #filter let-filter>
+    <as-filter [filter]="filter" [widget]="'text'">
+      <input type="text" [(ngModel)]="filter.search">
+    </as-filter>
+  </ng-template>
+  <table>
+    <colgroup>
+      <col #col path="position">
+      <col #col path="name">
+      <col #col path="weight">
+      <col #col path="symbol">
+    </colgroup>
+    <thead>
+    <tr>
+      <td>
+        <ng-template #head>Position</ng-template>
+      </td>
+      <td>
+        <ng-template #head>Name</ng-template>
+      </td>
+      <td>
+        <ng-template #head>Weight</ng-template>
+      </td>
+      <td>
+        <ng-template #head>Symbol</ng-template>
+      </td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+        <ng-template #body let-material>{{material}}</ng-template>
+      </td>
+      <td>
+        <ng-template #body let-material>{{material}}</ng-template>
+      </td>
+      <td>
+        <ng-template #body let-material>{{material}}</ng-template>
+      </td>
+      <td>
+        <ng-template #body let-material>{{material}}</ng-template>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</as-table>

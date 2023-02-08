@@ -1,0 +1,12 @@
+<form>
+  <as-radio-container placeholder="Male">
+    <input [(ngModel)]="gender" is="dom-input" name="gender" type="radio" value="male">
+  </as-radio-container>
+  <as-radio-container placeholder="Female">
+    <input [(ngModel)]="gender" is="dom-input" name="gender" type="radio" value="female">
+  </as-radio-container>
+  <as-radio-container placeholder="Other">
+    <input [(ngModel)]="gender" is="dom-input" name="gender" type="radio" value="other">
+  </as-radio-container>
+</form>
+<div style="margin-top: 20px;">Selected Gender: <span>{{gender}}</span></div>

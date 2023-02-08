@@ -1,0 +1,65 @@
+<div style="flex-wrap: wrap; display: flex">
+
+  <div style="flex: 1; padding: 20px; min-width : 400px">
+
+    <h2 style="margin-left: 0;">as-List</h2>
+    <hr class="line">
+
+    <p>
+      A List Implementation
+    </p>
+
+    <h3>DOM-API</h3>
+    <table style="width: 100%; font-size: small">
+      <thead>
+      <tr>
+        <td><strong >Element</strong></td>
+        <td><strong >Attribute</strong></td>
+        <td><strong >Description</strong></td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>as-list</td>
+        <td>items</td>
+        <td >An array of items to be displayed</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div style="margin: 20px;">
+      <as-lazy-list [items]="items">
+        <ng-template let-item>
+          <div style="display: flex">
+            <div>{{item.position}}</div>
+            <div>{{item.name}}</div>
+            <div>{{item.weight}}</div>
+            <div>{{item.symbol}}</div>
+          </div>
+        </ng-template>
+      </as-lazy-list>
+    </div>
+
+
+  </div>
+
+  <div style="flex: 1; padding: 20px; min-width : 400px">
+
+    <h2>Source Code</h2>
+    <hr class="line">
+    <h3>HTML5</h3>
+    <p >The rest of the HTML file is not displayed</p>
+    <div style="margin-top: 20px;">
+      <div>
+        <as-code [code]="html" type="xml"></as-code>
+      </div>
+    </div>
+    <h3>Javascript</h3>
+    <div>
+      <div>
+        <as-code [code]="typescript" type="typescript">
+        </as-code>
+      </div>
+    </div>
+  </div>
+</div>

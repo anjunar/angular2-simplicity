@@ -1,0 +1,30 @@
+as-table-configuration {
+  display: block;
+  width: 400px;
+}
+
+as-table-configuration table {
+  width: 100%;
+  border-spacing: 0;
+  font-size: 14px;
+  table-layout: auto;
+}
+
+as-table-configuration table tr td {
+  height: 48px;
+  vertical-align: top;
+}
+
+as-table-configuration table tbody td {
+  border-top: 1px solid var(--main-dark1-color);
+}
+
+as-table-configuration table tbody tr:hover {
+  background-color: var(--main-yellow-color);
+  color: var(--main-background-color);
+}
+
+as-table-configuration table td:first-of-type,
+as-table-configuration table th:first-of-type {
+  padding-left: 12px;
+}

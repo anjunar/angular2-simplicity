@@ -1,0 +1,144 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "angular2-simplicity": {
+      "projectType": "library",
+      "root": "projects/angular2-simplicity",
+      "sourceRoot": "projects/angular2-simplicity/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/angular2-simplicity/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/angular2-simplicity/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/angular2-simplicity/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/angular2-simplicity/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "documentation": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/documentation",
+      "sourceRoot": "projects/documentation/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "docs",
+            "index": "projects/documentation/src/index.html",
+            "main": "projects/documentation/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "projects/documentation/tsconfig.app.json",
+            "assets": [
+              "projects/documentation/src/favicon.ico",
+              "projects/documentation/src/material.woff2",
+              "projects/documentation/src/404.html",
+              "projects/documentation/src/assets",
+              {
+                "glob": "**/*",
+                "input": "./dist/angular2-simplicity/src/assets/",
+                "output": "./assets/"
+              }
+            ],
+            "styles": [
+              "projects/documentation/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "2mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "documentation:build:production"
+            },
+            "development": {
+              "browserTarget": "documentation:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "documentation:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/documentation/tsconfig.spec.json",
+            "assets": [
+              "projects/documentation/src/favicon.ico",
+              "projects/documentation/src/assets"
+            ],
+            "styles": [
+              "projects/documentation/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy"
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": "1f0566f1-8427-4ee9-a707-0e87afef9eca"
+  }
+}

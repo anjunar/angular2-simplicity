@@ -1,0 +1,25 @@
+as-table table {
+  width: 100%;
+  border-spacing: 0;
+  font-size: 14px;
+  table-layout: auto;
+}
+
+as-table table tr td {
+  height: 48px;
+  vertical-align: top;
+}
+
+as-table table tbody td {
+  border-top: 1px solid var(--main-dark1-color);
+}
+
+as-table table tbody tr:hover {
+  background-color: var(--main-yellow-color);
+  color: var(--main-background-color);
+}
+
+as-table table td:first-of-type,
+as-table table th:first-of-type {
+  padding-left: 12px;
+}

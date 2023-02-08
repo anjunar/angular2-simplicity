@@ -1,0 +1,99 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <ng-container *ngTemplateOutlet="fields; context : {$implicit : model.$schema, form : form}"></ng-container>
+
+  <button type="submit" [disabled]="form.pristine || ! form.valid">Send</button>
+  <button type="button" [disabled]="form.pristine" (click)="onReset()">Reset</button>
+</form>
+
+<ng-template #fields let-node let-form="form">
+  <div [formGroup]="form">
+    <ng-container *ngFor="let entry of node.properties | keyvalue : originalOrder">
+      <ng-container [ngSwitch]="$any(entry).value.widget">
+        <ng-container *ngSwitchCase="'form'">
+          <div [formGroupName]="$any(entry).key" >
+            <ng-container *ngTemplateOutlet="fields; context : {$implicit : entry.value, form : form.get($any(entry).key)}"></ng-container>
+          </div>
+        </ng-container>
+        <ng-container *ngSwitchCase="'array'">
+          <div [formArrayName]="$any(entry).key">
+            <div *ngFor="let item of form.get($any(entry).key).controls;" style="display: flex">
+              <ng-container *ngTemplateOutlet="fields; context : {$implicit : $any(entry).value.items, form : item}"></ng-container>
+              <button type="button" class="material-icons" (click)="remove(form.get($any(entry).key), item)">delete</button>
+            </div>
+          </div>
+          <button type="button" class="material-icons" (click)="add(form.get($any(entry).key), $any(entry).value.items)">add</button>
+        </ng-container>
+        <ng-container *ngSwitchCase="'editor'">
+          <as-editor [formControlName]="$any(entry).key" style="height: 300px"></as-editor>
+        </ng-container>
+        <ng-container *ngSwitchCase="'lazy-select'">
+          <as-input-container [placeholder]="$any(entry).value.title">
+            <as-lazy-select [formControlName]="$any(entry).key" [items]="lazySelectLoader($any(entry).value.links.list)" [label]="lazySelectLabel($any(entry).value.properties)">
+              <ng-template let-item>
+                {{lazySelectName($any(entry).value.properties, item)}}
+              </ng-template>
+            </as-lazy-select>
+          </as-input-container>
+        </ng-container>
+        <ng-container *ngSwitchCase="'text'">
+          <as-input-container [placeholder]="$any(entry).value.title">
+            <input type="text" [formControlName]="$any(entry).key">
+            <as-error name="required">
+              This Field is required
+            </as-error>
+            <as-error name="minlength">
+              This Field has a length of $(actualLength), but must be minimum length of $(requiredLength)
+            </as-error>
+            <as-error name="maxlength">
+              This Field has a length of $(actualLength), but must be maximum length of $(requiredLength)
+            </as-error>
+          </as-input-container>
+        </ng-container>
+        <ng-container *ngSwitchCase="'email'">
+          <as-input-container [placeholder]="$any(entry).value.title">
+            <input type="email" [formControlName]="$any(entry).key">
+            <as-error name="required">
+              This Field is required
+            </as-error>
+            <as-error name="email">
+              This Field as to be an email Address
+            </as-error>
+          </as-input-container>
+        </ng-container>
+        <ng-container *ngSwitchCase="'number'">
+          <as-input-container [placeholder]="$any(entry).value.title">
+            <input type="number" [formControlName]="$any(entry).key">
+            <as-error name="required">
+              This Field is required
+            </as-error>
+            <as-error name="min">
+              This Field has a value of $(actual) and need a minimum amount of $(min)
+            </as-error>
+            <as-error name="max">
+              This Field need a value of $(actual) and a maximum amount of $(max)
+            </as-error>
+          </as-input-container>
+        </ng-container>
+        <ng-container *ngSwitchCase="'date'">
+          <as-input-container [placeholder]="$any(entry).value.title">
+            <input type="date" [formControlName]="$any(entry).key">
+            <as-error name="required">
+              This Field is required
+            </as-error>
+          </as-input-container>
+        </ng-container>
+        <ng-container *ngSwitchDefault>
+          <as-input-container [placeholder]="$any(entry).value.title">
+            <input type="text" [formControlName]="$any(entry).key">
+            <as-error name="required">
+              This Field is required
+            </as-error>
+            <as-error name="minlength">
+              This Field has a length of $(actualLength), but must be minimum length of $(requiredLength)
+            </as-error>
+          </as-input-container>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </div>
+</ng-template>

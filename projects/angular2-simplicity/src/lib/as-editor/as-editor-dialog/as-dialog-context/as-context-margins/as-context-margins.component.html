@@ -1,0 +1,14 @@
+<div style="display: flex">
+  <as-input-container placeholder="Margin Left">
+    <input type="number" [(ngModel)]="marginLeft" (ngModelChange)="marginLeftChange($event)"/>
+  </as-input-container>
+  <as-input-container placeholder="Margin Right">
+    <input type="number" [(ngModel)]="marginRight" (ngModelChange)="marginRightChange($event)"/>
+  </as-input-container>
+  <as-input-container placeholder="Margin Top">
+    <input type="number" [(ngModel)]="marginTop" (ngModelChange)="marginTopChange($event)"/>
+  </as-input-container>
+  <as-input-container placeholder="Margin Bottom">
+    <input type="number" [(ngModel)]="marginBottom" (ngModelChange)="marginBottomChange($event)"/>
+  </as-input-container>
+</div>

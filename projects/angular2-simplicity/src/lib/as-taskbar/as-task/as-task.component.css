@@ -1,0 +1,8 @@
+as-task {
+  display: block;
+  width: 100px;
+  height: 38px;
+  background-color: var(--main-dark2-color);
+  border: 1px solid var(--main-dark1-color);
+  cursor: pointer;
+}

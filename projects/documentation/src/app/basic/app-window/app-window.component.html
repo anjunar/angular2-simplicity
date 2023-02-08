@@ -1,0 +1,89 @@
+<div style="flex-wrap: wrap; display: flex">
+
+  <div style="flex: 1; padding: 20px; min-width : 400px">
+
+    <h2 style="margin-left: 0;">As Window</h2>
+    <hr class="line">
+
+    <p >
+      This is a window that is rendered into the viewport element. The window can be set with the action attribute,
+      or generated with the windowManager. Height and Width can be specified in the definition of the view,
+      otherwise the size of the window is calculated based on its content.
+    </p>
+
+    <h3>DOM-API</h3>
+    <table style="width: 100%; font-size: small">
+      <thead>
+      <tr>
+        <td><strong >Element</strong></td>
+        <td><strong >Attribute</strong></td>
+        <td><strong >Description</strong></td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>button</td>
+        <td>action</td>
+        <td >The Path to the Window Component</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div style="margin: 20px;">
+      <button type="button" (click)="onClick()">Click</button>
+    </div>
+
+
+  </div>
+
+  <div style="flex: 1; padding: 20px; min-width : 400px">
+
+    <h2>Source Code</h2>
+    <hr class="line">
+    <as-tabs [(page)]="page">
+      <as-tab>
+        <span>View</span>
+      </as-tab>
+      <as-tab>
+        <span>Example</span>
+      </as-tab>
+    </as-tabs>
+    <as-pages [page]="page">
+      <as-page>
+        <div>
+          <h3>HTML5</h3>
+          <p >The rest of the HTML file is not displayed</p>
+          <div style="margin-top: 20px;">
+            <div>
+              <as-code [code]="html" type="html"></as-code>
+            </div>
+          </div>
+          <h3>Javascript</h3>
+          <div>
+            <div>
+              <as-code [code]="typescript" type="typescript"></as-code>
+            </div>
+          </div>
+        </div>
+      </as-page>
+      <as-page>
+        <div>
+          <h3>HTML5</h3>
+          <p>The rest of the HTML file is not displayed</p>
+          <div style="margin-top: 20px;">
+            <div>
+              <as-code [code]="html2" type="html"></as-code>
+            </div>
+          </div>
+          <h3>Javascript</h3>
+          <div>
+            <div>
+              <as-code [code]="typescript2" type="typescript"></as-code>
+            </div>
+          </div>
+        </div>
+      </as-page>
+    </as-pages>
+  </div>
+</div>
+

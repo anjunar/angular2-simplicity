@@ -1,0 +1,26 @@
+<as-table [items]="parent">
+  <ng-template *ngFor="let property of schema?.properties.rows.items.properties | keyvalue" #filter let-filter>
+    <as-filter [filter]="filter" widget="text">
+      <input type="text" [(ngModel)]="filter.search">
+    </as-filter>
+  </ng-template>
+  <table>
+    <colgroup>
+      <col *ngFor="let property of schema?.properties.rows.items.properties | keyvalue" #col [attr.path]="property.key">
+    </colgroup>
+    <thead>
+    <tr>
+      <td *ngFor="let property of schema?.properties.rows.items.properties | keyvalue">
+        <ng-template #head>{{header(property.value)}}</ng-template>
+      </td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td *ngFor="let property of schema?.properties.rows.items.properties | keyvalue">
+        <ng-template #body let-material>{{material}}</ng-template>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</as-table>

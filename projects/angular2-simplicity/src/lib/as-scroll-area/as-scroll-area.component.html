@@ -1,0 +1,9 @@
+<div class="container">
+  <div #viewport class="viewport">
+    <div #inner class="content">
+      <ng-content></ng-content>
+    </div>
+  </div>
+  <as-scrollbar-vertical *ngIf="scrollbarVerticalVisible" (scroll)="onScrollY($event)"></as-scrollbar-vertical>
+</div>
+<as-scrollbar-horizontal *ngIf="scrollbarHorizontalVisible" style="margin-top: -16px" (scroll)="onScrollX($event)"></as-scrollbar-horizontal>

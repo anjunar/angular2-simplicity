@@ -1,0 +1,7 @@
+<div class="area" (click)="onAreaClick()">
+  <div *ngIf="model" >
+    <div class="center">{{placeholder}}</div>
+    <img [src]="model.data"/>
+  </div>
+</div>
+<input #input (change)="onLoad($event)" type="file" style="display: none">

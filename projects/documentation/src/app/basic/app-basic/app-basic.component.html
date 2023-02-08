@@ -1,0 +1,188 @@
+<div style="height: 38px"></div>
+<as-toolbar style="position: absolute; z-index: 8000">
+  <div left>
+    <button translate="no" class="material-icons" type="button" (click)="open = ! open">menu</button>
+  </div>
+</as-toolbar>
+
+<as-drawer-container style="height: calc(100% - 38px)">
+  <as-drawer [open]="open">
+    <div style="width: 300px">
+      <div style="padding-top: 20px">
+        <h2>Content</h2>
+      </div>
+
+      <hr class="line">
+
+      <nav>
+        <ul>
+          <li>
+            <div>
+              <div class="row">
+                <h4>Form</h4>
+              </div>
+            </div>
+            <ul>
+              <li>
+                <a routerLink="editor" routerLinkActive="active">
+                  <div class="row">
+                    <span>Editor</span>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a routerLink="checkbox" routerLinkActive="active">
+                  <div class="row">
+                    <span>Checkbox</span>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a routerLink="select" routerLinkActive="active">
+                  <div class="row">
+                    <span>Select</span>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a routerLink="lazy-select" routerLinkActive="active">
+                  <div class="row">
+                    <span>lazy Select</span>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a routerLink="input" routerLinkActive="active">
+                  <div class="row">
+                    <span>Text Input</span>
+
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a routerLink="upload" routerLinkActive="active">
+                  <div class="row">
+                    <span>Image Upload</span>
+
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a routerLink="radio" routerLinkActive="active">
+                  <div class="row">
+                    <span>Radio</span>
+
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <div>
+              <div class="row">
+                <h4>Modals</h4>
+              </div>
+            </div>
+            <ul>
+              <li>
+                <a routerLink="dialog" routerLinkActive="active">
+                  <div class="row">
+                    <span>Dialog</span>
+
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a routerLink="window" routerLinkActive="active">
+                  <div class="row">
+                    <span>Window</span>
+
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <div class="row">
+              <h4>Tables</h4>
+            </div>
+            <ul>
+              <li>
+                <a routerLink="table" routerLinkActive="active">
+                  <div class="row">
+                    <span>Table</span>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a routerLink="list" routerLinkActive="active">
+                  <div class="row">
+                    <span>List</span>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <div>
+              <div class="row">
+                <h4>Indicators</h4>
+              </div>
+            </div>
+            <ul>
+              <li>
+                <a routerLink="spinner" routerLinkActive="active">
+                  <div class="row">
+                    <span>Spinner</span>
+
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a routerLink="progress-bar" routerLinkActive="active">
+                  <div class="row">
+                    <span>Progress</span>
+
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <div>
+              <div class="row">
+                <h4>Navigation</h4>
+
+              </div>
+            </div>
+            <ul>
+              <li>
+                <a routerLink="drawer" routerLinkActive="active">
+                  <div class="row">
+                    <span>Drawer</span>
+
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a routerLink="tabs" routerLinkActive="active">
+                  <div class="row">
+                    <span>Tabs</span>
+
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+        </ul>
+      </nav>
+    </div>
+  </as-drawer>
+  <as-drawer-content>
+      <router-outlet></router-outlet>
+  </as-drawer-content>
+</as-drawer-container>

@@ -1,0 +1,8 @@
+app-advanced {
+  display: block;
+  height: 100%;
+}
+
+app-advanced nav a.active{
+  color: var(--main-selected-color);
+}

@@ -1,0 +1,13 @@
+<div class="modal">
+  <as-window [modal]="modal" [draggable]="false" [resizable]="false" #window>
+    <div header>
+      <ng-content select="[header]"></ng-content>
+    </div>
+    <div content>
+      <ng-content select="[content]"></ng-content>
+    </div>
+    <div footer>
+      <ng-content select="[footer]"></ng-content>
+    </div>
+  </as-window>
+</div>

@@ -1,0 +1,17 @@
+as-toolbar {
+  display: block;
+  width: 100%;
+  height: 38px;
+  top: 0;
+  left: 0;
+  background-color: var(--main-dark1-color);
+}
+
+as-toolbar table {
+  width: 100%;
+  height: 100%;
+}
+
+as-toolbar table tr td {
+  width: 33%;
+}

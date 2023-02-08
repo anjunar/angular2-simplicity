@@ -1,0 +1,101 @@
+<div style="margin: auto; flex-wrap: wrap; display: flex; width: 100%">
+
+  <div style="flex: 1; padding: 20px; min-width : 400px">
+
+    <h2 style="margin-left: 0;">Lazy Select</h2>
+    <hr class="line">
+
+    <p>
+      This is a lazy select that receives the values from a callback. There are only 5 items at a time
+      displayed. The model consists of one of the selected records when the record was selected. In contrast,
+      the model of the native select consists of the value of the option element. In addition to the lazy Select there
+      is
+      the as-input-container to turn the lazy Select into a Material Design Select.
+    </p>
+
+    <h3>DOM-API</h3>
+    <table style="width: 100%; font-size: small">
+      <thead>
+      <tr>
+        <td><strong>Element</strong></td>
+        <td><strong>Attribute</strong></td>
+        <td><strong>Description</strong></td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>as-input-container</td>
+        <td>placeholder</td>
+        <td>The Placeholder text</td>
+      </tr>
+      <tr>
+        <td>dom-select</td>
+        <td>items</td>
+        <td>The items data source</td>
+      </tr>
+      <tr>
+        <td>dom-select</td>
+        <td>model</td>
+        <td>Two way data binding</td>
+      </tr>
+      <tr>
+        <td>dom-select</td>
+        <td>multiselect</td>
+        <td>True or false for multi selection</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div style="margin: 20px;">
+      <as-input-container placeholder="Click here...">
+        <as-lazy-select [items]="items" [(ngModel)]="value" trackBy="position">
+          <ng-template let-item>
+            {{item.name}}
+          </ng-template>
+        </as-lazy-select>
+      </as-input-container>
+    </div>
+
+    <h2 style="margin-left: 0;">Lazy Multi Select</h2>
+    <hr class="line">
+
+    <p>
+      With the attribute "multiselect" the select can be converted into a multi-select. In the overlay
+      there is an icon in the top left to indicate the selected items. Is that select in
+      Multi-select mode then the model consists of an array with the selected elements.
+    </p>
+
+    <h3>DOM-API</h3>
+
+    <div style="margin: 20px;">
+      <as-input-container placeholder="Click here...">
+
+        <as-lazy-select [items]="items" [(ngModel)]="values" [multiSelect]="true" trackBy="position">
+          <ng-template #option let-item>
+            {{item.name}}
+          </ng-template>
+        </as-lazy-select>
+      </as-input-container>
+    </div>
+
+  </div>
+
+  <div style="flex: 1; padding: 20px; min-width : 400px">
+
+    <h2>Source Code</h2>
+    <hr class="line">
+    <h3>HTML5</h3>
+    <p>The rest of the HTML file is not displayed</p>
+    <div style="margin-top: 20px;">
+      <div>
+        <as-code [code]="html" type="xml"></as-code>
+      </div>
+    </div>
+    <h3>Typescript</h3>
+    <div>
+      <div>
+        <as-code [code]="typescript" type="typescript"></as-code>
+      </div>
+    </div>
+  </div>
+</div>

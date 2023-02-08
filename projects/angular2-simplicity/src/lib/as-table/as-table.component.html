@@ -1,0 +1,63 @@
+<table>
+  <thead *ngIf="templateRefsHeader.length > 0">
+  <tr>
+    <td *ngFor="let td of configuration(columns, false); let index = index">
+      <div style="display: flex; align-items: center;">
+        <div (click)="showConfiguration()">
+          <strong style="line-height: 24px">
+            <ng-container *ngTemplateOutlet="templateRefHeader(td.index); context: {$implicit: td.property}"></ng-container>
+          </strong>
+        </div>
+        <div style="flex: 1"></div>
+        <button [style.display]="td.sort === 'none' ? 'block' : 'none'" style="width: 32px" class="material-icons" translate="no" (click)="asc(td)">sort</button>
+        <button [style.display]="td.sort === 'asc' ? 'block' : 'none'" style="width: 32px" class="material-icons" translate="no" (click)="desc(td)">expand_more</button>
+        <button [style.display]="td.sort === 'desc' ? 'block' : 'none'" style="width: 32px" class="material-icons" translate="no" (click)="none(td)">expand_less</button>
+        <div style="flex: 1"></div>
+      </div>
+    </td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let tr of window" (click)="onRowClick(tr)">
+    <td *ngFor="let td of configuration(columns, false); let index = index">
+      <ng-container *ngTemplateOutlet="templateRefBody(index); context: {$implicit: tr[td.property]}"></ng-container>
+    </td>
+  </tr>
+  </tbody>
+  <tfoot>
+  <tr>
+    <td [colSpan]="templateRefsBody.length - 1">
+      <div style="display: flex">
+        <div  style="line-height: 42px;">{{index}} - {{index + limit}} of {{size}}</div>
+
+        <button class="material-icons" translate="no"
+                style="color: var(--main-font-color)"
+                (click)="skipPrevious()">
+          skip_previous
+        </button>
+
+        <button class="material-icons" translate="no"
+                style="color: var(--main-font-color)"
+                (click)="arrowLeft()"
+                [disabled]="! (index > 0)">
+          keyboard_arrow_left
+        </button>
+
+        <button class="material-icons" translate="no"
+                style="color: var(--main-font-color)"
+                (click)="arrowRight()"
+                [disabled]="! ((index + limit) < size)">
+          keyboard_arrow_right
+        </button>
+
+
+        <button class="material-icons" translate="no"
+                style="color: var(--main-font-color)"
+                (click)="skipNext()">
+          skip_next
+        </button>
+      </div>
+    </td>
+  </tr>
+  </tfoot>
+</table>

@@ -1,0 +1,15 @@
+<div>
+  <div class="placeholder">
+            <span [style.display]="inputEmpty ? 'none' : 'inline'"
+                  [ngClass]="{ focus : hasFocus, error : hasErrors }">{{placeholder}}</span>
+  </div>
+  <div style="display: flex">
+    <ng-content select="[prefix]"></ng-content>
+    <ng-content></ng-content>
+    <ng-content select="[suffix]"></ng-content>
+  </div>
+  <hr [ngClass]="{ focus : hasFocus, error : hasErrors }"/>
+  <div class="error">
+    <ng-content select="as-error"></ng-content>
+  </div>
+</div>

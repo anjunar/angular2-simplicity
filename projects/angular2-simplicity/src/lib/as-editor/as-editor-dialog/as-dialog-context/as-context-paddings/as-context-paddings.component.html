@@ -1,0 +1,15 @@
+<div style="display: flex">
+  <as-input-container placeholder="Padding Left">
+    <input type="number" is="dom-input" [(ngModel)]="paddingLeft" (ngModelChange)="paddingLeftChange($event)"/>
+  </as-input-container>
+  <as-input-container placeholder="Padding Right">
+    <input type="number" is="dom-input" [(ngModel)]="paddingRight" (ngModelChange)="paddingRightChange($event)"/>
+  </as-input-container>
+  <as-input-container placeholder="Padding Top">
+    <input type="number" is="dom-input" [(ngModel)]="paddingTop" (ngModelChange)="paddingTopChange($event)"/>
+  </as-input-container>
+  <as-input-container placeholder="Padding Bottom">
+    <input type="number" is="dom-input" [(ngModel)]="paddingBottom" (ngModelChange)="paddingBottomChange($event)"/>
+  </as-input-container>
+</div>
+

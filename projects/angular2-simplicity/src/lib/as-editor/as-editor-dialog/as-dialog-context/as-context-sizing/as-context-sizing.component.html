@@ -1,0 +1,8 @@
+<div style="display: flex">
+  <as-input-container style="flex: 1" placeholder="Size X">
+    <input type="text" is="dom-input" [(ngModel)]="sizeX.value" (ngModelChange)="sizeX.click($event)"/>
+  </as-input-container>
+  <as-input-container style="flex: 1" placeholder="Size Y">
+    <input type="text" is="dom-input" [(ngModel)]="sizeY.value" (ngModelChange)="sizeY.click($event)"/>
+  </as-input-container>
+</div>

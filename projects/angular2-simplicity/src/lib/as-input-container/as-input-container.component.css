@@ -1,0 +1,81 @@
+as-input-container {
+  display: block;
+}
+
+as-input-container hr {
+  margin: 0;
+  background-color: var(--main-dark1-color);
+  color: var(--main-dark1-color)
+}
+
+as-input-container ::placeholder {
+  color: var(--main-grey-color);
+  opacity: 1;
+}
+
+as-input-container hr.focus {
+  background-color: var(--main-selected-color);
+  color: var(--main-selected-color)
+}
+
+as-input-container span.focus {
+  color: var(--main-selected-color)
+}
+
+as-input-container hr.error {
+  background-color: var(--main-error-color);
+  color: var(--main-error-color)
+}
+
+as-input-container span.error {
+  color: var(--main-error-color);
+}
+
+as-input-container div.focus {
+  color: var(--main-selected-color);
+}
+
+as-input-container div.error {
+  font-size: xx-small;
+  color: var(--main-error-color);
+  height: 9px;
+  margin-bottom: 2px;
+}
+
+as-input-container div.placeholder {
+  font-size: xx-small;
+  height: 10px;
+  color: var(--main-grey-color);
+}
+
+as-input-container input:-internal-autofill-selected {
+  color: var(--main-font-color) !important;
+  background-color: inherit;
+}
+
+as-input-container input {
+  width: 100%;
+  border: 0;
+  color: inherit;
+  background-color: inherit;
+}
+
+as-input-container input:focus {
+  outline: 0;
+  color: var(--main-font-color);
+  background-color: inherit;
+}
+
+as-input-container input:-webkit-autofill,
+as-input-container input:-webkit-autofill:hover,
+as-input-container input:-webkit-autofill:focus,
+as-input-container textarea:-webkit-autofill,
+as-input-container textarea:-webkit-autofill:hover,
+as-input-container textarea:-webkit-autofill:focus,
+as-input-container select:-webkit-autofill,
+as-input-container select:-webkit-autofill:hover,
+as-input-container select:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--main-font-color);
+  -webkit-box-shadow: 0 0 0 1000px var(--main-background-color) inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
