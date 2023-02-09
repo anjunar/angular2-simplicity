@@ -1,4 +1,5 @@
-import {Component, EventEmitter, HostListener, Output, ViewEncapsulation} from '@angular/core';
+import {Component, EventEmitter, HostListener, Output, ViewEncapsulation, Input} from '@angular/core';
+import {AsTabsComponent} from "../as-tabs/as-tabs.component";
 
 @Component({
   selector: 'as-tab',
@@ -8,6 +9,7 @@ import {Component, EventEmitter, HostListener, Output, ViewEncapsulation} from '
 })
 export class AsTabComponent {
 
+  @Input() small = false;
   selected = false
 
   click : EventEmitter<boolean> = new EventEmitter<boolean>();

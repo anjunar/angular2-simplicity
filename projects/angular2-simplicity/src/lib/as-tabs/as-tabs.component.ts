@@ -20,6 +20,7 @@ export class AsTabsComponent implements AfterContentInit {
   @Input() page : number = 0;
   @Output() pageChange : EventEmitter<number> = new EventEmitter<number>()
   @ContentChildren(AsTabComponent) tabs!: QueryList<AsTabComponent>
+
   ngAfterContentInit(): void {
     this.tabs.changes.forEach((value : any) => {
       let queryList : QueryList<AsTabComponent> = value;

@@ -1,5 +1,4 @@
 <div style="display: flex;">
-  <div style="flex: 1;"></div>
   <select [(ngModel)]="fontName.value" (ngModelChange)="fontName.click($event)" is="dom-select"
           style="border: 0; margin: 5px; width: 80px">
     <option value="Georgia, serif">Georgia</option>
@@ -15,24 +14,6 @@
     <option value="Verdana, serif">Verdana</option>
     <option value="Courier New, serif">Couria New</option>
     <option value="Lucida Console, serif">Lucida</option>
-  </select>
-
-  <select [(ngModel)]="fontSize.value" is="dom-select" (ngModelChange)="fontSize.click($event)" style="border: 0;  margin: 5px; width: 80px">
-    <option value="1">x-small</option>
-    <option value="2">small</option>
-    <option value="3">medium</option>
-    <option value="4">large</option>
-    <option value="5">x-large</option>
-    <option value="6">xx-large</option>
-  </select>
-  <select [(ngModel)]="formatBlock.value" is="dom-select" (ngModelChange)="formatBlock.click($event)" style="border: 0;  margin: 5px; width: 80px">
-    <option value="p" selected>Format</option>
-    <option value="H1">H1</option>
-    <option value="H2">H2</option>
-    <option value="H3">H3</option>
-    <option value="H4">H4</option>
-    <option value="H5">H5</option>
-    <option value="H6">H6</option>
   </select>
   <div style="display: flex;">
     <button [ngClass]="{active : bold.active}"  class="material-icons" type="button" title="Bold"
@@ -51,4 +32,5 @@
             (click)="superScript.click()">superscript
     </button>
   </div>
+  <div style="flex: 1;"></div>
 </div>

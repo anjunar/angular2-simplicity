@@ -53,6 +53,7 @@ import { AsMetaFormComponent } from './as-meta-form/as-meta-form.component';
 import { AsMetaTableComponent } from './as-meta-table/as-meta-table.component';
 import { AsRepeatComponent } from './as-repeat/as-repeat.component';
 import { AsErrorDirective } from './as-input-container/as-error/as-error.directive';
+import { AsToolbarSizeComponent } from './as-editor/as-editor-toolbar/as-toolbar-size/as-toolbar-size.component';
 
 
 @NgModule({
@@ -109,6 +110,7 @@ import { AsErrorDirective } from './as-input-container/as-error/as-error.directi
     AsMetaTableComponent,
     AsRepeatComponent,
     AsErrorDirective,
+    AsToolbarSizeComponent,
   ],
     imports: [
         NgTemplateOutlet,

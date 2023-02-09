@@ -1,10 +1,6 @@
 <div style="display: flex; width: 100%">
-  <as-tabs [(page)]="page" style="flex: 1">
-    <as-tab>Write</as-tab>
-    <as-tab>Preview</as-tab>
-  </as-tabs>
-  <as-pages [page]="page">
-    <as-page>
+  <as-pages [page]="page" style="width: 100%">
+    <as-page style="width: 100%">
       <as-editor-toolbar [content]="content"></as-editor-toolbar>
     </as-page>
     <as-page>
@@ -12,7 +8,7 @@
     </as-page>
   </as-pages>
 </div>
-<as-pages [page]="page" style="height: 100%">
+<as-pages [page]="page" style="height: calc(100% - 70px)" >
   <as-page style="height: 100%">
     <div style="height: 100%" (contextmenu)="contextMenuClick($event)">
       <as-editor-content [(model)]="model"></as-editor-content>
@@ -22,3 +18,8 @@
     <div style="height: 100%; width: 100%" [innerHTML]="model.html"></div>
   </as-page>
 </as-pages>
+
+<as-tabs [(page)]="page" style="flex: 1">
+  <as-tab>Write</as-tab>
+  <as-tab>Preview</as-tab>
+</as-tabs>

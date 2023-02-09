@@ -1,14 +1,18 @@
-<div>
+<div style="width: 100%">
   <as-tabs [(page)]="page">
-    <as-tab>Font</as-tab>
-    <as-tab>Colors</as-tab>
-    <as-tab>Justify</as-tab>
-    <as-tab>Tools</as-tab>
-    <as-tab>Inserts</as-tab>
+    <as-tab [small]="true">Font</as-tab>
+    <as-tab [small]="true">Size</as-tab>
+    <as-tab [small]="true">Colors</as-tab>
+    <as-tab [small]="true">Justify</as-tab>
+    <as-tab [small]="true">Tools</as-tab>
+    <as-tab [small]="true">Inserts</as-tab>
   </as-tabs>
   <as-pages [page]="page">
     <as-page>
       <as-toolbar-font class="row" [content]="content"></as-toolbar-font>
+    </as-page>
+    <as-page>
+      <as-toolbar-size class="row" [content]="content"></as-toolbar-size>
     </as-page>
     <as-page>
       <as-toolbar-colors class="row" [content]="content"></as-toolbar-colors>
