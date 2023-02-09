@@ -1,1 +1,73 @@
-<as-meta-table [items]="items"></as-meta-table>
+<div style="flex-wrap: wrap; display: flex">
+
+  <div style="flex: 1; padding: 20px; min-width : 400px">
+
+    <h2 style="margin-left: 0;">Meta Table</h2>
+    <hr class="line">
+
+    <p>
+      A JSON schema based table is a type of UI control that is used to display structured data in a tabular format.
+      It uses a JSON schema to define the structure and content of the data to be displayed, including the type of data,
+      the format of the data, and the relationships between different pieces of data.
+    </p>
+    <p>
+      In a JSON schema based table, the data is organized and displayed according to the rules defined in the JSON schema,
+      which provides a consistent and predictable way of presenting the data to the user. This makes it easier for developers
+      to create and maintain the table, and for users to understand the data that is being presented.
+    </p>
+    <p>
+      The use of a JSON schema in a table control can also help to improve the overall user experience by providing a
+      more structured and organized way of displaying the data, and by enabling the use of more advanced features,
+      such as data validation and data formatting, which can be defined in the JSON schema.
+    </p>
+
+    <h3>DOM-API</h3>
+    <table style="width: 100%; font-size: small">
+      <thead>
+      <tr>
+        <td><strong >Element</strong></td>
+        <td><strong >Attribute</strong></td>
+        <td><strong >Description</strong></td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>meta-table</td>
+        <td>items</td>
+        <td >An array of items to be displayed</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div style="margin: 20px;">
+      <as-meta-table [items]="items"></as-meta-table>
+    </div>
+
+  </div>
+
+  <div style="flex: 1; padding: 20px; min-width : 400px">
+
+    <h2>Source Code</h2>
+    <hr class="line">
+    <h3>HTML5</h3>
+    <p >The rest of the HTML file is not displayed</p>
+    <div style="margin-top: 20px;">
+      <div>
+        <as-code [code]="html" type="xml"></as-code>
+      </div>
+    </div>
+    <h3>Javascript</h3>
+    <div>
+      <div>
+        <as-code [code]="typescript" type="typescript"></as-code>
+      </div>
+    </div>
+    <h3>JSON</h3>
+    <div>
+      <div>
+        <as-code [code]="json" type="json"></as-code>
+      </div>
+    </div>
+  </div>
+</div>
+

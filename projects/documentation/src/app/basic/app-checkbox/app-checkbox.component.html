@@ -5,19 +5,22 @@
     <h2 style="margin-left: 0;">Dom Checkbox</h2>
     <hr class="line">
 
-    <p >
-      Input elements of type checkbox are rendered by default as boxes that are checked (ticked) when
-      activated, like you might see in an official government paper form. A checkbox allows you to select
-      single values for submission in a form (or not).
-    </p>
-    <p >
-      A DOMString representing the value of the checkbox. This is not displayed on the client-side, but on
-      the server this is the value given to the data submitted with the checkbox's name.
-    </p>
-    <p >
-      With the bind:model Attribute you can bind the value of the Checkbox to a property of your choice.
+    <p>
+      The input element of type checkbox is a useful way to gather user inputs in a form. By default,
+      it is represented as a box that can be checked or unchecked, and its value can be either "on" or "off".
+      The [(ngModel)] attribute allows you to associate the checkbox value with a specific property in your code,
+      which can then be used for various purposes such as storing or processing the data. The value of the checkbox
+      is also sent to the server as part of the form data when the form is submitted, and can be accessed using the
+      name attribute of the checkbox on the server-side.
     </p>
 
+    <p>
+      A checkbox input element is a type of input that allows the user to select one or multiple options from a set.
+      By default, the value of a checkbox is either "on" or "off", indicating whether the box is checked or not.
+      By using the [(ngModel)] attribute, you can bind the value of the checkbox to a property in your JavaScript code,
+      allowing you to dynamically update and track the state of the checkbox. This can be useful when submitting form
+      data, as the value of the checkbox can be used to represent the user's selection.
+    </p>
     <h3>DOM-API</h3>
     <table style="width: 100%; font-size: small">
       <thead>

@@ -31,7 +31,7 @@ export abstract class AppView {
       if (jsons) {
         jsons.forEach((json: any, index) => {
           let property = json["name"];
-          self[property] = data["data"][index];
+          self[property] = data["data"][index + assets.length];
         })
       }
     })

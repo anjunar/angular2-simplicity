@@ -10,15 +10,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class AppMetaFormComponent extends AppView {
 
-  html! : string;
-  typescript! : string
-  json! : string
-
   model!: any;
-
-  constructor(private activatedRoute: ActivatedRoute) {
-    super(activatedRoute);
-  }
 
   onChange(model : any) {
     alert(JSON.stringify(model.form, null, 4))

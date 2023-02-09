@@ -1,26 +1,101 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div formGroupName="form">
-    <as-input-container placeholder="First Name">
-      <input type="text" formControlName="firstName">
-    </as-input-container>
-    <as-input-container placeholder="Last Name">
-      <input type="text" formControlName="lastName">
-    </as-input-container>
-    <as-input-container placeholder="Birthdate">
-      <input type="date" formControlName="birthDate">
-    </as-input-container>
-    <div formArrayName="emails">
-      <div *ngFor="let email of emails.controls; let index = index">
-        <div [formGroupName]="index" style="display: flex">
-          <as-input-container placeholder="Email">
-            <input type="email" formControlName="value">
+<div style="margin: auto; flex-wrap: wrap; display: flex">
+
+  <div style="flex: 1; padding: 20px; min-width : 400px">
+
+    <h2 style="margin-left: 0;">Meta Form</h2>
+    <hr class="line">
+
+    <p>
+      A JSON Schema Form with layout capabilities is a type of UI control that allows developers to create complex
+      forms using a JSON schema to define the structure and validation of the form fields. The layout capabilities
+      of this type of control allow developers to specify the position and appearance of the form fields, making it
+      possible to create forms with a customized layout that is optimized for the needs of the specific application.
+    </p>
+    <p>
+      This type of control is typically implemented using JavaScript, and may make use of libraries or frameworks
+      that provide pre-built components for creating forms based on JSON schemas. By using a JSON schema to define
+      the structure of the form, developers can easily generate forms that are dynamically generated based on the
+      underlying data, making it easier to change the structure of the form or add new fields as needed. Additionally,
+      the use of a JSON schema for form definition provides a clear and standardized way to specify the validation rule
+      for each form field, ensuring that the data entered by the user is consistent and valid.
+    </p>
+
+    <h3>DOM-API</h3>
+    <table style="width: 100%; font-size: small">
+      <thead>
+      <tr>
+        <td><strong >Element</strong></td>
+        <td><strong >Attribute</strong></td>
+        <td><strong >Description</strong></td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>meta-form</td>
+        <td>model</td>
+        <td >The Bind variable that can be bound</td>
+      </tr>
+      <tr>
+        <td>meta-input</td>
+        <td>property</td>
+        <td >The property of the model</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div style="margin: 20px;">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div formGroupName="form">
+          <as-input-container placeholder="First Name">
+            <input type="text" formControlName="firstName">
           </as-input-container>
-          <button type="button" class="material-icons" (click)="delete(email)">delete</button>
+          <as-input-container placeholder="Last Name">
+            <input type="text" formControlName="lastName">
+          </as-input-container>
+          <as-input-container placeholder="Birthdate">
+            <input type="date" formControlName="birthDate">
+          </as-input-container>
+          <div formArrayName="emails">
+            <div *ngFor="let email of emails.controls; let index = index">
+              <div [formGroupName]="index" style="display: flex">
+                <as-input-container placeholder="Email">
+                  <input type="email" formControlName="value">
+                </as-input-container>
+                <button type="button" class="material-icons" (click)="delete(email)">delete</button>
+              </div>
+            </div>
+            <button type="button" class="material-icons" (click)="add()">add</button>
+          </div>
         </div>
+        <button type="submit" [disabled]="form.pristine || ! form.valid">Send</button>
+        <button type="button" [disabled]="form.pristine" (click)="onReset()">Reset</button>
+      </form>
+    </div>
+
+  </div>
+
+  <div style="flex: 1; padding: 20px; min-width : 400px">
+
+    <h2>Source Code</h2>
+    <hr class="line">
+    <h3>HTML5</h3>
+    <p >The rest of the HTML file is not displayed</p>
+    <div style="margin-top: 20px;">
+      <div>
+        <as-code [code]="html" type="xml"></as-code>
       </div>
-      <button type="button" class="material-icons" (click)="add()">add</button>
+    </div>
+    <h3>Javascript</h3>
+    <div>
+      <div>
+        <as-code [code]="typescript" type="typescript"></as-code>
+      </div>
+    </div>
+    <h3>JSON</h3>
+    <div>
+      <div>
+        <as-code [code]="json" type="json"></as-code>
+      </div>
     </div>
   </div>
-  <button type="submit" [disabled]="form.pristine || ! form.valid">Send</button>
-  <button type="button" [disabled]="form.pristine" (click)="onReset()">Reset</button>
-</form>
+</div>

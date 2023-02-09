@@ -16,6 +16,20 @@ export const routes = [
           name : "model",
           url: 'assets/user.json'
         }
+      ],
+      assets: [
+        {
+          name : "html",
+          url: 'assets/advanced/app-meta-form-layout/example.html'
+        },
+        {
+          name : "typescript",
+          url: 'assets/advanced/app-meta-form-layout/example.ts'
+        },
+        {
+          name : "json",
+          url: 'assets/user.json'
+        }
       ]
     }
   },
@@ -31,15 +45,48 @@ export const routes = [
           name : "model",
           url: 'assets/user.json'
         }
+      ],
+      assets: [
+        {
+          name : "html",
+          url: 'assets/advanced/app-meta-form/example.html'
+        },
+        {
+          name : "typescript",
+          url: 'assets/advanced/app-meta-form/example.ts'
+        },
+        {
+          name : "json",
+          url: 'assets/user.json'
+        }
       ]
     }
   },
   {
     path: "table",
-    component: AppMetaTableComponent
+    component: AppMetaTableComponent,
+    resolve: {
+      data: AsGenericResolver,
+    },
+    data: {
+      assets: [
+        {
+          name : "html",
+          url: 'assets/advanced/app-meta-table/example.html'
+        },
+        {
+          name : "typescript",
+          url: 'assets/advanced/app-meta-table/example.ts'
+        },
+        {
+          name : "json",
+          url: 'assets/materials.json'
+        }
+      ]
+    }
   },
   {
     path : "**",
-    redirectTo: 'form'
+    redirectTo: 'table'
   }
 ]

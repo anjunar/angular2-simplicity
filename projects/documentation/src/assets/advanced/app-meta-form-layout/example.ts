@@ -23,10 +23,6 @@ interface Model {
 })
 export class AppMetaFormLayoutComponent extends AppView implements OnInit {
 
-  html! : string;
-  typescript! : string
-  json! : string
-
   model! : any;
   form! : FormGroup
 

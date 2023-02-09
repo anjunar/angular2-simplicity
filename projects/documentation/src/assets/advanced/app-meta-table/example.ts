@@ -1,7 +1,5 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 import {TableQuery} from "angular2-simplicity";
-import {AppView} from "../../app.classes";
-import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-meta-table',
@@ -9,15 +7,7 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['app-meta-table.component.css'],
   encapsulation : ViewEncapsulation.None
 })
-export class AppMetaTableComponent extends AppView {
-
-  html! : string;
-  typescript! : string
-  json! : string
-
-  constructor(private activatedRoute: ActivatedRoute) {
-    super(activatedRoute);
-  }
+export class AppMetaTableComponent {
 
   items(query : TableQuery, callback : (rows : any[], size : number, schema : any) => void) {
     fetch("assets/materials.json")

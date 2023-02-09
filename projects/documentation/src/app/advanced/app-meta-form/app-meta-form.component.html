@@ -1,1 +1,78 @@
-<as-meta-form [model]="model" (modelChange)="onChange($event)" ></as-meta-form>
+<div style="margin: auto; flex-wrap: wrap; display: flex">
+
+  <div style="flex: 1; padding: 20px; min-width : 400px">
+
+    <h2 style="margin-left: 0;">Meta Form</h2>
+    <hr class="line">
+
+    <p>
+      A JSON schema based form is a type of web form that is generated based on a JSON schema. A JSON schema is a JSON
+      document that describes the structure and constraints of the data that is expected to be entered into the form.
+      The form is generated dynamically based on the JSON schema, which allows for greater flexibility and easier
+      maintenance of the form.
+    </p>
+    <p>
+      The JSON schema defines the fields that are to be included in the form, as well as any constraints or validation
+      rules that need to be applied to the data entered into the form. This means that changes to the form can be made
+      by simply modifying the JSON schema, without having to change the actual code for the form.
+    </p>
+    <p>
+      The use of JSON schemas for generating forms can simplify the development process and help ensure that the form
+      is consistent and correctly structured. It can also make it easier to integrate the form with other systems,
+      such as databases or APIs, as the structure of the data entered into the form is explicitly defined in the JSON schema.
+    </p>
+
+    <h3>DOM-API</h3>
+    <table style="width: 100%; font-size: small">
+      <thead>
+      <tr>
+        <td><strong >Element</strong></td>
+        <td><strong >Attribute</strong></td>
+        <td><strong >Description</strong></td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>meta-form</td>
+        <td>model</td>
+        <td >The Bind variable that can be bound</td>
+      </tr>
+      <tr>
+        <td>meta-input</td>
+        <td>property</td>
+        <td >The property of the model</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div style="margin: 20px;">
+      <as-meta-form [model]="model" (modelChange)="onChange($event)" ></as-meta-form>
+    </div>
+
+  </div>
+
+  <div style="flex: 1; padding: 20px; min-width : 400px">
+
+    <h2>Source Code</h2>
+    <hr class="line">
+    <h3>HTML5</h3>
+    <p >The rest of the HTML file is not displayed</p>
+    <div style="margin-top: 20px;">
+      <div>
+        <as-code [code]="html" type="xml"></as-code>
+      </div>
+    </div>
+    <h3>Javascript</h3>
+    <div>
+      <div>
+        <as-code [code]="typescript" type="typescript"></as-code>
+      </div>
+    </div>
+    <h3>JSON</h3>
+    <div>
+      <div>
+        <as-code [code]="json" type="json"></as-code>
+      </div>
+    </div>
+  </div>
+</div>
