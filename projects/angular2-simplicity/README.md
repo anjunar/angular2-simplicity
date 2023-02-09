@@ -1,24 +1,17 @@
-# AngularSimplicity
+# Angular2 Simplicity v0.9.0
+### Component Libary for Beginners
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.0.
+Welcome to Simplicity, the Angular2 Web Component Library!
 
-## Code scaffolding
+This library was created to simplify the process of building
+beautiful and functional web applications using Angular2.
+Our components are designed to be easy to use, highly performant,
+and accessible to all users, making it possible for developers
+of any skill level to create engaging and effective user interfaces.
+With a wide range of components to choose from, Simplicity
+has everything you need to bring your web applications to life.
+Whether you're starting from scratch or looking to add new
+functionality to an existing project, Simplicity is here to help
+you achieve your goals with ease.
 
-Run `ng generate component component-name --project angular-simplicity` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project angular-simplicity`.
-> Note: Don't forget to add `--project angular-simplicity` or else it will be added to the default project in your `angular.json` file. 
-
-## Build
-
-Run `ng build angular-simplicity` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Publishing
-
-After building your library with `ng build angular-simplicity`, go to the dist folder `cd dist/angular-simplicity` and run `npm publish`.
-
-## Running unit tests
-
-Run `ng test angular-simplicity` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Documentation: https://anjunar.github.io/angular2-simplicity
