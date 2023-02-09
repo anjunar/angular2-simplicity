@@ -38,17 +38,17 @@
         <td>The Placeholder text</td>
       </tr>
       <tr>
-        <td>dom-select</td>
+        <td>as-lazy-select</td>
         <td>items</td>
         <td>The items data source</td>
       </tr>
       <tr>
-        <td>dom-select</td>
-        <td>model</td>
+        <td>as-lazy-select</td>
+        <td>ngModel</td>
         <td>Two way data binding</td>
       </tr>
       <tr>
-        <td>dom-select</td>
+        <td>as-lazy-select</td>
         <td>multiselect</td>
         <td>True or false for multi selection</td>
       </tr>
@@ -69,12 +69,51 @@
     <hr class="line">
 
     <p>
-      With the attribute "multiselect" the select can be converted into a multi-select. In the overlay
-      there is an icon in the top left to indicate the selected items. Is that select in
-      Multi-select mode then the model consists of an array with the selected elements.
+      A "lazy multi-select" refers to a type of user interface control, or widget, in which a user can select
+      multiple items from a list, but the list is only loaded as needed (i.e., "lazily"). This is often used in
+      situations where the list of items is very large, and loading all items at once could negatively impact the
+      performance of the user interface. Instead, items are loaded on demand, as the user scrolls through the list,
+      or as they search for specific items.
+    </p>
+    <p>
+      In this type of control, items that have not yet been loaded may be represented as placeholders, with the actual
+      item content loaded as the user interacts with the control. This can help to improve the overall user experience
+      by reducing the amount of time it takes to load the list, and can help to conserve system resources such as memory
+      and processing power
     </p>
 
     <h3>DOM-API</h3>
+    <table style="width: 100%; font-size: small">
+      <thead>
+      <tr>
+        <td><strong>Element</strong></td>
+        <td><strong>Attribute</strong></td>
+        <td><strong>Description</strong></td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>as-input-container</td>
+        <td>placeholder</td>
+        <td>The Placeholder text</td>
+      </tr>
+      <tr>
+        <td>as-lazy-select</td>
+        <td>items</td>
+        <td>The items data source</td>
+      </tr>
+      <tr>
+        <td>as-lazy-select</td>
+        <td>ngModel</td>
+        <td>Two way data binding</td>
+      </tr>
+      <tr>
+        <td>as-lazy-select</td>
+        <td>multiselect</td>
+        <td>True or false for multi selection</td>
+      </tr>
+      </tbody>
+    </table>
 
     <div style="margin: 20px;">
       <as-input-container placeholder="Click here...">
@@ -94,7 +133,7 @@
     <h2>Source Code</h2>
     <hr class="line">
     <h3>HTML5</h3>
-    <p>The rest of the HTML file is not displayed</p>
+
     <div style="margin-top: 20px;">
       <div>
         <as-code [code]="html" type="xml"></as-code>

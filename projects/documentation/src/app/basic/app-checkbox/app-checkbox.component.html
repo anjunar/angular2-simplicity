@@ -2,24 +2,33 @@
 
   <div style="flex: 1; padding: 20px; min-width : 400px">
 
-    <h2 style="margin-left: 0;">Dom Checkbox</h2>
+    <h2 style="margin-left: 0;">Checkbox</h2>
     <hr class="line">
 
     <p>
-      The input element of type checkbox is a useful way to gather user inputs in a form. By default,
-      it is represented as a box that can be checked or unchecked, and its value can be either "on" or "off".
-      The [(ngModel)] attribute allows you to associate the checkbox value with a specific property in your code,
-      which can then be used for various purposes such as storing or processing the data. The value of the checkbox
-      is also sent to the server as part of the form data when the form is submitted, and can be accessed using the
-      name attribute of the checkbox on the server-side.
+      A checkbox is a type of graphical control element in a user interface that allows the user to select one or
+      more options from a list. In HTML, a checkbox is represented by the input type="checkbox" element. When a
+      checkbox is selected, it is usually displayed with a checkmark inside the box. The state of a checkbox can be
+      checked or unchecked, and its value can be submitted as part of a form.
     </p>
 
     <p>
-      A checkbox input element is a type of input that allows the user to select one or multiple options from a set.
-      By default, the value of a checkbox is either "on" or "off", indicating whether the box is checked or not.
-      By using the [(ngModel)] attribute, you can bind the value of the checkbox to a property in your JavaScript code,
-      allowing you to dynamically update and track the state of the checkbox. This can be useful when submitting form
-      data, as the value of the checkbox can be used to represent the user's selection.
+      Usage: Checkboxes are often used when there are multiple options that the user can choose from, and some or all of
+      them can be selected. They are particularly useful when the user needs to select multiple options from a large list, as it allows them to make multiple selections without having to open multiple menus or dialogs.
+    </p>
+    <p>
+      Programmatic control: Checkboxes can be manipulated programmatically using Typescript or other programming languages
+      . For example, you can use Typescript to check or uncheck a checkbox based on certain conditions, or to retrieve the
+      values of selected checkboxes.
+    </p>
+    <p>
+      Checkbox groups: When multiple checkboxes have the same name attribute, they form a group, and only one checkbox
+      in the group can be selected at a time. To allow multiple checkboxes to be selected, you need to give each checkbox
+      a different name.
+
+      Accessibility: Checkboxes should be accessible to users who use assistive technologies, such as screen readers.
+      To ensure accessibility, you should include descriptive labels for each checkbox, and provide clear and meaningful
+      names for the checkboxes and their groups.
     </p>
     <h3>DOM-API</h3>
     <table style="width: 100%; font-size: small">
@@ -38,7 +47,7 @@
       </tr>
       <tr>
         <td>input</td>
-        <td>model</td>
+        <td>ngModel</td>
         <td >The Bind variable that can be bound</td>
       </tr>
       </tbody>
@@ -67,7 +76,7 @@
         <as-code [code]="html" type="xml"></as-code>
       </div>
     </div>
-    <h3>Javascript</h3>
+    <h3>Typescript</h3>
     <div>
       <div>
         <as-code [code]="typescript" type="typescript"></as-code>

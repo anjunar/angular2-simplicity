@@ -1,6 +1,6 @@
 <as-table [items]="items">
   <ng-template #filter let-filter>
-    <as-filter [filter]="filter" [widget]="'number'">
+    <as-filter [filter]="filter" widget="number">
       <div style="display: flex">
         <input type="number" [(ngModel)]="filter.search.from" style="width: 85px">
         <input type="number" [(ngModel)]="filter.search.to" style="width: 85px">
@@ -8,12 +8,12 @@
     </as-filter>
   </ng-template>
   <ng-template #filter let-filter>
-    <as-filter [filter]="filter" [widget]="'text'">
+    <as-filter [filter]="filter" widget="text">
       <input type="text" [(ngModel)]="filter.search">
     </as-filter>
   </ng-template>
   <ng-template #filter let-filter>
-    <as-filter [filter]="filter" [widget]="'number'">
+    <as-filter [filter]="filter" widget="number">
       <div style="display: flex">
         <input type="number" [(ngModel)]="filter.search.from" style="width: 85px">
         <input type="number" [(ngModel)]="filter.search.to" style="width: 85px">
@@ -21,7 +21,7 @@
     </as-filter>
   </ng-template>
   <ng-template #filter let-filter>
-    <as-filter [filter]="filter" [widget]="'text'">
+    <as-filter [filter]="filter" widget="text">
       <input type="text" [(ngModel)]="filter.search">
     </as-filter>
   </ng-template>

@@ -1,0 +1,26 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div formGroupName="form">
+    <as-input-container placeholder="First Name">
+      <input type="text" formControlName="firstName">
+    </as-input-container>
+    <as-input-container placeholder="Last Name">
+      <input type="text" formControlName="lastName">
+    </as-input-container>
+    <as-input-container placeholder="Birthdate">
+      <input type="date" formControlName="birthDate">
+    </as-input-container>
+    <div formArrayName="emails">
+      <div *ngFor="let email of emails.controls; let index = index">
+        <div [formGroupName]="index" style="display: flex">
+          <as-input-container placeholder="Email">
+            <input type="email" formControlName="value">
+          </as-input-container>
+          <button type="button" class="material-icons" (click)="delete(email)">delete</button>
+        </div>
+      </div>
+      <button type="button" class="material-icons" (click)="add()">add</button>
+    </div>
+  </div>
+  <button type="submit" [disabled]="form.pristine || ! form.valid">Send</button>
+  <button type="button" [disabled]="form.pristine" (click)="onReset()">Reset</button>
+</form>
