@@ -34,9 +34,11 @@ export class AsImageUploadComponent implements ControlValueAccessor {
 
   @Output() ngModelChange = new EventEmitter<AsImageModel>();
 
+  @Input() name! : string
+
   model!: AsImageModel
 
-  placeholder = ""
+  @Input() placeholder = ""
   disabled = false;
 
   @Input()

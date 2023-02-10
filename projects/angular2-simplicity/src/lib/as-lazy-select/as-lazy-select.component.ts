@@ -44,9 +44,10 @@ export class AsLazySelectComponent implements OnInit, ControlValueAccessor, Inpu
 
   window: any[] = [];
   display: string = ""
-  name = "";
+  @Input() name! : string
   showSelected = false;
   search = "";
+
   @Input() model!: any[] | any | null;
   @Output() modelChange = new EventEmitter<any>();
 

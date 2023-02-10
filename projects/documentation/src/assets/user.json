@@ -97,6 +97,12 @@
           }
         }
       }
+    },
+    "links" : {
+      "update" : {
+        "method" : "PUT",
+        "url" : "service"
+      }
     }
   },
   "form": {

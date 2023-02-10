@@ -20,8 +20,8 @@ export class AppMetaFormComponent extends AppView {
     super(activatedRoute);
   }
 
-  onChange(model : any) {
-    alert(JSON.stringify(model.form, null, 4))
+  onChange(event : any) {
+    alert(JSON.stringify(event.model.form, null, 4))
   }
 
 }

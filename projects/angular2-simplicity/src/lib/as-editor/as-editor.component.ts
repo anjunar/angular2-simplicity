@@ -20,6 +20,8 @@ import {AsEditorContextComponent} from "./as-editor-context/as-editor-context.co
 })
 export class AsEditorComponent implements ControlValueAccessor, AsEditorInterface {
 
+  @Input() name! : string
+
   @Output() ngModelChange = new EventEmitter<AsEditorModel>();
   @ViewChild(AsEditorContentDirective, {static: true}) content!: AsEditorContentDirective
   page = 0;

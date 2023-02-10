@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
-import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {Model, Node} from "./as-meta-form.classes";
+import {AbstractControl, FormArray, FormGroup} from "@angular/forms";
+import {Link, Model} from "./as-meta-form.classes";
 import {KeyValue} from "@angular/common";
 import {AsMetaFormService} from "./as-meta-form.service";
 import {SelectQuery} from "../as-lazy-select/as-lazy-select.component";
@@ -16,18 +16,26 @@ export class AsMetaFormComponent implements OnInit {
   @Input() model!: Model
   @Output() modelChange = new EventEmitter<any>();
 
+  @Output() submit = new EventEmitter<any>();
+
   form!: FormGroup
 
-  constructor(private service : AsMetaFormService) {}
+  links : any[] = []
+
+  constructor(private service: AsMetaFormService) {}
 
   ngOnInit(): void {
     this.form = this.service.create(this.model.$schema.properties, this.model)
     this.form.patchValue(this.model)
+    this.links = Object.entries(this.model.$schema.links).filter(([key, value]) => value.method !== "GET").map(([key, value]) => {
+      return {key, value}
+    })
   }
 
-  onSubmit() {
+  onSubmit(link : {key : string, value : Link}) {
     Object.assign(this.model, this.form.value);
     this.modelChange.emit(this.model);
+    this.submit.emit({link : link, model : this.model})
   }
 
   onReset() {
@@ -36,20 +44,20 @@ export class AsMetaFormComponent implements OnInit {
     this.form.patchValue(this.model)
   }
 
-  add(control : FormArray, schema : any) {
+  add(control: FormArray, schema: any) {
     let form = this.service.schema2Form(schema, {});
     control.push(form)
     this.form.markAsDirty();
   }
 
-  remove(control : FormArray, value : AbstractControl) {
+  remove(control: FormArray, value: AbstractControl) {
     let indexOf = control.controls.indexOf(value);
     control.removeAt(indexOf);
     this.form.markAsDirty();
   }
 
-  lazySelectLoader(link : any) {
-    return (query : SelectQuery, callback : (rows: any[], size : number) => void) => {
+  lazySelectLoader(link: any) {
+    return (query: SelectQuery, callback: (rows: any[], size: number) => void) => {
       fetch(link.url)
         .then(response => response.json())
         .then(response => {
@@ -58,17 +66,17 @@ export class AsMetaFormComponent implements OnInit {
     }
   }
 
-  lazySelectLabel(properties : { key : string, value : any}) {
+  lazySelectLabel(properties: { key: string, value: any }) {
     return Object.entries(properties).filter(([key, value]) => value.naming).map(([key, value]) => key)
   }
 
-  lazySelectName(properties : { key : string, value : any}, model : any) {
+  lazySelectName(properties: { key: string, value: any }, model: any) {
     let label = this.lazySelectLabel(properties);
     return label.map(value => model[value]).join(" ")
   }
 
 
-  originalOrder = (a: KeyValue<number,string>, b: KeyValue<number,string>): number => {
+  originalOrder = (a: KeyValue<number, string>, b: KeyValue<number, string>): number => {
     return 0;
   }
 

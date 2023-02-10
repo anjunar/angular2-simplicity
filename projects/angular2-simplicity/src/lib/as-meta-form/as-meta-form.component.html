@@ -1,7 +1,7 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<form [formGroup]="form">
   <ng-container *ngTemplateOutlet="fields; context : {$implicit : model.$schema, form : form}"></ng-container>
 
-  <button type="submit" [disabled]="form.pristine || ! form.valid">Send</button>
+  <button *ngFor="let link of links" type="button" [disabled]="form.pristine || ! form.valid" (click)="onSubmit(link)">{{link.key}}</button>
   <button type="button" [disabled]="form.pristine" (click)="onReset()">Reset</button>
 </form>
 
@@ -24,20 +24,23 @@
           <button type="button" class="material-icons" (click)="add(form.get($any(entry).key), $any(entry).value.items)">add</button>
         </ng-container>
         <ng-container *ngSwitchCase="'editor'">
-          <as-editor [formControlName]="$any(entry).key" style="height: 300px"></as-editor>
+          <as-editor [formControlName]="$any(entry).key" style="height: 300px" [name]="$any(entry).key"></as-editor>
         </ng-container>
         <ng-container *ngSwitchCase="'lazy-select'">
           <as-input-container [placeholder]="$any(entry).value.title">
-            <as-lazy-select [formControlName]="$any(entry).key" [items]="lazySelectLoader($any(entry).value.links.list)" [label]="lazySelectLabel($any(entry).value.properties)">
+            <as-lazy-select [name]="$any(entry).key" [formControlName]="$any(entry).key" [items]="lazySelectLoader($any(entry).value.links.list)" [label]="lazySelectLabel($any(entry).value.properties)">
               <ng-template let-item>
                 {{lazySelectName($any(entry).value.properties, item)}}
               </ng-template>
             </as-lazy-select>
           </as-input-container>
         </ng-container>
+        <ng-container *ngSwitchCase="'image'">
+          <as-image-upload [formControlName]="$any(entry).key" [name]="$any(entry).key" [placeholder]="$any(entry).value.title"></as-image-upload>
+        </ng-container>
         <ng-container *ngSwitchCase="'text'">
           <as-input-container [placeholder]="$any(entry).value.title">
-            <input type="text" [formControlName]="$any(entry).key">
+            <input type="text" [formControlName]="$any(entry).key" [name]="$any(entry).key">
             <as-error name="required">
               This Field is required
             </as-error>
@@ -51,7 +54,7 @@
         </ng-container>
         <ng-container *ngSwitchCase="'email'">
           <as-input-container [placeholder]="$any(entry).value.title">
-            <input type="email" [formControlName]="$any(entry).key">
+            <input type="email" [formControlName]="$any(entry).key" [name]="$any(entry).key">
             <as-error name="required">
               This Field is required
             </as-error>
@@ -62,7 +65,7 @@
         </ng-container>
         <ng-container *ngSwitchCase="'number'">
           <as-input-container [placeholder]="$any(entry).value.title">
-            <input type="number" [formControlName]="$any(entry).key">
+            <input type="number" [formControlName]="$any(entry).key" [name]="$any(entry).key">
             <as-error name="required">
               This Field is required
             </as-error>
@@ -76,7 +79,7 @@
         </ng-container>
         <ng-container *ngSwitchCase="'date'">
           <as-input-container [placeholder]="$any(entry).value.title">
-            <input type="date" [formControlName]="$any(entry).key">
+            <input type="date" [formControlName]="$any(entry).key" [name]="$any(entry).key">
             <as-error name="required">
               This Field is required
             </as-error>
@@ -84,7 +87,7 @@
         </ng-container>
         <ng-container *ngSwitchDefault>
           <as-input-container [placeholder]="$any(entry).value.title">
-            <input type="text" [formControlName]="$any(entry).key">
+            <input type="text" [formControlName]="$any(entry).key" [name]="$any(entry).key">
             <as-error name="required">
               This Field is required
             </as-error>
