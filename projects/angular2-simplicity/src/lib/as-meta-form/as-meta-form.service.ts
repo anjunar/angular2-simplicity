@@ -27,6 +27,8 @@ export class AsMetaFormService {
               let object : any = value;
               switch (key) {
                 case "required" : return Validators.required
+                case "notNull" : return Validators.required
+                case "notBlank" : return Validators.required
                 case "size" : return Validators.compose([Validators.minLength(object.min), Validators.maxLength(object.max)])
                 case "email" : return Validators.email
                 case "min" : return Validators.min(object.value)
