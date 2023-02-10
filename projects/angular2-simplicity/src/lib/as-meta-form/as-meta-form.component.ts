@@ -58,7 +58,7 @@ export class AsMetaFormComponent implements OnInit {
 
   lazySelectLoader(link: any) {
     return (query: SelectQuery, callback: (rows: any[], size: number) => void) => {
-      fetch(`link.url?index=${query.index}&limit=${query.limit}&value=${query.value}`)
+      fetch(`${link.url}?index=${query.index}&limit=${query.limit}&value=${query.value}`)
         .then(response => response.json())
         .then(response => {
           callback(response.rows, response.size)
