@@ -14,8 +14,28 @@ import {AppListComponent} from "./app-list/app-list.component";
 import {AppSpinnerComponent} from "./app-spinner/app-spinner.component";
 import {AppProgressBarComponent} from "./app-progress-bar/app-progress-bar.component";
 import {AppDrawerComponent} from "./app-drawer/app-drawer.component";
+import {AppCarouselComponent} from "./app-carousel/app-carousel.component";
 
 export const routes = [
+  {
+    path : "carousel",
+    component: AppCarouselComponent,
+    resolve: {
+      data: AsGenericResolver,
+    },
+    data: {
+      assets: [
+        {
+          name : "html",
+          url: 'assets/basic/app-carousel/example.html'
+        },
+        {
+          name : "typescript",
+          url: 'assets/basic/app-carousel/example.ts'
+        }
+      ]
+    }
+  },
   {
     path: "drawer",
     component: AppDrawerComponent,

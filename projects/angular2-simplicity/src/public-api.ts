@@ -67,6 +67,9 @@ export * from "./lib/as-meta-form/as-meta-form.component";
 export * from "./lib/as-meta-form/as-meta-form.service";
 
 export * from "./lib/as-meta-table/as-meta-table.component";
-export {Model} from "./lib/as-meta-form/as-meta-form.classes";
-export {Node} from "./lib/as-meta-form/as-meta-form.classes";
+export * from "./lib/as-meta-form/as-meta-form.classes";
+
+export * from "./lib/as-carousel/as-carousel.component";
+
+
 

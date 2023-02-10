@@ -1,0 +1,12 @@
+<as-carousel [items]="loader">
+  <ng-template let-item>
+    <div>
+      <ul>
+        <li>{{item.position}}</li>
+        <li>{{item.name}}</li>
+        <li>{{item.weight}}</li>
+        <li>{{item.symbol}}</li>
+      </ul>
+    </div>
+  </ng-template>
+</as-carousel>

@@ -54,6 +54,7 @@ import { AsMetaTableComponent } from './as-meta-table/as-meta-table.component';
 import { AsRepeatComponent } from './as-repeat/as-repeat.component';
 import { AsErrorDirective } from './as-input-container/as-error/as-error.directive';
 import { AsToolbarSizeComponent } from './as-editor/as-editor-toolbar/as-toolbar-size/as-toolbar-size.component';
+import { AsCarouselComponent } from './as-carousel/as-carousel.component';
 
 
 @NgModule({
@@ -111,6 +112,7 @@ import { AsToolbarSizeComponent } from './as-editor/as-editor-toolbar/as-toolbar
     AsRepeatComponent,
     AsErrorDirective,
     AsToolbarSizeComponent,
+    AsCarouselComponent,
   ],
     imports: [
         NgTemplateOutlet,
@@ -159,6 +161,7 @@ import { AsToolbarSizeComponent } from './as-editor/as-editor-toolbar/as-toolbar
     AsMetaFormComponent,
     AsMetaTableComponent,
     AsErrorDirective,
+    AsCarouselComponent
   ]
 })
 export class AngularSimplicityModule {

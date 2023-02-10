@@ -1,0 +1,23 @@
+as-carousel {
+  display: block;
+}
+
+as-carousel div.container {
+  width: 400px;
+  height: 300px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+as-carousel div.card {
+  width: 400px;
+  height: 300px;
+  border: solid 1px var(--main-dark2-color);
+  background-color: var(--main-dark1-color);
+}
+
+as-carousel div.wall {
+  display: flex; position:
+  absolute; left: -400px;
+  width: 1200px
+}
+

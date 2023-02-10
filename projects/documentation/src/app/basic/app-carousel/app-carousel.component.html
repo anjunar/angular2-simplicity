@@ -1,0 +1,79 @@
+<div style="margin: auto; flex-wrap: wrap; display: flex">
+
+  <div style="flex: 1; padding: 20px; ">
+
+    <h2 style="margin-left: 0;">Carousel</h2>
+    <hr class="line">
+
+    <p>
+      A carousel is a UI component that displays a collection of items in a circular rotating manner.
+      The carousel can be controlled in various ways, such as through navigation buttons, swipe gestures,
+      or keyboard controls.
+    </p>
+
+    <p>
+      A carousel can be used to display a variety of content, such as images, videos, text, or a combination of
+      these elements. It can be used as a way to showcase products, images, or as a way to rotate through content
+      on a website or application.
+    </p>
+
+    <p>
+      Overall, carousels can be a powerful tool for displaying a collection of content, and can be an effective
+      way to engage and inform website or application users.
+    </p>
+
+    <h3>DOM-API</h3>
+    <table style="width: 100%; font-size: small">
+      <thead>
+      <tr>
+        <td><strong >Element</strong></td>
+        <td><strong >Attribute</strong></td>
+        <td><strong >Description</strong></td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>as-carousel</td>
+        <td>items</td>
+        <td >The Loader for Cards</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div style="margin: 20px;">
+      <as-carousel [items]="loader">
+        <ng-template let-item>
+          <div>
+            <ul>
+              <li>{{item.position}}</li>
+              <li>{{item.name}}</li>
+              <li>{{item.weight}}</li>
+              <li>{{item.symbol}}</li>
+            </ul>
+          </div>
+        </ng-template>
+      </as-carousel>
+    </div>
+
+
+  </div>
+
+  <div style="flex: 1; padding: 20px; ">
+
+    <h2>Source Code</h2>
+    <hr class="line">
+    <h3>HTML5</h3>
+    <p >The rest of the HTML file is not displayed</p>
+    <div style="margin-top: 20px;">
+      <div>
+        <as-code [code]="html" type="xml"></as-code>
+      </div>
+    </div>
+    <h3>Typescript</h3>
+    <div>
+      <div>
+        <as-code [code]="typescript" type="typescript"></as-code>
+      </div>
+    </div>
+  </div>
+</div>

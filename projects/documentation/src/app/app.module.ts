@@ -28,6 +28,8 @@ import { AppAdvancedComponent } from './advanced/app-advanced/app-advanced.compo
 import { AppMetaFormComponent } from './advanced/app-meta-form/app-meta-form.component';
 import { AppMetaTableComponent } from './advanced/app-meta-table/app-meta-table.component';
 import { AppMetaFormLayoutComponent } from './advanced/app-meta-form-layout/app-meta-form-layout.component';
+import { AppCarouselComponent } from './basic/app-carousel/app-carousel.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -54,10 +56,12 @@ import { AppMetaFormLayoutComponent } from './advanced/app-meta-form-layout/app-
     AppAdvancedComponent,
     AppMetaFormComponent,
     AppMetaTableComponent,
-    AppMetaFormLayoutComponent
+    AppMetaFormLayoutComponent,
+    AppCarouselComponent
   ],
     imports: [
         BrowserModule,
+        BrowserAnimationsModule,
         AppRoutingModule,
         AngularSimplicityModule,
         FormsModule,
