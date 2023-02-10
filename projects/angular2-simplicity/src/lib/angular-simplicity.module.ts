@@ -164,5 +164,5 @@ import { AsCarouselComponent } from './as-carousel/as-carousel.component';
     AsCarouselComponent
   ]
 })
-export class AngularSimplicityModule {
+export class Angular2SimplicityModule {
 }

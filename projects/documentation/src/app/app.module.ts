@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
-import {AngularSimplicityModule} from "angular2-simplicity";
+import {Angular2SimplicityModule} from "angular2-simplicity";
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {AppTableComponent} from "./basic/app-table/app-table.component";
@@ -63,7 +63,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
         BrowserModule,
         BrowserAnimationsModule,
         AppRoutingModule,
-        AngularSimplicityModule,
+        Angular2SimplicityModule,
         FormsModule,
         ReactiveFormsModule
     ],
