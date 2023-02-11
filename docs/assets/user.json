@@ -67,7 +67,7 @@
           },
           "emails": {
             "type": "array",
-            "widget": "array",
+            "widget": "repeat",
             "items": {
               "type": "object",
               "widget": "form",

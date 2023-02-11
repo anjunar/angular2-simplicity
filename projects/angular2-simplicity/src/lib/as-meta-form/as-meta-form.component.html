@@ -14,7 +14,7 @@
             <ng-container *ngTemplateOutlet="fields; context : {$implicit : entry.value, form : form.get($any(entry).key)}"></ng-container>
           </div>
         </ng-container>
-        <ng-container *ngSwitchCase="'array'">
+        <ng-container *ngSwitchCase="'repeat'">
           <div [formArrayName]="$any(entry).key">
             <div *ngFor="let item of form.get($any(entry).key).controls;" style="display: flex">
               <ng-container *ngTemplateOutlet="fields; context : {$implicit : $any(entry).value.items, form : item}"></ng-container>
@@ -31,6 +31,15 @@
             <as-lazy-select [name]="$any(entry).key" [formControlName]="$any(entry).key" [items]="lazySelectLoader($any(entry).value.links.list)" [label]="lazySelectLabel($any(entry).value.properties)">
               <ng-template let-item>
                 {{lazySelectName($any(entry).value.properties, item)}}
+              </ng-template>
+            </as-lazy-select>
+          </as-input-container>
+        </ng-container>
+        <ng-container *ngSwitchCase="'lazy-multi-select'">
+          <as-input-container [placeholder]="$any(entry).value.title">
+            <as-lazy-select [name]="$any(entry).key" [formControlName]="$any(entry).key" [items]="lazySelectLoader($any(entry).value.links.list)" [label]="lazyMultiSelectLabel($any(entry).value.items.properties)" [multiSelect]="true">
+              <ng-template let-item>
+                {{lazyMultiSelectName($any(entry).value.items.properties, item)}}
               </ng-template>
             </as-lazy-select>
           </as-input-container>
