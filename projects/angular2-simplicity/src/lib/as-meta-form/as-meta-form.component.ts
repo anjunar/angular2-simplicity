@@ -33,7 +33,7 @@ export class AsMetaFormComponent implements OnInit {
   }
 
   onSubmit(link : {key : string, value : Link}) {
-    Object.assign(this.model, this.form.value);
+    Object.assign(this.model, this.form.getRawValue());
     this.modelChange.emit(this.model);
     this.submit.emit({link : link, model : this.model})
   }
