@@ -276,6 +276,7 @@ export class AsLazySelectComponent implements OnInit, ControlValueAccessor, Inpu
 
         setTimeout(() => {
           if (this.viewport) {
+            data = data || [];
             let viewport = this.viewport.element;
             let height = 14 + 39 + data.length * 42;
             let selectBoundingClientRect = this.elementRef.nativeElement.getBoundingClientRect();

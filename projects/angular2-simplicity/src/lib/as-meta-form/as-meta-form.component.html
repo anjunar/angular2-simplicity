@@ -28,7 +28,7 @@
         </ng-container>
         <ng-container *ngSwitchCase="'lazy-select'">
           <as-input-container [placeholder]="$any(entry).value.title">
-            <as-lazy-select [attr.name]="$any(entry).key" [formControlName]="$any(entry).key" [items]="lazySelectLoader($any(entry).value.links.list)" [label]="lazySelectLabel($any(entry).value.properties)">
+            <as-lazy-select style="width: 100%" [attr.name]="$any(entry).key" [formControlName]="$any(entry).key" [items]="lazySelectLoader($any(entry).value.links.list)" [label]="lazySelectLabel($any(entry).value.properties)">
               <ng-template let-item>
                 {{lazySelectName($any(entry).value.properties, item)}}
               </ng-template>
@@ -37,7 +37,7 @@
         </ng-container>
         <ng-container *ngSwitchCase="'lazy-multi-select'">
           <as-input-container [placeholder]="$any(entry).value.title">
-            <as-lazy-select [attr.name]="$any(entry).key" [formControlName]="$any(entry).key" [items]="lazySelectLoader($any(entry).value.links.list)" [label]="lazySelectLabel($any(entry).value.items.properties)" [multiSelect]="true">
+            <as-lazy-select style="width: 100%" [attr.name]="$any(entry).key" [formControlName]="$any(entry).key" [items]="lazySelectLoader($any(entry).value.links.list)" [label]="lazySelectLabel($any(entry).value.items.properties)" [multiSelect]="true">
               <ng-template let-item>
                 {{lazySelectName($any(entry).value.items.properties, item)}}
               </ng-template>
