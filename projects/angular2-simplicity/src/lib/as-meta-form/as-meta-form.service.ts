@@ -19,7 +19,10 @@ export class AsMetaFormService {
           return this.formBuilder.group(this.schema2Form(node.properties, model))
         }
         case "repeat" : {
-          return this.formBuilder.array(model.map((item: any) => this.schema2Form(node.items, item)))
+          if (model) {
+            return this.formBuilder.array(model.map((item: any) => this.schema2Form(node.items, item)))
+          }
+          return this.formBuilder.array([])
         }
         default : {
           if (node.validators) {
