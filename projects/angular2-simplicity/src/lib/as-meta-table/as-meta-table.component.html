@@ -22,6 +22,9 @@
           <ng-container [ngSwitch]="$any(property).value.widget">
             <ng-container *ngSwitchCase="'editor'">{{material.text}}</ng-container>
             <ng-container *ngSwitchCase="'lazy-select'">{{lazySelectName($any(property).value.properties, material)}}</ng-container>
+            <ng-container *ngSwitchCase="'lazy-multi-select'">{{lazyMultiSelectName($any(property).value.items.properties, material)}}</ng-container>
+            <ng-container *ngSwitchCase="'repeat'">{{repeat($any(property).value.items.properties, material)}}</ng-container>
+            <ng-container *ngSwitchCase="'image'"><as-image-upload style="width: 100px; height: 100px" [ngModel]="material"></as-image-upload></ng-container>
             <ng-container *ngSwitchDefault>{{material}}</ng-container>
           </ng-container>
         </ng-template>
