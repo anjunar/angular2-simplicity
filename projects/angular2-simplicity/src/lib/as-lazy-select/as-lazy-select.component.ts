@@ -21,6 +21,24 @@ export interface SelectQuery {
   value: string
 }
 
+export function debounce(func : any, wait : number, immediate? : boolean, disable? : boolean) {
+  if (disable) {
+    return func;
+  }
+  let timeout : number | undefined;
+  return function () {
+    // @ts-ignore
+    const context : any = this, args = arguments;
+    const later = function () {
+      timeout = undefined;
+      if (!immediate) func.apply(context, args);
+    };
+    const callNow = immediate && !timeout;
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+    if (callNow) func.apply(context, args);
+  };
+}
 
 @Component({
   selector: 'as-lazy-select',
@@ -66,10 +84,17 @@ export class AsLazySelectComponent implements OnInit, ControlValueAccessor, Inpu
 
   onChange!: (_: any) => {}
 
+  onSearch! : (value : string) => void;
+
   constructor(private elementRef: ElementRef<HTMLElement>, private injector: Injector, private inputService : AsInputService,@Optional() private viewport : AsViewportComponent) {
     inputService.input = this;
     inputService.element = elementRef.nativeElement;
     elementRef.nativeElement.tabIndex = 0;
+
+    this.onSearch = debounce((value : string) => {
+      this.search = value;
+      this.load();
+    }, 300)
   }
 
   get getPlaceholder(): string {
