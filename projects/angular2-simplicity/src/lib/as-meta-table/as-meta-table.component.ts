@@ -37,6 +37,7 @@ export class AsMetaTableComponent {
       return label.map(value => model[value]).join(" ")
     }
     return ""
+
   }
 
   lazyMultiSelectName(properties: { key: string, value: any }, model: any[]) {
