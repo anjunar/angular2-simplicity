@@ -40,7 +40,7 @@
     </table>
 
     <div style="margin: 20px;">
-      <as-meta-table [items]="items"></as-meta-table>
+      <as-meta-table [items]="items" (rowClick)="onRowClick($event)"></as-meta-table>
     </div>
 
   </div>

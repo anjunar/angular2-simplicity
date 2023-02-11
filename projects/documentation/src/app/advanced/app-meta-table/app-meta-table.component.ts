@@ -19,6 +19,10 @@ export class AppMetaTableComponent extends AppView {
     super(activatedRoute);
   }
 
+  onRowClick(event : any) {
+    alert(JSON.stringify(event, null, 4))
+  }
+
   items(query : TableQuery, callback : (rows : any[], size : number, schema : any) => void) {
     fetch("assets/materials.json")
       .then(response => response.json())

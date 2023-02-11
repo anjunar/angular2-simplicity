@@ -1,4 +1,4 @@
-import {Component, Input, ViewEncapsulation} from '@angular/core';
+import {Component, EventEmitter, Input, Output, ViewEncapsulation} from '@angular/core';
 import {TableQuery} from "../as-table/as-table.classes";
 
 @Component({
@@ -10,12 +10,17 @@ import {TableQuery} from "../as-table/as-table.classes";
 export class AsMetaTableComponent {
 
   schema : any;
+  @Output() rowClick = new EventEmitter<any>();
 
   parent = (query : TableQuery, callback : (rows : any[], size : number) => void) => {
     this.items(query, (rows, size, schema) => {
       this.schema = schema;
       callback(rows, size)
     })
+  }
+
+  onRowClick(event : any) {
+    this.rowClick.emit(event);
   }
 
   @Input() items! : (query : TableQuery, callback : (rows : any[], size : number, schema : any) => void) => void;
