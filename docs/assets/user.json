@@ -9,6 +9,7 @@
             "type": "string",
             "title": "First Name",
             "widget": "text",
+            "readOnly" : false,
             "validators" : {
               "required" : true,
               "size" : {
@@ -20,6 +21,7 @@
             "type": "string",
             "title": "Last Name",
             "widget": "text",
+            "readOnly" : false,
             "validators" : {
               "required" : true,
               "size" : {
@@ -31,6 +33,7 @@
             "type": "string",
             "title": "Birthdate",
             "widget": "date",
+            "readOnly" : false,
             "validators" : {
               "required" : true
             }
@@ -39,6 +42,7 @@
             "type" : "object",
             "title" : "Role",
             "widget" : "lazy-select",
+            "readOnly" : false,
             "properties" : {
               "name" : {
                 "type" : "string",
@@ -56,6 +60,7 @@
             "type" : "number",
             "title" : "Views",
             "widget" : "number",
+            "readOnly" : true,
             "validators" : {
               "min" : {
                 "value" : 0
@@ -68,6 +73,7 @@
           "emails": {
             "type": "array",
             "widget": "repeat",
+            "readOnly" : false,
             "items": {
               "type": "object",
               "widget": "form",
@@ -86,6 +92,7 @@
           "text" : {
             "type" : "object",
             "widget" : "editor",
+            "readOnly" : false,
             "properties" : {
               "html" : {
                 "type" : "string"

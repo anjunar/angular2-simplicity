@@ -11,11 +11,13 @@ export class AsMetaTableComponent {
 
   schema : any;
   @Output() rowClick = new EventEmitter<any>();
+  @Output() load = new EventEmitter<any>();
 
   parent = (query : TableQuery, callback : (rows : any[], size : number) => void) => {
     this.items(query, (rows, size, schema) => {
       this.schema = schema;
       callback(rows, size)
+      this.load.emit({rows : rows, size : size, $schema : schema})
     })
   }
 
@@ -34,12 +36,8 @@ export class AsMetaTableComponent {
     return label.map(value => model[value]).join(" ")
   }
 
-  lazyMultiSelectLabel(properties: { key: string, value: any }) {
-    return Object.entries(properties).filter(([key, value]) => value.naming).map(([key, value]) => key)
-  }
-
   lazyMultiSelectName(properties: { key: string, value: any }, model: any[]) {
-    let label = this.lazyMultiSelectLabel(properties);
+    let label = this.lazySelectLabel(properties);
     return model.map(model => label.map(value => model[value]).join(" ")).join(" ")
   }
 
