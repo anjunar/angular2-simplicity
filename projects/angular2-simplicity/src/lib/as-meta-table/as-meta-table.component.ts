@@ -20,8 +20,14 @@ export class AsMetaTableComponent {
 
   @Input() items! : (query : TableQuery, callback : (rows : any[], size : number, schema : any) => void) => void;
 
-  header(node : any) {
-    return node.title;
+  lazySelectLabel(properties: { key: string, value: any }) {
+    return Object.entries(properties).filter(([key, value]) => value.naming).map(([key, value]) => key)
   }
+
+  lazySelectName(properties: { key: string, value: any }, model: any) {
+    let label = this.lazySelectLabel(properties);
+    return label.map(value => model[value]).join(" ")
+  }
+
 
 }

@@ -1,5 +1,5 @@
 import {Component, ViewEncapsulation} from '@angular/core';
-import {AppView} from "../../app.classes";
+import {AppView} from "angular2-simplicity";
 import {ActivatedRoute} from "@angular/router";
 
 @Component({

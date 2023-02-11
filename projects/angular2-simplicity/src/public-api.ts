@@ -6,6 +6,7 @@ export * from './lib/angular-simplicity.module';
 export * from './lib/window-manager.service';
 export * from './lib/context-manager.service';
 export * from './lib/as-generic.resolver';
+export * from './lib/app.classes';
 
 export * from './lib/as-toolbar/as-toolbar.component';
 export * from './lib/as-footer/as-footer.component';

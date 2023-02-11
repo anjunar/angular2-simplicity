@@ -3,7 +3,7 @@ import {WindowManagerService} from "angular2-simplicity";
 import {AppExampleComponent} from "./app-example/app-example.component";
 import {ActivatedRoute} from "@angular/router";
 import {WindowRef} from "angular2-simplicity";
-import {AppView} from "../../app.classes";
+import {AppView} from "angular2-simplicity";
 
 @Component({
   selector: 'app-window',

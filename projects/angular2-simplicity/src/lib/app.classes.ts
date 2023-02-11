@@ -1,18 +1,12 @@
 import {ActivatedRoute} from "@angular/router";
 import {AfterViewInit, ComponentRef, Injector, Type, ViewChild} from "@angular/core";
-import {
-  AsContextComponent,
-  AsDialogComponent,
-  AsViewportComponent,
-  AsWindowComponent,
-  ContextManagerService,
-  ContextOptions,
-  ContextRef,
-  Window,
-  WindowManagerService,
-  WindowOptions,
-  WindowRef
-} from "angular2-simplicity";
+import {WindowManagerService, WindowOptions, WindowRef} from "./window-manager.service";
+import {ContextManagerService, ContextOptions, ContextRef} from "./context-manager.service";
+import {AsViewportComponent} from "./as-viewport/as-viewport.component";
+import {AsDialogComponent} from "./as-dialog/as-dialog.component";
+import {AsWindowComponent} from "./as-window/as-window.component";
+import {Window} from "./window-manager.service";
+import {AsContextComponent} from "./as-context/as-context.component";
 
 export abstract class AppView {
 

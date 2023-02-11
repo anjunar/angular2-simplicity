@@ -1,6 +1,6 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {AppView} from "../../app.classes";
+import {AppView} from "angular2-simplicity";
 
 @Component({
   selector: 'app-input',

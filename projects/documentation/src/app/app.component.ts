@@ -1,6 +1,5 @@
 import {AfterViewInit, Component, ViewChild, ViewEncapsulation} from '@angular/core';
-import {AsViewportComponent, ContextManagerService, WindowManagerService} from "angular2-simplicity";
-import {AppMain} from "./app.classes";
+import {AsViewportComponent, ContextManagerService, WindowManagerService, AppMain} from "angular2-simplicity";
 
 @Component({
   selector: 'app-root',

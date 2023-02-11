@@ -1,7 +1,7 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 import {SelectQuery} from "angular2-simplicity";
 import {ActivatedRoute} from "@angular/router";
-import {AppView} from "../../app.classes";
+import {AppView} from "angular2-simplicity";
 
 @Component({
   selector: 'app-lazy-select',

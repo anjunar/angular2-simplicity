@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {AppView} from "../../app.classes";
+import {AppView} from "angular2-simplicity";
 import {ActivatedRoute} from "@angular/router";
 import {AsMetaFormService} from "angular2-simplicity";
 import {FormArray, FormGroup} from "@angular/forms";

@@ -11,14 +11,20 @@
     <thead>
     <tr>
       <td *ngFor="let property of schema?.properties.rows.items.properties | keyvalue">
-        <ng-template #head>{{header(property.value)}}</ng-template>
+        <ng-template #head>{{$any(property).value.title}}</ng-template>
       </td>
     </tr>
     </thead>
     <tbody>
     <tr>
       <td *ngFor="let property of schema?.properties.rows.items.properties | keyvalue">
-        <ng-template #body let-material>{{material}}</ng-template>
+        <ng-template #body let-material>
+          <ng-container [ngSwitch]="$any(property).value.widget">
+            <ng-container *ngSwitchCase="'editor'">{{material.text}}</ng-container>
+            <ng-container *ngSwitchCase="'lazy-select'">{{lazySelectName($any(property).value.properties, material)}}</ng-container>
+            <ng-container *ngSwitchDefault>{{material}}</ng-container>
+          </ng-container>
+        </ng-template>
       </td>
     </tr>
     </tbody>

@@ -2,7 +2,7 @@ import {Component, ViewEncapsulation} from '@angular/core';
 import {WindowManagerService} from "angular2-simplicity";
 import {AppDialogExampleComponent} from "./app-dialog-example/app-dialog-example.component";
 import {ActivatedRoute} from "@angular/router";
-import {AppView} from "../../app.classes";
+import {AppView} from "angular2-simplicity";
 
 @Component({
   selector: 'app-dialog',
