@@ -32,18 +32,27 @@ export class AsMetaTableComponent {
   }
 
   lazySelectName(properties: { key: string, value: any }, model: any) {
-    let label = this.lazySelectLabel(properties);
-    return label.map(value => model[value]).join(" ")
+    if (properties && model) {
+      let label = this.lazySelectLabel(properties);
+      return label.map(value => model[value]).join(" ")
+    }
+    return ""
   }
 
   lazyMultiSelectName(properties: { key: string, value: any }, model: any[]) {
-    let label = this.lazySelectLabel(properties);
-    return model.map(model => label.map(value => model[value]).join(" ")).join(" ")
+    if (properties && model) {
+      let label = this.lazySelectLabel(properties);
+      return model.map(model => label.map(value => model[value]).join(" ")).join(" ")
+    }
+    return ""
   }
 
   repeat(properties : { key: string, value: any }, model : any[]) {
-    let label = Object.entries(properties).filter(([key, value]) => value.naming).map(([key, value]) => key)
-    return model.map(model => label.map(value => model[value]).join(" ")).join(" ")
+    if (properties && model) {
+      let label = Object.entries(properties).filter(([key, value]) => value.naming).map(([key, value]) => key)
+      return model.map(model => label.map(value => model[value]).join(" ")).join(" ")
+    }
+    return ""
   }
 
 }
