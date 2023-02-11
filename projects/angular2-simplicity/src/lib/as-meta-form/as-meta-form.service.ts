@@ -18,7 +18,7 @@ export class AsMetaFormService {
         case "form" : {
           return this.formBuilder.group(this.schema2Form(node.properties, model))
         }
-        case "array" : {
+        case "repeat" : {
           return this.formBuilder.array(model.map((item: any) => this.schema2Form(node.items, item)))
         }
         default : {

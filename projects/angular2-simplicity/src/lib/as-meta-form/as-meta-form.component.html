@@ -37,9 +37,9 @@
         </ng-container>
         <ng-container *ngSwitchCase="'lazy-multi-select'">
           <as-input-container [placeholder]="$any(entry).value.title">
-            <as-lazy-select [name]="$any(entry).key" [formControlName]="$any(entry).key" [items]="lazySelectLoader($any(entry).value.links.list)" [label]="lazyMultiSelectLabel($any(entry).value.items.properties)" [multiSelect]="true">
+            <as-lazy-select [name]="$any(entry).key" [formControlName]="$any(entry).key" [items]="lazySelectLoader($any(entry).value.links.list)" [label]="lazySelectLabel($any(entry).value.items.properties)" [multiSelect]="true">
               <ng-template let-item>
-                {{lazyMultiSelectName($any(entry).value.items.properties, item)}}
+                {{lazySelectName($any(entry).value.items.properties, item)}}
               </ng-template>
             </as-lazy-select>
           </as-input-container>
