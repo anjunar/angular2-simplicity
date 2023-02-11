@@ -25,7 +25,7 @@ export class AsMetaFormComponent implements OnInit {
   constructor(private service: AsMetaFormService) {}
 
   ngOnInit(): void {
-    this.form = this.service.create(this.model.$schema.properties, this.model)
+    this.form = this.service.create(this.model.$schema.properties || {}, this.model)
     this.form.patchValue(this.model)
     this.links = Object.entries(this.model.$schema.links).filter(([key, value]) => value.method !== "GET").map(([key, value]) => {
       return {key, value}
