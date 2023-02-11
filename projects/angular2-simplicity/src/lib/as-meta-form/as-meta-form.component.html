@@ -1,7 +1,7 @@
 <form [formGroup]="form">
   <ng-container *ngTemplateOutlet="fields; context : {$implicit : model.$schema, form : form}"></ng-container>
 
-  <button *ngFor="let link of links" type="button" [disabled]="form.valid" (click)="onSubmit(link)">{{link.key}}</button>
+  <button *ngFor="let link of links" type="button" [disabled]="! form.valid" (click)="onSubmit(link)">{{link.key}}</button>
   <button type="button" [disabled]="form.pristine" (click)="onReset()">Reset</button>
 </form>
 
