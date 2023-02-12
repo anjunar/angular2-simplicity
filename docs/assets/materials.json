@@ -27,8 +27,28 @@
               "title" : "Symbol",
               "format" : "default",
               "widget" : "text"
-            }
-          }
+            },
+            "emails": {
+              "type": "array",
+              "widget": "repeat",
+              "readOnly" : false,
+              "title" : "Emails",
+              "items": {
+                "type": "object",
+                "widget": "form",
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "title": "Email",
+                    "widget": "email",
+                    "naming" : true,
+                    "validators" : {
+                      "email" : true
+                    }
+                  }
+                }
+              }
+            }}
         }
       }
     }
@@ -45,25 +65,37 @@
       "position": 2,
       "name": "Helium",
       "weight": 4.0026,
-      "symbol": "He"
+      "symbol": "He",
+      "emails" : [{
+        "value" : "test"
+      }]
     },
     {
       "position": 3,
       "name": "Lithium",
       "weight": 6.941,
-      "symbol": "Li"
+      "symbol": "Li",
+      "emails" : [{
+        "value" : "test"
+      }]
     },
     {
       "position": 4,
       "name": "Beryllium",
       "weight": 9.0122,
-      "symbol": "Be"
+      "symbol": "Be",
+      "emails" : [{
+        "value" : "test"
+      }]
     },
     {
       "position": 5,
       "name": "Boron",
       "weight": 10.811,
-      "symbol": "B"
+      "symbol": "B",
+      "emails" : [{
+        "value" : "test"
+      }]
     },
     {
       "position": 6,

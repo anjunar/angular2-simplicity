@@ -46,7 +46,11 @@
     </table>
 
     <div style="margin: 20px;">
-      <as-meta-form [(model)]="model" (submit)="onChange($event)" ></as-meta-form>
+      <as-meta-form [(model)]="model" (submit)="onChange($event)" >
+        <ng-template>
+          <div>test</div>
+        </ng-template>
+      </as-meta-form>
     </div>
 
   </div>

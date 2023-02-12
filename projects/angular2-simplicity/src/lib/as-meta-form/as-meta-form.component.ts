@@ -1,4 +1,13 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
+import {
+  Component,
+  ContentChild,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  TemplateRef,
+  ViewEncapsulation
+} from '@angular/core';
 import {AbstractControl, FormArray, FormGroup} from "@angular/forms";
 import {Link, Model} from "./as-meta-form.classes";
 import {KeyValue} from "@angular/common";
@@ -17,6 +26,8 @@ export class AsMetaFormComponent implements OnInit {
   @Output() modelChange = new EventEmitter<any>();
 
   @Output() submit = new EventEmitter<any>();
+
+  @ContentChild(TemplateRef) security! : TemplateRef<any>;
 
   form!: FormGroup
 
