@@ -129,7 +129,7 @@
           </ng-container>
         </div>
         <div *ngIf="$any(entry).value.visibility">
-          <ng-container *ngTemplateOutlet="security; context : {$implicitly : entry.value, form : form}"></ng-container>
+          <ng-container *ngTemplateOutlet="security; context : {$implicitly : entry, form : form}"></ng-container>
         </div>
       </div>
     </ng-container>
