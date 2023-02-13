@@ -27,6 +27,9 @@ export class AsWindowComponent implements Window, OnInit {
   minimized = false;
   @ViewChild(AsScrollAreaComponent) asScrollArea!: AsScrollAreaComponent
 
+  @ViewChild("header") header! : ElementRef<HTMLDivElement>;
+  @ViewChild("footer") footer! : ElementRef<HTMLDivElement>;
+
   windowEndResize: EventEmitter<void> = new EventEmitter<void>();
   windowDrag: EventEmitter<void> = new EventEmitter<void>();
   windowEndDrag: EventEmitter<void> = new EventEmitter<void>();
@@ -35,6 +38,19 @@ export class AsWindowComponent implements Window, OnInit {
   windowStartResize: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(private windowManager: WindowManagerService, private elementRef: ElementRef) {
+  }
+
+  count(element : HTMLElement) {
+    let count = 0;
+    let iterator = document.createNodeIterator(element);
+    let node = iterator.nextNode();
+    while (node !== null) {
+      node = iterator.nextNode();
+      if (node) {
+        count++
+      }
+    }
+    return count;
   }
 
   get element() {

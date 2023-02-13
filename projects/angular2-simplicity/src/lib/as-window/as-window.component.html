@@ -5,9 +5,9 @@
     <div style="width: 20px; height: calc(100% - 40px)" [style.cursor]="resizable && ! maximized ? 'e-resize' : 'default'" (mousedown)="eResizeLeftMouseDown($event)"></div>
     <div style="width: 20px; height: 20px" [style.cursor]="resizable && ! maximized ? 'ne-resize' : 'default'" (mousedown)="neResizeMouseDown($event)"></div>
   </div>
-  <div style="flex: 1; align-items: stretch; width: 100%">
-    <div style="line-height: 24px; padding-left: 3px; display: flex" [style.color]="isTopWindow() ? 'var(--main-background-color)' : 'var(--main-font-color)'" [style.background-color]="isTopWindow() ? 'var(--main-grey-color)' : 'var(--main-dark1-color)'" [style.cursor]="! maximized || draggable ? 'all-scroll' : 'default'" (mousedown)="dragElementMouseDown($event)">
-      <div>
+  <div style="flex: 1; align-items: stretch; width: 100%; flex-direction: column; display: flex">
+    <div [style.display]="count(header) > 1 ? 'flex' : 'none'" style="line-height: 24px; padding-left: 3px; display: flex" [style.color]="isTopWindow() ? 'var(--main-background-color)' : 'var(--main-font-color)'" [style.background-color]="isTopWindow() ? 'var(--main-grey-color)' : 'var(--main-dark1-color)'" [style.cursor]="! maximized || draggable ? 'all-scroll' : 'default'" (mousedown)="dragElementMouseDown($event)">
+      <div #header>
         <ng-content select="[header]"></ng-content>
       </div>
       <div style="flex: 1"></div>
@@ -17,12 +17,12 @@
         <button translate="no" type="button" class="material-icons" (click)="close()">close</button>
       </div>
     </div>
-    <as-scroll-area style="height: calc(100% - 40px); width: 100%">
+    <as-scroll-area style="width: 100%; flex: 1">
       <div>
         <ng-content select="[content]"></ng-content>
       </div>
     </as-scroll-area>
-    <div style="height: 20px; background-color: var(--main-dark1-color)">
+    <div [style.display]="count(footer) > 1 ? 'block' : 'none'" #footer style="height: 20px; background-color: var(--main-dark1-color)">
       <ng-content select="[footer]"></ng-content>
     </div>
   </div>

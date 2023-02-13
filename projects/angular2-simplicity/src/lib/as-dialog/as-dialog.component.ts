@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, ViewChild, ViewEncapsulation} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Input, ViewChild, ViewEncapsulation} from '@angular/core';
 import {Window, WindowManagerService} from "../window-manager.service";
 import {AsWindowComponent} from "../as-window/as-window.component";
 

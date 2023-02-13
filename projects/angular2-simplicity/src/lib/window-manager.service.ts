@@ -5,11 +5,11 @@ export interface Window {
   resizable: boolean;
   draggable: boolean;
 
-  get zIndex(): number
+  get zIndex(): number;
 
-  set zIndex(value : number)
+  set zIndex(value : number);
 
-  readonly element : HTMLElement
+  readonly element : HTMLElement;
 
 }
 
@@ -25,6 +25,8 @@ export interface WindowOptions {
   dialog? : boolean,
   draggable? : boolean
   resizeable? : boolean
+  hasHeader? : boolean
+  hasFooter? : boolean
 }
 
 interface Maximized {
