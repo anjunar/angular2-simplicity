@@ -161,7 +161,10 @@ export class WindowManagerService {
   isTopWindow(window : Window) {
     let sorted = zIndexSorted();
     let componentRef = sorted[sorted.length - 1];
-    return componentRef.instance === window;
+    if (componentRef) {
+      return componentRef.instance === window;
+    }
+    return false;
   }
 
 }
