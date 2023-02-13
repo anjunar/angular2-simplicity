@@ -1,5 +1,13 @@
 import {ActivatedRoute} from "@angular/router";
-import {AfterViewInit, ComponentRef, Injector, Type, ViewChild} from "@angular/core";
+import {
+  AfterViewInit,
+  ApplicationRef,
+  ComponentFactoryResolver,
+  ComponentRef,
+  Injector,
+  Type,
+  ViewChild
+} from "@angular/core";
 import {WindowManagerService, WindowOptions, WindowRef} from "./window-manager.service";
 import {ContextManagerService, ContextOptions, ContextRef} from "./context-manager.service";
 import {AsViewportComponent} from "./as-viewport/as-viewport.component";
@@ -35,7 +43,12 @@ export abstract class AppView {
 
 export abstract class AppMain {
 
-  protected constructor(public windowManager: WindowManagerService, public contextManager: ContextManagerService) {}
+  protected constructor(
+    public windowManager: WindowManagerService,
+    public contextManager: ContextManagerService,
+    public componentResolver : ComponentFactoryResolver,
+    public injector : Injector,
+    public application : ApplicationRef) {}
 
   abstract get viewport() : AsViewportComponent;
 
@@ -57,10 +70,13 @@ export abstract class AppMain {
       let instance: Window = windowRef.instance;
       const injector = Injector.create({
         providers: [{provide: window, useValue: instance}],
-        parent: this.viewport.componentContainer.injector
+        parent: this.injector
       });
 
-      let componentRef = this.viewport.componentContainer.createComponent(content, {index: 0, injector: injector});  // This container temp acts as a workaround
+      let componentFactory = this.componentResolver.resolveComponentFactory(content);
+      let componentRef = componentFactory.create(injector);
+      this.application.attachView(componentRef.hostView)
+
       let element = componentRef.location.nativeElement;
 
       let headerElement = element.querySelector("[header]");
@@ -123,9 +139,9 @@ export abstract class AppMain {
 
     this.windowManager.delete = (windowRef: ComponentRef<Window>, componentRef: ComponentRef<any>) => {
       let windowIndexOf = this.viewport.windowContainer.indexOf(windowRef.hostView);
-      let componentIndexOf = this.viewport.componentContainer.indexOf(componentRef.hostView)
       this.viewport.windowContainer.remove(windowIndexOf)
-      this.viewport.componentContainer.remove(componentIndexOf) // This container temp acts as a workaround
+
+      this.application.detachView(componentRef.hostView)
     }
 
     this.contextManager.create = <E>(content: Type<E>, options?: ContextOptions): ContextRef<E> => {
@@ -140,12 +156,13 @@ export abstract class AppMain {
 
       const injector = Injector.create({
         providers: [{provide: AsContextComponent, useValue: contextRef.instance}],
-        parent: this.viewport.componentContainer.injector
+        parent: this.injector
       });
 
-      let componentRef = this.viewport.componentContainer.createComponent(content, {index: 0, injector: injector});  // This container temp acts as a workaround
+      let componentFactory = this.componentResolver.resolveComponentFactory(content);
+      let componentRef = componentFactory.create(injector);
       let element = componentRef.location.nativeElement;
-
+      this.application.attachView(componentRef.hostView)
       contentPlaceholder.appendChild(element.firstElementChild);
 
       this.contextManager.register(contextRef, componentRef);
@@ -167,9 +184,9 @@ export abstract class AppMain {
 
     this.contextManager.delete = (windowRef: ComponentRef<any>, componentRef: ComponentRef<any>) => {
       let windowIndexOf = this.viewport.windowContainer.indexOf(windowRef.hostView);
-      let componentIndexOf = this.viewport.componentContainer.indexOf(componentRef.hostView)
       this.viewport.windowContainer.remove(windowIndexOf)
-      this.viewport.componentContainer.remove(componentIndexOf) // This container temp acts as a workaround
+
+      this.application.detachView(componentRef.hostView);
     }
 
   }

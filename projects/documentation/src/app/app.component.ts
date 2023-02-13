@@ -1,4 +1,11 @@
-import {AfterViewInit, Component, ViewChild, ViewEncapsulation} from '@angular/core';
+import {
+  AfterViewInit, ApplicationRef,
+  Component,
+  ComponentFactoryResolver,
+  Injector,
+  ViewChild,
+  ViewEncapsulation
+} from '@angular/core';
 import {AsViewportComponent, ContextManagerService, WindowManagerService, AppMain} from "angular2-simplicity";
 
 @Component({
@@ -11,8 +18,13 @@ export class AppComponent extends AppMain implements AfterViewInit {
 
   @ViewChild(AsViewportComponent) _viewport!: AsViewportComponent
 
-  constructor(windowManager: WindowManagerService, contextManager: ContextManagerService) {
-    super(windowManager, contextManager);
+  constructor(
+    windowManager: WindowManagerService,
+    contextManager: ContextManagerService,
+    injector : Injector,
+    resolver : ComponentFactoryResolver,
+    application : ApplicationRef) {
+    super(windowManager, contextManager, resolver, injector, application);
   }
 
   get viewport() {

@@ -10,8 +10,6 @@ export class AsViewportComponent {
 
   @ViewChild("window", {read: ViewContainerRef}) windowContainer! : ViewContainerRef
 
-  @ViewChild("component", {read: ViewContainerRef}) componentContainer! : ViewContainerRef
-
   constructor(private elementRef : ElementRef) {}
 
   get element() : HTMLElement  {
