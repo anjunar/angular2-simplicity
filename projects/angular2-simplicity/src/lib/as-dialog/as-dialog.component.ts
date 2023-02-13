@@ -10,6 +10,9 @@ import {AsWindowComponent} from "../as-window/as-window.component";
 })
 export class AsDialogComponent implements Window {
 
+  draggable: boolean = false;
+  resizable: boolean = false;
+
   @ViewChild("window", {read : AsWindowComponent}) window! : AsWindowComponent;
 
   constructor(private elementRef : ElementRef, private windowManager: WindowManagerService) {}

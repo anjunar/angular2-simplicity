@@ -4,6 +4,7 @@ import {AppExampleComponent} from "./app-example/app-example.component";
 import {ActivatedRoute} from "@angular/router";
 import {WindowRef} from "angular2-simplicity";
 import {AppView} from "angular2-simplicity";
+import {WindowOptions} from "../../../../../angular2-simplicity/src/lib/window-manager.service";
 
 @Component({
   selector: 'app-window',
@@ -28,6 +29,18 @@ export class AppWindowComponent extends AppView {
 
   onClick() {
     let windowRef : WindowRef<AppExampleComponent> = this.windowManager.create(AppExampleComponent, {header : "Example"});
+    windowRef.instance.text = "Hello World!"
+  }
+
+  onClick2() {
+    let options : WindowOptions = {
+      header : "Example",
+      top : 40,
+      right : 40,
+      resizeable : false,
+      draggable : false
+    };
+    let windowRef : WindowRef<AppExampleComponent> = this.windowManager.create(AppExampleComponent, options);
     windowRef.instance.text = "Hello World!"
   }
 

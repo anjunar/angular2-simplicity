@@ -76,6 +76,14 @@ export abstract class AppMain {
         footerPlaceholder.appendChild(footerElement)
       }
 
+      if (typeof options.draggable === "boolean") {
+        instance.draggable = options.draggable
+      }
+
+      if (typeof options.resizeable === "boolean") {
+        instance.resizable = options.resizeable
+      }
+
       setTimeout(() => {
         if (options) {
           if (options.width) {
@@ -84,10 +92,25 @@ export abstract class AppMain {
           if (options.height) {
             instance.element.style.height = options.height + "px"
           }
+          if (options.top || options.left || options.right || options.bottom) {
+            if (options.top) {
+              instance.element.style.top = options.top + "px"
+            }
+            if (options.left) {
+              instance.element.style.left = options.top + "px"
+            }
+            if (options.right) {
+              instance.element.style.right = options.top + "px"
+            }
+            if (options.bottom) {
+              instance.element.style.bottom = options.top + "px"
+            }
+          } else {
+            instance.element.style.left = `calc(50% - ${instance.element.offsetWidth / 2}px)`
+            instance.element.style.top = `calc(50% - ${instance.element.offsetHeight / 2}px)`
+          }
         }
 
-        instance.element.style.left = `calc(50% - ${instance.element.offsetWidth / 2}px)`
-        instance.element.style.top = `calc(50% - ${instance.element.offsetHeight / 2}px)`
       }, 10)
 
       this.windowManager.register(windowRef, options, componentRef);

@@ -2,6 +2,9 @@ import {ComponentRef, Injectable, Type} from '@angular/core';
 
 export interface Window {
 
+  resizable: boolean;
+  draggable: boolean;
+
   get zIndex(): number
 
   set zIndex(value : number)
@@ -13,10 +16,15 @@ export interface Window {
 export interface WindowOptions {
 
   header : string
-  width? : number,
+  width? : number
   height? : number
-  dialog? : boolean
-
+  top? : number
+  left? : number
+  right? : number
+  bottom? : number
+  dialog? : boolean,
+  draggable? : boolean
+  resizeable? : boolean
 }
 
 interface Maximized {
