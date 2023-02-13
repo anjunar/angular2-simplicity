@@ -97,13 +97,13 @@ export abstract class AppMain {
               instance.element.style.top = options.top + "px"
             }
             if (options.left) {
-              instance.element.style.left = options.top + "px"
+              instance.element.style.left = options.left + "px"
             }
             if (options.right) {
-              instance.element.style.right = options.top + "px"
+              instance.element.style.right = options.right + "px"
             }
             if (options.bottom) {
-              instance.element.style.bottom = options.top + "px"
+              instance.element.style.bottom = options.bottom + "px"
             }
           } else {
             instance.element.style.left = `calc(50% - ${instance.element.offsetWidth / 2}px)`
