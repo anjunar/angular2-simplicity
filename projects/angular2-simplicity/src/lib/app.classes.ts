@@ -35,7 +35,7 @@ export abstract class AppView {
 
 export abstract class AppMain {
 
-  protected constructor(private windowManager: WindowManagerService, private contextManager: ContextManagerService) {}
+  protected constructor(public windowManager: WindowManagerService, public contextManager: ContextManagerService) {}
 
   abstract get viewport() : AsViewportComponent;
 
