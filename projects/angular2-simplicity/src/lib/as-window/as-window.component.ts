@@ -3,7 +3,7 @@ import {
   ElementRef,
   EventEmitter,
   HostListener,
-  Input,
+  Input, OnDestroy,
   OnInit,
   ViewChild,
   ViewEncapsulation
@@ -17,7 +17,7 @@ import {AsScrollAreaComponent} from "../as-scroll-area/as-scroll-area.component"
   styleUrls: ['as-window.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class AsWindowComponent implements Window, OnInit {
+export class AsWindowComponent implements Window, OnInit, OnDestroy {
 
   @Input() modal!: Window
 
@@ -29,6 +29,8 @@ export class AsWindowComponent implements Window, OnInit {
 
   @ViewChild("header") header! : ElementRef<HTMLDivElement>;
   @ViewChild("footer") footer! : ElementRef<HTMLDivElement>;
+
+  destroy = new EventEmitter<any>();
 
   windowEndResize: EventEmitter<void> = new EventEmitter<void>();
   windowDrag: EventEmitter<void> = new EventEmitter<void>();
@@ -378,6 +380,10 @@ export class AsWindowComponent implements Window, OnInit {
     this.windowEndResize.subscribe(() => {
       this.asScrollArea.checkScrollBars();
     })
+  }
+
+  ngOnDestroy(): void {
+    this.destroy.emit();
   }
 
 }
