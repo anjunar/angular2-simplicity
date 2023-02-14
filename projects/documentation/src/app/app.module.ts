@@ -30,6 +30,7 @@ import { AppMetaTableComponent } from './advanced/app-meta-table/app-meta-table.
 import { AppMetaFormLayoutComponent } from './advanced/app-meta-form-layout/app-meta-form-layout.component';
 import { AppCarouselComponent } from './basic/app-carousel/app-carousel.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {AppInfiniteScrollComponent} from "./basic/app-infinite-scroll/app-infinite-scroll.component";
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     AppMetaFormComponent,
     AppMetaTableComponent,
     AppMetaFormLayoutComponent,
-    AppCarouselComponent
+    AppCarouselComponent,
+    AppInfiniteScrollComponent
   ],
     imports: [
         BrowserModule,

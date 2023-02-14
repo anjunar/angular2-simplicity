@@ -1,0 +1,83 @@
+<div style="margin: auto; flex-wrap: wrap; display: flex">
+
+  <div style="flex: 1; padding: 20px; ">
+
+    <h2 style="margin-left: 0;">Infinite Scroll</h2>
+    <hr class="line">
+
+    <p >
+      Infinite scroll is a popular design pattern used in websites and mobile apps to display large amounts of content,
+      such as social media feeds, news articles, or product listings. Instead of breaking the content into separate
+      pages, the content is loaded continuously as the user scrolls down the page, allowing for a smoother and more
+      seamless browsing experience.
+    </p>
+    <p>
+      One benefit of infinite scroll is that it can increase user engagement by encouraging users to spend more time
+      on a website or app. By eliminating the need to click through to a new page, users can quickly and easily explore
+      a wide variety of content.
+    </p>
+    <p>
+      However, there are also some potential drawbacks to infinite scroll. For example, it can make it more difficult
+      for users to find specific content that they may be looking for, as the content is not organized into distinct
+      pages. Additionally, it can make it harder for users to remember where they left off if they need to navigate
+      away from the page and then return later. Finally, infinite scroll can also make it more challenging to implement
+      features such as pagination or filtering, which can be useful for certain types of content.
+    </p>
+
+    <h3>DOM-API</h3>
+    <table style="width: 100%; font-size: small">
+      <thead>
+      <tr>
+        <td><strong >Element</strong></td>
+        <td><strong >Attribute</strong></td>
+        <td><strong >Description</strong></td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>as-infinity-scroll</td>
+        <td>items</td>
+        <td>Loader for the items</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div style="margin: 20px;">
+      <div>
+        <as-infinity-scroll [items]="loader" style="height: 200px">
+          <ng-template let-item>
+            <div style="border: 1px solid var(--main-dark1-color); margin: 10px">
+              <ul>
+                <li>{{item.position}}</li>
+                <li>{{item.name}}</li>
+                <li>{{item.weight}}</li>
+                <li>{{item.symbol}}</li>
+              </ul>
+            </div>
+          </ng-template>
+        </as-infinity-scroll>
+      </div>
+    </div>
+
+
+  </div>
+
+  <div style="flex: 1; padding: 20px; ">
+
+    <h2>Source Code</h2>
+    <hr class="line">
+    <h3>HTML5</h3>
+    <p >The rest of the HTML file is not displayed</p>
+    <div style="margin-top: 20px;">
+      <div>
+        <as-code [code]="html" type="html"></as-code>
+      </div>
+    </div>
+    <h3>Typescript</h3>
+    <div>
+      <div>
+        <as-code [code]="typescript" type="typescript"></as-code>
+      </div>
+    </div>
+  </div>
+</div>

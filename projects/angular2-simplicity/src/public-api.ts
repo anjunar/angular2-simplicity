@@ -72,5 +72,7 @@ export * from "./lib/as-meta-form/as-meta-form.classes";
 
 export * from "./lib/as-carousel/as-carousel.component";
 
+export * from "./lib/as-infinite-scroll/as-infinite-scroll.component";
+
 
 

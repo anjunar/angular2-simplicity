@@ -55,6 +55,8 @@ import { AsRepeatComponent } from './as-repeat/as-repeat.component';
 import { AsErrorDirective } from './as-input-container/as-error/as-error.directive';
 import { AsToolbarSizeComponent } from './as-editor/as-editor-toolbar/as-toolbar-size/as-toolbar-size.component';
 import { AsCarouselComponent } from './as-carousel/as-carousel.component';
+import { AsInfiniteScrollComponent } from './as-infinite-scroll/as-infinite-scroll.component';
+import { AsScrollPartComponent } from './as-infinite-scroll/as-scroll-part/as-scroll-part.component';
 
 
 @NgModule({
@@ -113,6 +115,8 @@ import { AsCarouselComponent } from './as-carousel/as-carousel.component';
     AsErrorDirective,
     AsToolbarSizeComponent,
     AsCarouselComponent,
+    AsInfiniteScrollComponent,
+    AsScrollPartComponent,
   ],
     imports: [
         NgTemplateOutlet,
@@ -161,7 +165,8 @@ import { AsCarouselComponent } from './as-carousel/as-carousel.component';
     AsMetaFormComponent,
     AsMetaTableComponent,
     AsErrorDirective,
-    AsCarouselComponent
+    AsCarouselComponent,
+    AsInfiniteScrollComponent
   ]
 })
 export class Angular2SimplicityModule {

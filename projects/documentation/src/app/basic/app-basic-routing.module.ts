@@ -15,8 +15,28 @@ import {AppSpinnerComponent} from "./app-spinner/app-spinner.component";
 import {AppProgressBarComponent} from "./app-progress-bar/app-progress-bar.component";
 import {AppDrawerComponent} from "./app-drawer/app-drawer.component";
 import {AppCarouselComponent} from "./app-carousel/app-carousel.component";
+import {AppInfiniteScrollComponent} from "./app-infinite-scroll/app-infinite-scroll.component";
 
 export const routes = [
+  {
+    path : "infinite",
+    component: AppInfiniteScrollComponent,
+    resolve: {
+      data: AsGenericResolver,
+    },
+    data: {
+      assets: [
+        {
+          name : "html",
+          url: 'assets/basic/app-infinity-scroll/example.html'
+        },
+        {
+          name : "typescript",
+          url: 'assets/basic/app-infinity-scroll/example.ts'
+        }
+      ]
+    }
+  },
   {
     path : "carousel",
     component: AppCarouselComponent,

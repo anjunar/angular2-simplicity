@@ -1,0 +1,12 @@
+<as-infinity-scroll [items]="loader">
+  <ng-template let-item>
+    <div style="border: 1px solid var(--main-dark1-color); margin: 10px">
+      <ul>
+        <li>{{item.position}}</li>
+        <li>{{item.name}}</li>
+        <li>{{item.weight}}</li>
+        <li>{{item.symbol}}</li>
+      </ul>
+    </div>
+  </ng-template>
+</as-infinity-scroll>
