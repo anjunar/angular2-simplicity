@@ -1,19 +1,10 @@
 import {ActivatedRoute} from "@angular/router";
-import {
-  AfterViewInit,
-  ApplicationRef,
-  ComponentFactoryResolver,
-  ComponentRef,
-  Injector,
-  Type,
-  ViewChild
-} from "@angular/core";
-import {WindowManagerService, WindowOptions, WindowRef} from "./window-manager.service";
+import {ApplicationRef, ComponentFactoryResolver, ComponentRef, createComponent, Injector, Type} from "@angular/core";
+import {Window, WindowManagerService, WindowOptions, WindowRef} from "./window-manager.service";
 import {ContextManagerService, ContextOptions, ContextRef} from "./context-manager.service";
 import {AsViewportComponent} from "./as-viewport/as-viewport.component";
 import {AsDialogComponent} from "./as-dialog/as-dialog.component";
 import {AsWindowComponent} from "./as-window/as-window.component";
-import {Window} from "./window-manager.service";
 import {AsContextComponent} from "./as-context/as-context.component";
 
 export abstract class AppView {
@@ -46,11 +37,11 @@ export abstract class AppMain {
   protected constructor(
     public windowManager: WindowManagerService,
     public contextManager: ContextManagerService,
-    public componentResolver : ComponentFactoryResolver,
-    public injector : Injector,
-    public application : ApplicationRef) {}
+    public injector: Injector,
+    public application: ApplicationRef) {
+  }
 
-  abstract get viewport() : AsViewportComponent;
+  abstract get viewport(): AsViewportComponent;
 
   initialize(): void {
     this.windowManager.create = <E>(content: Type<E>, options: WindowOptions): WindowRef<E> => {
@@ -73,8 +64,8 @@ export abstract class AppMain {
         parent: this.injector
       });
 
-      let componentFactory = this.componentResolver.resolveComponentFactory(content);
-      let componentRef = componentFactory.create(injector);
+      // @ts-ignore
+      let componentRef = createComponent(content, {elementInjector: injector})
       this.application.attachView(componentRef.hostView)
 
       let element = componentRef.location.nativeElement;
@@ -159,8 +150,8 @@ export abstract class AppMain {
         parent: this.injector
       });
 
-      let componentFactory = this.componentResolver.resolveComponentFactory(content);
-      let componentRef = componentFactory.create(injector);
+      // @ts-ignore
+      let componentRef = createComponent(content, {elementInjector: injector});
       let element = componentRef.location.nativeElement;
       this.application.attachView(componentRef.hostView)
       contentPlaceholder.appendChild(element.firstElementChild);

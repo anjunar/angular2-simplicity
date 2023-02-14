@@ -22,9 +22,8 @@ export class AppComponent extends AppMain implements AfterViewInit {
     windowManager: WindowManagerService,
     contextManager: ContextManagerService,
     injector : Injector,
-    resolver : ComponentFactoryResolver,
     application : ApplicationRef) {
-    super(windowManager, contextManager, resolver, injector, application);
+    super(windowManager, contextManager, injector, application);
   }
 
   get viewport() {
