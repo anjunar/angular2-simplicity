@@ -1,5 +1,5 @@
 <div style="height: 38px"></div>
-<as-toolbar style="position: absolute; z-index: 8000">
+<as-toolbar style="position: absolute; z-index: 8000; top : 38px">
   <div left>
     <button translate="no" class="material-icons" type="button" (click)="open = ! open">menu</button>
   </div>
@@ -196,6 +196,8 @@
     </div>
   </as-drawer>
   <as-drawer-content>
+    <as-viewport style="position: relative; height: calc(100% - 38px)">
       <router-outlet></router-outlet>
+    </as-viewport>
   </as-drawer-content>
 </as-drawer-container>

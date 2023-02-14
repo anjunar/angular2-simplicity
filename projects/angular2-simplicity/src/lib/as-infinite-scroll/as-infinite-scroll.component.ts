@@ -4,7 +4,7 @@ import {
   ComponentRef,
   ContentChild,
   ElementRef,
-  Input,
+  Input, OnDestroy,
   OnInit,
   TemplateRef,
   ViewChild,
@@ -12,6 +12,7 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import {AsScrollPartComponent} from "./as-scroll-part/as-scroll-part.component";
+import {AsViewportComponent} from "../as-viewport/as-viewport.component";
 
 export interface InfinityQuery {
   index: number
@@ -43,7 +44,7 @@ function debounce(func: any, wait: number, immediate?: boolean, disable?: boolea
   styleUrls: ['as-infinite-scroll.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class AsInfiniteScrollComponent implements AfterViewInit {
+export class AsInfiniteScrollComponent implements AfterViewInit, OnDestroy {
 
   index = 0;
   @Input() limit = 10;
@@ -52,20 +53,21 @@ export class AsInfiniteScrollComponent implements AfterViewInit {
 
   @ContentChild(TemplateRef) templateRef!: TemplateRef<any>
 
-  @ViewChild("scroll", {read: ElementRef}) scrollRef!: ElementRef<HTMLDivElement>
-  @ViewChild("viewport", {read: ElementRef}) viewportRef!: ElementRef<HTMLDivElement>
-  @ViewChild("container", {read: ViewContainerRef}) container!: ViewContainerRef
+  @ViewChild("container", {read: ElementRef}) containerRef!: ElementRef<HTMLDivElement>
+  @ViewChild("viewContainerRef", {read: ViewContainerRef}) viewContainerRef!: ViewContainerRef
 
   @Input() items!: (query: InfinityQuery, callback: (rows: any[]) => void) => void
 
   onScroll!: (event: Event) => void
 
+  constructor(private viewport : AsViewportComponent) {}
+
   get scroll() {
-    return this.scrollRef.nativeElement;
+    return this.viewport.element
   }
 
-  get viewport() {
-    return this.viewportRef.nativeElement;
+  get container() {
+    return this.containerRef.nativeElement;
   }
 
   ngAfterViewInit(): void {
@@ -75,7 +77,7 @@ export class AsInfiniteScrollComponent implements AfterViewInit {
 
       if (prevScrollPos < currentScrollPos) {
         // scrolling down
-        if (this.viewport.offsetHeight - this.scroll.scrollTop < (this.scroll.offsetHeight)) {
+        if (this.container.offsetHeight - this.scroll.scrollTop < (this.scroll.offsetHeight)) {
           let component = this.components[this.components.length - 1];
           this.index = component.instance.index + this.limit;
           this.loadDownward()
@@ -86,7 +88,7 @@ export class AsInfiniteScrollComponent implements AfterViewInit {
 
         if (this.scroll.scrollTop < (this.scroll.offsetHeight) && component.instance.index > 0) {
           console.log(component.instance.index)
-          console.log(this.viewport.offsetHeight)
+          console.log(this.container.offsetHeight)
           console.log(this.scroll.scrollTop)
           console.log(this.scroll.offsetHeight)
 
@@ -96,6 +98,12 @@ export class AsInfiniteScrollComponent implements AfterViewInit {
       }
       prevScrollPos = currentScrollPos;
     }, 300)
+
+    this.viewport.element.addEventListener("scroll", this.onScroll)
+  }
+
+  ngOnDestroy(): void {
+    this.viewport.element.removeEventListener("scroll", this.onScroll)
   }
 
   ngOnInit(): void {
@@ -105,13 +113,13 @@ export class AsInfiniteScrollComponent implements AfterViewInit {
   loadDownward() {
     this.items({index: this.index, limit: this.limit}, (rows) => {
       if (rows.length > 0) {
-        let componentRef = this.container.createComponent(AsScrollPartComponent);
+        let componentRef = this.viewContainerRef.createComponent(AsScrollPartComponent);
         componentRef.instance.index = this.index
         componentRef.instance.items = rows;
         componentRef.instance.templateRef = this.templateRef;
         this.components.push(componentRef)
-        if (this.container.length > 3) {
-          this.container.remove(0)
+        if (this.viewContainerRef.length > 3) {
+          this.viewContainerRef.remove(0)
           this.components.splice(0, 1)
         }
       }
@@ -123,8 +131,8 @@ export class AsInfiniteScrollComponent implements AfterViewInit {
       let component = this.components[0];
 
       if (component.instance.index > -1) {
-        let componentRef = this.container.createComponent(AsScrollPartComponent);
-        this.container.move(componentRef.hostView, 0)
+        let componentRef = this.viewContainerRef.createComponent(AsScrollPartComponent);
+        this.viewContainerRef.move(componentRef.hostView, 0)
 
 
         componentRef.instance.index = this.index
@@ -133,8 +141,8 @@ export class AsInfiniteScrollComponent implements AfterViewInit {
 
         this.components = [componentRef, ...this.components]
 
-        if (this.container.length > 3) {
-          this.container.remove(this.container.length - 1)
+        if (this.viewContainerRef.length > 3) {
+          this.viewContainerRef.remove(this.viewContainerRef.length - 1)
           this.components.splice(this.components.length - 1, 1)
         }
       }
