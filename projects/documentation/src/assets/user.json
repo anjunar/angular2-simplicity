@@ -117,6 +117,7 @@
     "lastName": "Bittner",
     "birthDate": "1980-04-01",
     "views" : 10,
+    "test" : "test",
     "role" : {
       "id" : 1,
       "name" : "Administrator"

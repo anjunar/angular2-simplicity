@@ -43,8 +43,26 @@ export class AsMetaFormComponent implements OnInit {
     })
   }
 
+  updateValues(form : any, model : any) {
+    for (const key of Object.keys(form)) {
+      let formProperty = form[key];
+      let modelProperty = model[key];
+      if (formProperty instanceof Array) {
+        formProperty.forEach((element, index) => {
+          this.updateValues(element, modelProperty[index])
+        })
+      } else {
+        if (formProperty instanceof Object) {
+          this.updateValues(formProperty, modelProperty)
+        } else {
+          model[key] = form[key];
+        }
+      }
+    }
+  }
+
   onSubmit(link : {key : string, value : Link}) {
-    Object.assign(this.model, this.form.getRawValue());
+    this.updateValues(this.form.value, this.model)
     this.modelChange.emit(this.model);
     this.submit.emit({link : link, model : this.model})
   }
