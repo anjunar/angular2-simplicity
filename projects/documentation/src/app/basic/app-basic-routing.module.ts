@@ -34,6 +34,12 @@ export const routes = [
           name : "typescript",
           url: 'assets/basic/app-infinity-scroll/example.ts'
         }
+      ],
+      json : [
+        {
+          name : "data",
+          url : "assets/large-file.json"
+        }
       ]
     }
   },

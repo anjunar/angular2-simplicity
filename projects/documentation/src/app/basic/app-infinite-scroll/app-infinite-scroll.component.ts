@@ -16,18 +16,25 @@ export class AppInfiniteScrollComponent extends AppView {
   html! : string
   typescript! : string
 
-  constructor(private activatedRoute: ActivatedRoute) {
-    super(activatedRoute);
-  }
+  scrollOnViewport = true
 
-  loader(query : InfinityQuery, callback : (rows : any[]) => void) {
-    fetch(`assets/materials.json?query=${query.index}&limit=${query.limit}`)
-      .then(response => response.json())
-      .then(response => {
-        let rows: any[] = response.rows;
-        let slice = rows.slice(query.index, query.index + query.limit);
-        callback(slice)
-      })
-  }
+  data! : any[];
 
+  loader! : (query : InfinityQuery, callback : (rows : any[]) => void) => void
+
+    constructor(private activatedRoute: ActivatedRoute) {
+      super(activatedRoute);
+
+      this.loader = (query : InfinityQuery, callback : (rows : any[]) => void) => {
+          setTimeout(() => {
+            let slice = this.data.slice(query.index, query.index + query.limit);
+
+            slice.forEach((item, index) => {
+              item["position"] = index + query.index
+            })
+
+            callback(slice)
+          }, 300)
+      }
+    }
 }
