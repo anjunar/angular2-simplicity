@@ -60,7 +60,10 @@ export abstract class AppMain {
 
       let instance: Window = windowRef.instance;
       const injector = Injector.create({
-        providers: [{provide: window, useValue: instance}],
+        providers: [
+          {provide: window, useValue: instance},
+          {provide: AsViewportComponent, useValue : this.viewport}
+        ],
         parent: this.injector
       });
 
