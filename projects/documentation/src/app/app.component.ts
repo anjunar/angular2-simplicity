@@ -1,12 +1,5 @@
-import {
-  AfterViewInit, ApplicationRef,
-  Component,
-  ComponentFactoryResolver,
-  Injector,
-  ViewChild,
-  ViewEncapsulation
-} from '@angular/core';
-import {AsViewportComponent, ContextManagerService, WindowManagerService, AppMain} from "angular2-simplicity";
+import {ApplicationRef, Component, Injector, ViewEncapsulation} from '@angular/core';
+import {AppMain, ContextManagerService, WindowManagerService} from "angular2-simplicity";
 
 @Component({
   selector: 'app-root',
@@ -14,15 +7,15 @@ import {AsViewportComponent, ContextManagerService, WindowManagerService, AppMai
   styleUrls: ['app.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class AppComponent extends AppMain implements AfterViewInit {
+export class AppComponent extends AppMain {
 
-  @ViewChild(AsViewportComponent) _viewport!: AsViewportComponent
+  _viewport: any;
 
   constructor(
     windowManager: WindowManagerService,
     contextManager: ContextManagerService,
-    injector : Injector,
-    application : ApplicationRef) {
+    injector: Injector,
+    application: ApplicationRef) {
     super(windowManager, contextManager, injector, application);
   }
 
@@ -30,8 +23,15 @@ export class AppComponent extends AppMain implements AfterViewInit {
     return this._viewport;
   }
 
-  ngAfterViewInit(): void {
-    this.initialize();
+  onActivate(event: any) {
+    event.onViewport.subscribe((event: any) => {
+      this._viewport = event;
+      this.initialize();
+    })
+  }
+
+  onDeactivate(event : any) {
+    event.onViewport.unsubscribe()
   }
 
 }
