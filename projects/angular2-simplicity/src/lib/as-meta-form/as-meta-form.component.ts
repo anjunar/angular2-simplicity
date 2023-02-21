@@ -85,17 +85,14 @@ export class AsMetaFormComponent implements OnInit {
     this.form.markAsDirty();
   }
 
-  lazySelectLoader(link: any) {
+  lazySelectLoader(event : {query: SelectQuery, callback: (rows: any[], size: number) => void}, link: any) {
     if (link) {
-      return (query: SelectQuery, callback: (rows: any[], size: number) => void) => {
-        fetch(`${link.url}?index=${query.index}&limit=${query.limit}&value=${query.value}`)
-          .then(response => response.json())
-          .then(response => {
-            callback(response.rows, response.size)
-          })
-      }
+      fetch(`${link.url}?index=${event.query.index}&limit=${event.query.limit}&value=${event.query.value}`)
+        .then(response => response.json())
+        .then(response => {
+          event.callback(response.rows, response.size)
+        })
     }
-    return (query: SelectQuery, callback: (rows: any[], size: number) => void) => {}
   }
 
   lazySelectLabel(properties: { key: string, value: any }) {

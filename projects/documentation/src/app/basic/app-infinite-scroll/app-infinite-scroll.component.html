@@ -44,7 +44,7 @@
 
     <div style="margin: 20px;">
       <div>
-        <as-infinity-scroll [items]="loader" [scrollOnViewport]="scrollOnViewport">
+        <as-infinity-scroll (items)="loader($event)" [scrollOnViewport]="scrollOnViewport">
           <ng-template let-item>
             <div style="border: 1px solid var(--main-dark1-color); margin: 10px">
               <ul>

@@ -18,12 +18,12 @@ export class AppTableComponent extends AppView {
     super(activatedRoute);
   }
 
-  items(query : TableQuery, callback : (rows : any[], size : number) => void) {
+  items(event : {query : TableQuery, callback : (rows : any[], size : number) => void}) {
     fetch("assets/materials.json")
       .then(response => response.json())
       .then(response => {
-        let data = response.rows.slice(query.index, query.index + query.limit)
-        callback(data, response.size)
+        let data = response.rows.slice(event.query.index, event.query.index + event.query.limit)
+        event.callback(data, response.size)
       })
   }
 

@@ -23,12 +23,12 @@ export class AppMetaTableComponent extends AppView {
     alert(JSON.stringify(event, null, 4))
   }
 
-  items(query : TableQuery, callback : (rows : any[], size : number, schema : any) => void) {
+  items(event : {query : TableQuery, callback : (rows : any[], size : number, schema : any) => void}) {
     fetch("assets/materials.json")
       .then(response => response.json())
       .then(response => {
-        let data = response.rows.slice(query.index, query.index + query.limit)
-        callback(data, response.size, response.$schema)
+        let data = response.rows.slice(event.query.index, event.query.index + event.query.limit)
+        event.callback(data, response.size, response.$schema)
       })
   }
 

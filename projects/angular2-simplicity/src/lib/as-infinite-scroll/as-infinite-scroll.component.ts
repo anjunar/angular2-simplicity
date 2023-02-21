@@ -3,9 +3,9 @@ import {
   Component,
   ComponentRef,
   ContentChild,
-  ElementRef,
+  ElementRef, EventEmitter,
   Input, OnDestroy,
-  OnInit,
+  OnInit, Output,
   TemplateRef,
   ViewChild,
   ViewContainerRef,
@@ -42,7 +42,7 @@ export class AsInfiniteScrollComponent implements AfterViewInit, OnDestroy {
   @ViewChild("container", {read: ElementRef}) containerRef!: ElementRef<HTMLDivElement>
   @ViewChild("viewContainerRef", {read: ViewContainerRef}) viewContainerRef!: ViewContainerRef
 
-  @Input() items!: (query: InfinityQuery, callback: (rows: any[]) => void) => void
+  @Output() items = new EventEmitter<{query: InfinityQuery, callback: (rows: any[]) => void}>();
 
   onScroll!: (event: Event) => void
 
@@ -123,50 +123,50 @@ export class AsInfiniteScrollComponent implements AfterViewInit, OnDestroy {
 
   loadDownward() {
     this.loading = true
-    this.items({index: this.index, limit: this.limit}, (rows) => {
-      if (rows.length > 0) {
-        let componentRef = this.viewContainerRef.createComponent(AsScrollPartComponent);
-        componentRef.instance.index = this.index
-        componentRef.instance.items = rows;
-        componentRef.instance.templateRef = this.templateRef;
-        this.components.push(componentRef)
-        if (this.viewContainerRef.length > 3) {
-          this.viewContainerRef.remove(0)
-          this.components.splice(0, 1)
+    this.items.emit({query : {index: this.index, limit: this.limit}, callback : (rows) => {
+        if (rows.length > 0) {
+          let componentRef = this.viewContainerRef.createComponent(AsScrollPartComponent);
+          componentRef.instance.index = this.index
+          componentRef.instance.items = rows;
+          componentRef.instance.templateRef = this.templateRef;
+          this.components.push(componentRef)
+          if (this.viewContainerRef.length > 3) {
+            this.viewContainerRef.remove(0)
+            this.components.splice(0, 1)
+          }
+          this.loading = false;
         }
-        this.loading = false;
-      }
-    })
+      }})
   }
 
   loadUpward() {
     this.loading = true;
-    this.items({index: this.index, limit: this.limit}, (rows) => {
-      let component = this.components[0];
+    this.items.emit({query : {index: this.index, limit: this.limit}, callback : (rows) => {
+        let component = this.components[0];
 
-      if (component.instance.index > -1) {
-        let componentRef = this.viewContainerRef.createComponent(AsScrollPartComponent);
-        this.viewContainerRef.move(componentRef.hostView, 0)
+        if (component.instance.index > -1) {
+          let componentRef = this.viewContainerRef.createComponent(AsScrollPartComponent);
+          this.viewContainerRef.move(componentRef.hostView, 0)
 
 
-        componentRef.instance.index = this.index
-        componentRef.instance.items = rows;
-        componentRef.instance.templateRef = this.templateRef;
+          componentRef.instance.index = this.index
+          componentRef.instance.items = rows;
+          componentRef.instance.templateRef = this.templateRef;
 
-        this.components = [componentRef, ...this.components]
+          this.components = [componentRef, ...this.components]
 
-        if (this.viewContainerRef.length > 3) {
-          this.viewContainerRef.remove(this.viewContainerRef.length - 1)
-          this.components.splice(this.components.length - 1, 1)
+          if (this.viewContainerRef.length > 3) {
+            this.viewContainerRef.remove(this.viewContainerRef.length - 1)
+            this.components.splice(this.components.length - 1, 1)
+          }
+
+
+          this.scroll.scrollTo({
+            top : this.viewportSelf.offsetHeight / (this.limit / 2)
+          })
         }
-
-
-        this.scroll.scrollTo({
-          top : this.viewportSelf.offsetHeight / (this.limit / 2)
-        })
-      }
-      this.loading = false
-    })
+        this.loading = false
+      }})
   }
 
 

@@ -32,7 +32,7 @@ export class AsTableComponent implements OnInit, AfterContentInit, AsTableInterf
   limit = 5;
   size = 0;
 
-  @Input("items") items! : (query : TableQuery, callback : (rows : any[], size : number) => void) => void;
+  @Output() items = new EventEmitter<{query : TableQuery, callback : (rows : any[], size : number) => void}>();
   window : any[] = [];
   columns: TableColumn[] = [];
   @Output() rowClick : EventEmitter<any> = new EventEmitter<any>();
@@ -190,9 +190,12 @@ export class AsTableComponent implements OnInit, AfterContentInit, AsTableInterf
       query.sort = sorting
     }
 
-    this.items(query, (data : any[], size : number) => {
-      this.window = data;
-      this.size = size;
+    this.items.emit({
+      query : query,
+      callback : (rows : any[], size: number) => {
+        this.window = rows;
+        this.size = size
+      }
     })
   }
 

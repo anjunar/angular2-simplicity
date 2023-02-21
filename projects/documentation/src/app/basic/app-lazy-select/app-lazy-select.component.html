@@ -57,7 +57,7 @@
 
     <div style="margin: 20px;">
       <as-input-container placeholder="Click here...">
-        <as-lazy-select style="width: 100%" [items]="items" [(ngModel)]="value" trackBy="position">
+        <as-lazy-select style="width: 100%" (items)="items($event)" [(ngModel)]="value" trackBy="position">
           <ng-template let-item>
             {{item.name}}
           </ng-template>
@@ -118,7 +118,7 @@
     <div style="margin: 20px;">
       <as-input-container placeholder="Click here...">
 
-        <as-lazy-select style="width: 100%" [items]="items" [(ngModel)]="values" [multiSelect]="true" trackBy="position">
+        <as-lazy-select style="width: 100%" (items)="items($event)" [(ngModel)]="values" [multiSelect]="true" trackBy="position">
           <ng-template #option let-item>
             {{item.name}}
           </ng-template>

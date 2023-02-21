@@ -1,4 +1,4 @@
-<as-table [items]="parent" (rowClick)="onRowClick($event)">
+<as-table (items)="parent($event)" (rowClick)="onRowClick($event)">
   <ng-template *ngFor="let property of schema?.properties.rows.items.properties | keyvalue" #filter let-filter>
     <as-filter [filter]="filter" widget="text">
       <input type="text" [(ngModel)]="filter.search">

@@ -40,7 +40,7 @@
     </table>
 
     <div style="margin: 20px;">
-      <as-table [items]="items">
+      <as-table (items)="items($event)">
         <ng-template #filter let-filter>
           <as-filter [filter]="filter" widget="number">
             <div style="display: flex">

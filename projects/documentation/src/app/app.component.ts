@@ -24,14 +24,18 @@ export class AppComponent extends AppMain {
   }
 
   onActivate(event: any) {
-    event.onViewport.subscribe((event: any) => {
-      this._viewport = event;
-      this.initialize();
-    })
+    if (event.onViewport) {
+      event.onViewport.subscribe((event: any) => {
+        this._viewport = event;
+        this.initialize();
+      })
+    }
   }
 
   onDeactivate(event : any) {
-    event.onViewport.unsubscribe()
+    if (event.onViewport) {
+      event.onViewport.unsubscribe()
+    }
   }
 
 }
