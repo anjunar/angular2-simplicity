@@ -134,8 +134,8 @@ export abstract class AppMain {
     this.windowManager.delete = (windowRef: ComponentRef<Window>, componentRef: ComponentRef<any>) => {
       let windowIndexOf = this.viewport.windowContainer.indexOf(windowRef.hostView);
       this.viewport.windowContainer.remove(windowIndexOf)
-
       this.application.detachView(componentRef.hostView)
+      componentRef.destroy();
     }
 
     this.contextManager.create = <E>(content: Type<E>, options?: ContextOptions): ContextRef<E> => {
@@ -179,8 +179,8 @@ export abstract class AppMain {
     this.contextManager.delete = (windowRef: ComponentRef<any>, componentRef: ComponentRef<any>) => {
       let windowIndexOf = this.viewport.windowContainer.indexOf(windowRef.hostView);
       this.viewport.windowContainer.remove(windowIndexOf)
-
       this.application.detachView(componentRef.hostView);
+      componentRef.destroy();
     }
 
   }

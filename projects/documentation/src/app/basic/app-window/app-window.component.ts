@@ -27,12 +27,14 @@ export class AppWindowComponent extends AppView {
   }
 
 
-  onClick() {
+  onClick(event : Event) {
+    event.stopPropagation();
     let windowRef : WindowRef<AppExampleComponent> = this.windowManager.create(AppExampleComponent, {header : "Example"});
     windowRef.instance.text = "Hello World!"
   }
 
-  onClick2() {
+  onClick2(event : Event) {
+    event.stopPropagation();
     let options : WindowOptions = {
       header : "Example",
       top : 40,

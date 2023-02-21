@@ -1,4 +1,4 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import {Component, HostListener, ViewEncapsulation} from '@angular/core';
 import {AsWindowComponent} from "angular2-simplicity";
 
 @Component({
@@ -15,6 +15,11 @@ export class AppExampleComponent {
 
   onOk() {
     this.window.close()
+  }
+
+  @HostListener("document:click")
+  onDocumentClick() {
+    this.window.close();
   }
 
 }
