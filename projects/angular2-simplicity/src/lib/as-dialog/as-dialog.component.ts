@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, Input, ViewChild, ViewEncapsulation} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, EventEmitter, Input, ViewChild, ViewEncapsulation} from '@angular/core';
 import {Window, WindowManagerService} from "../window-manager.service";
 import {AsWindowComponent} from "../as-window/as-window.component";
 
@@ -8,14 +8,20 @@ import {AsWindowComponent} from "../as-window/as-window.component";
   styleUrls: ['as-dialog.component.css'],
   encapsulation : ViewEncapsulation.None
 })
-export class AsDialogComponent implements Window {
+export class AsDialogComponent implements Window, AfterViewInit {
 
   draggable: boolean = false;
   resizable: boolean = false;
 
+  afterViewInitChange = new EventEmitter<void>();
+
   @ViewChild("window", {read : AsWindowComponent}) window! : AsWindowComponent;
 
   constructor(private elementRef : ElementRef, private windowManager: WindowManagerService) {}
+
+  ngAfterViewInit(): void {
+    this.afterViewInitChange.emit();
+  }
 
   get zIndex(): number {
     return Number.parseInt(this.elementRef.nativeElement.style.zIndex)

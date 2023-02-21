@@ -1,7 +1,8 @@
-import {ComponentRef, Injectable, Type} from '@angular/core';
+import {ComponentRef, EventEmitter, Injectable, Type} from '@angular/core';
 
 export interface Window {
 
+  afterViewInitChange : EventEmitter<void>
   resizable: boolean;
   draggable: boolean;
 

@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   Component,
   ElementRef,
   EventEmitter,
@@ -17,7 +18,7 @@ import {AsScrollAreaComponent} from "../as-scroll-area/as-scroll-area.component"
   styleUrls: ['as-window.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class AsWindowComponent implements Window, OnInit, OnDestroy {
+export class AsWindowComponent implements Window, OnInit, OnDestroy, AfterViewInit {
 
   @Input() modal!: Window
 
@@ -32,6 +33,8 @@ export class AsWindowComponent implements Window, OnInit, OnDestroy {
 
   destroy = new EventEmitter<any>();
 
+  afterViewInitChange = new EventEmitter<void>();
+
   windowEndResize: EventEmitter<void> = new EventEmitter<void>();
   windowDrag: EventEmitter<void> = new EventEmitter<void>();
   windowEndDrag: EventEmitter<void> = new EventEmitter<void>();
@@ -39,8 +42,7 @@ export class AsWindowComponent implements Window, OnInit, OnDestroy {
   windowResize: EventEmitter<void> = new EventEmitter<void>();
   windowStartResize: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor(private windowManager: WindowManagerService, private elementRef: ElementRef) {
-  }
+  constructor(private windowManager: WindowManagerService, private elementRef: ElementRef) {}
 
   count(element : HTMLElement) {
     let count = 0;
@@ -78,6 +80,10 @@ export class AsWindowComponent implements Window, OnInit, OnDestroy {
   @HostListener("click")
   onClick() {
     this.windowManager.clickWindow(this.modal || this);
+  }
+
+  ngAfterViewInit(): void {
+    this.afterViewInitChange.emit();
   }
 
   get zIndex(): number {

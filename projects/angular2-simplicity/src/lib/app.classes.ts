@@ -94,7 +94,7 @@ export abstract class AppMain {
         instance.resizable = options.resizeable
       }
 
-      setTimeout(() => {
+      windowRef.instance.afterViewInitChange.subscribe(() => {
         if (options) {
           if (options.width) {
             instance.element.style.width = options.width + "px"
@@ -120,8 +120,7 @@ export abstract class AppMain {
             instance.element.style.top = `calc(50% - ${instance.element.offsetHeight / 2}px)`
           }
         }
-
-      }, 10)
+      })
 
       this.windowManager.register(windowRef, options, componentRef);
 
