@@ -27,6 +27,10 @@ export class AsDialogComponent implements Window, AfterViewInit {
     return Number.parseInt(this.elementRef.nativeElement.style.zIndex)
   }
 
+  set zIndex(value : number) {
+    this.elementRef.nativeElement.style.zIndex = value
+  }
+
   get modal() {
     return this;
   }
