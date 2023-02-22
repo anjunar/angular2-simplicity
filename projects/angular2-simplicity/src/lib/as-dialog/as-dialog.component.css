@@ -10,6 +10,6 @@ as-dialog div.modal {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background-color : rgba(1, 1, 1, 0.5)
 }

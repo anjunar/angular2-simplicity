@@ -67,7 +67,6 @@ export class AsInfiniteScrollComponent implements AfterViewInit, OnDestroy {
     let prevScrollPos = this.scroll.scrollTop;
 
     let handler = () => {
-      console.log(this.scroll.scrollTop)
       let currentScrollPos = this.scroll.scrollTop;
 
       if (prevScrollPos < currentScrollPos) {
