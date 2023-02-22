@@ -47,10 +47,10 @@ export class AsWindowComponent implements Window, OnInit, OnDestroy, AfterViewIn
   count(element : HTMLElement) {
     let count = 0;
     let iterator = document.createNodeIterator(element);
-    let node = iterator.nextNode();
+    let node : HTMLElement | null = iterator.nextNode() as HTMLElement;
     while (node !== null) {
-      node = iterator.nextNode();
-      if (node) {
+      node = iterator.nextNode() as HTMLElement;
+      if (node && ! (node.hasAttribute("header") || node.hasAttribute("footer"))) {
         count++
       }
     }

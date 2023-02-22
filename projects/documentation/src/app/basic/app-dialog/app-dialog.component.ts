@@ -25,8 +25,9 @@ export class AppDialogComponent extends AppView {
   }
 
 
-  onClick() {
-    this.windowManager.create(AppDialogExampleComponent, {header : "Header", width : 640, height : 480, dialog : true})
+  onClick(event : Event) {
+    event.stopPropagation();
+    this.windowManager.create(AppDialogExampleComponent, {header : "Header", width : 320, height : 200, dialog : true})
   }
 
 }

@@ -7,7 +7,7 @@
   </div>
   <div style="flex: 1; align-items: stretch; width: 100%; flex-direction: column; display: flex">
     <div [style.display]="count(header) > 1 ? 'flex' : 'none'" style="line-height: 24px; padding-left: 3px; display: flex" [style.color]="isTopWindow() ? 'var(--main-background-color)' : 'var(--main-font-color)'" [style.background-color]="isTopWindow() ? 'var(--main-grey-color)' : 'var(--main-dark1-color)'" [style.cursor]="! maximized || draggable ? 'all-scroll' : 'default'" (mousedown)="dragElementMouseDown($event)">
-      <div #header>
+      <div #header class="header">
         <ng-content select="[header]"></ng-content>
       </div>
       <div style="flex: 1"></div>
@@ -18,11 +18,11 @@
       </div>
     </div>
     <as-scroll-area style="width: 100%; flex: 1">
-      <div>
+      <div class="content">
         <ng-content select="[content]"></ng-content>
       </div>
     </as-scroll-area>
-    <div [style.display]="count(footer) > 1 ? 'block' : 'none'" #footer style="height: 20px; background-color: var(--main-dark1-color)">
+    <div class="footer" [style.display]="count(footer) > 1 ? 'block' : 'none'" #footer style="height: 20px; background-color: var(--main-dark1-color)">
       <ng-content select="[footer]"></ng-content>
     </div>
   </div>

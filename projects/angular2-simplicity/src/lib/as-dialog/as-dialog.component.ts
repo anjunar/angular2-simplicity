@@ -1,4 +1,13 @@
-import {AfterViewInit, Component, ElementRef, EventEmitter, Input, ViewChild, ViewEncapsulation} from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  HostListener,
+  Input,
+  ViewChild,
+  ViewEncapsulation
+} from '@angular/core';
 import {Window, WindowManagerService} from "../window-manager.service";
 import {AsWindowComponent} from "../as-window/as-window.component";
 
@@ -21,6 +30,9 @@ export class AsDialogComponent implements Window, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.afterViewInitChange.emit();
+    this.window.element.addEventListener("click", (event : Event) => {
+      event.stopPropagation()
+    })
   }
 
   get zIndex(): number {
@@ -37,6 +49,11 @@ export class AsDialogComponent implements Window, AfterViewInit {
 
   get element() {
     return this.window.element;
+  }
+
+  @HostListener("document:click")
+  onDocumentClick() {
+    this.windowManager.close(this);
   }
 
   close() {
