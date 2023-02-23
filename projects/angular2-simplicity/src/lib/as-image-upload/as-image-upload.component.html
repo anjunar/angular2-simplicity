@@ -1,7 +1,18 @@
-<div class="area" (click)="onAreaClick()">
-  <div *ngIf="model" >
-    <div class="center">{{placeholder}}</div>
-    <img [src]="model.data"/>
+<div #container class="area">
+  <div *ngIf="image.src; else elseIf" style="width: 100%; height: 100%">
+    <canvas #canvas [width]="width" [height]="height" (mousedown)="onMouseDown($event)"></canvas>
+    <button class="material-icons" style="position: absolute; top: 5px; right: 5px" (click)="onDelete($event)">delete</button>
+    <input *ngIf="cropping" type="range" [(ngModel)]="range" (ngModelChange)="onRange($event)" style="position: absolute; bottom: -10px; left: calc(50% - 130px / 2)">
   </div>
+  <ng-template #elseIf>
+    <div (click)="onAreaClick()" style="width: 100%; height: 100%">
+      <div>
+        <div class="center">{{placeholder}}</div>
+      </div>
+    </div>
+  </ng-template>
 </div>
+
+
 <input #input (change)="onLoad($event)" type="file" style="display: none">
+

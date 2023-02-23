@@ -2,23 +2,17 @@ as-image-upload {
   display: block;
 }
 
-as-image-upload img {
-  display: block;
-  max-width: 100%;
-  max-height: 100%;
-  margin: auto;
+as-image-upload canvas {
+  height: 100%;
+  width: 100%;
 }
 
-as-image-upload div.area {
+as-image-upload>div.area {
   position: relative;
   width: 100%;
   height: 100%;
   border: 1px solid var(--main-dark1-color);
-}
-
-as-image-upload div.area div {
-  width: 100%;
-  height: 100%;
+  box-sizing: border-box;
 }
 
 as-image-upload div.center {

@@ -1,6 +1,6 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {AppView} from "angular2-simplicity";
+import {AppView, AsImageModel} from "angular2-simplicity";
 
 @Component({
   selector: 'app-image-upload',
@@ -13,9 +13,11 @@ export class AppImageUploadComponent extends AppView {
   html! : string
   typescript! : string
 
-  image = {
+  image : AsImageModel = {
     data : "",
-    name : ""
+    name : "",
+    width : 0,
+    height : 0
   }
 
   constructor(private activatedRoute: ActivatedRoute) {
