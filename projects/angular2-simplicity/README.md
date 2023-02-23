@@ -1,4 +1,4 @@
-# Angular2 Simplicity v1.4.2
+# Angular2 Simplicity v0.9.0
 ### Component Library for Beginners
 
 Welcome to Simplicity, the Angular2 Web Component Library!
@@ -15,3 +15,17 @@ functionality to an existing project, Simplicity is here to help
 you achieve your goals with ease.
 
 Documentation: https://anjunar.github.io/angular2-simplicity
+
+# Sonatype Nexus Repository Setup
+https://help.sonatype.com/repomanager3/nexus-repository-administration/formats/npm-registry/npm-security
+https://help.sonatype.com/repomanager3/installation-and-upgrades/run-as-a-service
+```
+npm config set registry http://{server}:8081/repository/{group}/
+npm adduser --auth-type=legacy --registry=http://{server}:8081/repository/{private}/
+```
+```  
+"publishConfig": {
+  "registry": "http://{server}:8081/repository/{private}/"
+}
+```
+
