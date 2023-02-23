@@ -67,7 +67,7 @@ export class AsImageUploadComponent implements ControlValueAccessor, AfterViewIn
 
   ngAfterViewInit(): void {
 
-    this.ngModelChange.subscribe((model) => {
+    let handler = (model: AsImageModel) => {
       if (model.name.length > 0 && model.data.length > 0) {
         this.image = new Image();
         this.image.src = model.data;
@@ -79,15 +79,15 @@ export class AsImageUploadComponent implements ControlValueAccessor, AfterViewIn
         this.rectangleOffsetY = this.containerRef.nativeElement.offsetHeight / 2 - this.rectangleHeight / 2
         this.model.width = this.image.width
         this.model.height = this.image.height
+        this.width = this.containerRef.nativeElement.offsetWidth;
+        this.height = this.containerRef.nativeElement.offsetHeight;
         this.changeDetector.detectChanges();
         this.draw();
       }
-    })
+    };
+    this.ngModelChange.subscribe(handler)
 
-    this.changeDetector.detectChanges();
-    this.width = this.containerRef.nativeElement.offsetWidth;
-    this.height = this.containerRef.nativeElement.offsetHeight;
-    this.draw();
+    handler(this.model);
   }
 
   onRange(value : number) {
@@ -162,14 +162,14 @@ export class AsImageUploadComponent implements ControlValueAccessor, AfterViewIn
           let horizontalRatio = this.image.width / this.image.height;
           let verticalRatio = this.image.height / this.image.width;
 
-          if (horizontalRatio < 1) {
+          if (horizontalRatio <= 1) {
             let dw = height * horizontalRatio * this.imageSizing;
             let dh = height * this.imageSizing;
             let left = (width / 2 - dw / 2) - this.imageOffsetX
             let top = (height / 2 - dh / 2) - this.imageOffsetY
             context.drawImage(this.image, left, top, dw, dh)
-          }
-          if (verticalRatio < 1) {
+          } else
+          if (verticalRatio <= 1) {
             let dh = width * verticalRatio * this.imageSizing;
             let dw = width * this.imageSizing;
             let left = (width / 2 - dw / 2) - this.imageOffsetX
@@ -178,7 +178,7 @@ export class AsImageUploadComponent implements ControlValueAccessor, AfterViewIn
           }
 
           if (this.cropping) {
-            context.strokeRect(this.rectangleOffsetX, this.rectangleOffsetY, this.rectangleWidth, this.rectangleHeight)
+            context.strokeRect(this.rectangleOffsetX -1, this.rectangleOffsetY - 1, this.rectangleWidth + 2, this.rectangleHeight + 2)
 
             let imageData = context.getImageData(this.rectangleOffsetX, this.rectangleOffsetY, this.rectangleWidth, this.rectangleHeight);
             let tempCanvas = document.createElement("canvas");
