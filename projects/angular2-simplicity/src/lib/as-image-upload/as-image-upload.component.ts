@@ -1,5 +1,5 @@
 import {
-  AfterViewInit,
+  AfterViewInit, ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
@@ -63,6 +63,8 @@ export class AsImageUploadComponent implements ControlValueAccessor, AfterViewIn
   @Input() placeholder = ""
   disabled = false;
 
+  constructor(private changeDetector : ChangeDetectorRef) {}
+
   ngAfterViewInit(): void {
 
     this.ngModelChange.subscribe((model) => {
@@ -77,15 +79,15 @@ export class AsImageUploadComponent implements ControlValueAccessor, AfterViewIn
         this.rectangleOffsetY = this.containerRef.nativeElement.offsetHeight / 2 - this.rectangleHeight / 2
         this.model.width = this.image.width
         this.model.height = this.image.height
+        this.changeDetector.detectChanges();
         this.draw();
       }
     })
 
-    setTimeout(() => {
-      this.width = this.containerRef.nativeElement.offsetWidth;
-      this.height = this.containerRef.nativeElement.offsetHeight;
-      this.draw();
-    })
+    this.changeDetector.detectChanges();
+    this.width = this.containerRef.nativeElement.offsetWidth;
+    this.height = this.containerRef.nativeElement.offsetHeight;
+    this.draw();
   }
 
   onRange(value : number) {
@@ -150,8 +152,8 @@ export class AsImageUploadComponent implements ControlValueAccessor, AfterViewIn
 
   }
   draw() {
-    window.requestAnimationFrame(() => {
-      if (this.canvasRef) {
+    if (this.canvasRef) {
+      window.requestAnimationFrame(() => {
         let canvas = this.canvasRef.nativeElement;
         let width = canvas.width, height = canvas.height;
         let context = canvas.getContext("2d", { willReadFrequently: true });
@@ -194,8 +196,8 @@ export class AsImageUploadComponent implements ControlValueAccessor, AfterViewIn
             }
           }
         }
-      }
-    })
+      })
+    }
   }
 
 
