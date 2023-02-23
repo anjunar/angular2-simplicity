@@ -84,6 +84,7 @@ export class AsImageUploadComponent implements ControlValueAccessor, AfterViewIn
     setTimeout(() => {
       this.width = this.containerRef.nativeElement.offsetWidth;
       this.height = this.containerRef.nativeElement.offsetHeight;
+      this.draw();
     })
   }
 
@@ -150,44 +151,46 @@ export class AsImageUploadComponent implements ControlValueAccessor, AfterViewIn
   }
   draw() {
     window.requestAnimationFrame(() => {
-      let canvas = this.canvasRef.nativeElement;
-      let width = canvas.width, height = canvas.height;
-      let context = canvas.getContext("2d", { willReadFrequently: true });
-      if (context) {
-        context.clearRect(0, 0, width, height);
-        let horizontalRatio = this.image.width / this.image.height;
-        let verticalRatio = this.image.height / this.image.width;
+      if (this.canvasRef) {
+        let canvas = this.canvasRef.nativeElement;
+        let width = canvas.width, height = canvas.height;
+        let context = canvas.getContext("2d", { willReadFrequently: true });
+        if (context) {
+          context.clearRect(0, 0, width, height);
+          let horizontalRatio = this.image.width / this.image.height;
+          let verticalRatio = this.image.height / this.image.width;
 
-        if (horizontalRatio < 1) {
-          let dw = height * horizontalRatio * this.imageSizing;
-          let dh = height * this.imageSizing;
-          let left = (width / 2 - dw / 2) - this.imageOffsetX
-          let top = (height / 2 - dh / 2) - this.imageOffsetY
-          context.drawImage(this.image, left, top, dw, dh)
-        }
-        if (verticalRatio < 1) {
-          let dh = width * verticalRatio * this.imageSizing;
-          let dw = width * this.imageSizing;
-          let left = (width / 2 - dw / 2) - this.imageOffsetX
-          let top = (height / 2 - dh / 2) - this.imageOffsetY
-          context.drawImage(this.image, left, top, dw, dh)
-        }
+          if (horizontalRatio < 1) {
+            let dw = height * horizontalRatio * this.imageSizing;
+            let dh = height * this.imageSizing;
+            let left = (width / 2 - dw / 2) - this.imageOffsetX
+            let top = (height / 2 - dh / 2) - this.imageOffsetY
+            context.drawImage(this.image, left, top, dw, dh)
+          }
+          if (verticalRatio < 1) {
+            let dh = width * verticalRatio * this.imageSizing;
+            let dw = width * this.imageSizing;
+            let left = (width / 2 - dw / 2) - this.imageOffsetX
+            let top = (height / 2 - dh / 2) - this.imageOffsetY
+            context.drawImage(this.image, left, top, dw, dh)
+          }
 
-        if (this.cropping) {
-          context.strokeRect(this.rectangleOffsetX, this.rectangleOffsetY, this.rectangleWidth, this.rectangleHeight)
+          if (this.cropping) {
+            context.strokeRect(this.rectangleOffsetX, this.rectangleOffsetY, this.rectangleWidth, this.rectangleHeight)
 
-          let imageData = context.getImageData(this.rectangleOffsetX, this.rectangleOffsetY, this.rectangleWidth, this.rectangleHeight);
-          let tempCanvas = document.createElement("canvas");
-          tempCanvas.width = imageData.width;
-          tempCanvas.height = imageData.height;
-          let tempContext = tempCanvas.getContext("2d");
-          if (tempContext) {
-            tempContext.putImageData(imageData, 0,0);
-            this.model.cropped = {
-              data : tempCanvas.toDataURL(),
-              name : this.model.name,
-              width : imageData.width,
-              height : imageData.height
+            let imageData = context.getImageData(this.rectangleOffsetX, this.rectangleOffsetY, this.rectangleWidth, this.rectangleHeight);
+            let tempCanvas = document.createElement("canvas");
+            tempCanvas.width = imageData.width;
+            tempCanvas.height = imageData.height;
+            let tempContext = tempCanvas.getContext("2d");
+            if (tempContext) {
+              tempContext.putImageData(imageData, 0,0);
+              this.model.cropped = {
+                data : tempCanvas.toDataURL(),
+                name : this.model.name,
+                width : imageData.width,
+                height : imageData.height
+              }
             }
           }
         }
