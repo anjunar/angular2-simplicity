@@ -177,7 +177,7 @@ export class AsImageUploadComponent implements ControlValueAccessor, AfterViewIn
             context.drawImage(this.image, left, top, dw, dh)
           }
 
-          if (this.cropping) {
+          if (this.cropping || ! this.disabled) {
             context.strokeRect(this.rectangleOffsetX -1, this.rectangleOffsetY - 1, this.rectangleWidth + 2, this.rectangleHeight + 2)
 
             let imageData = context.getImageData(this.rectangleOffsetX, this.rectangleOffsetY, this.rectangleWidth, this.rectangleHeight);
