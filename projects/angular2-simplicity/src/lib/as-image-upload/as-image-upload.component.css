@@ -1,5 +1,6 @@
 as-image-upload {
   display: block;
+  position: relative;
 }
 
 as-image-upload canvas {

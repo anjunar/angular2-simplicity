@@ -43,7 +43,6 @@
     <div style="margin: 20px;">
       <div style="display: flex">
         <as-image-upload placeholder="click" [(ngModel)]="image" style="width: 320px; height: 200px" [cropping]="true"></as-image-upload>
-        <img *ngIf="image.cropped?.data" style="width: 100px; height: 100px; margin-left: 5px" [src]="image.cropped?.data" >
       </div>
       <div style="margin-top: 10px">
         <span>{{image.name}}</span>

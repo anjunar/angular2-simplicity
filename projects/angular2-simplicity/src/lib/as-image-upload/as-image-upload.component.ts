@@ -55,6 +55,8 @@ export class AsImageUploadComponent implements ControlValueAccessor, AfterViewIn
   @Input("cropHeight") rectangleHeight = 100
   @Input() cropping = false;
 
+  crop = false;
+
   width: number = 0;
   height: number = 0;
 
@@ -92,6 +94,19 @@ export class AsImageUploadComponent implements ControlValueAccessor, AfterViewIn
 
   onRange(value : number) {
     this.imageSizing = value / 25
+    this.draw();
+  }
+
+  onCrop() {
+    this.crop = ! this.crop
+    if (! this.crop) {
+      this.model.cropped = {
+        data : "",
+        name : "",
+        width : 0,
+        height : 0
+      }
+    }
     this.draw();
   }
 
@@ -177,8 +192,11 @@ export class AsImageUploadComponent implements ControlValueAccessor, AfterViewIn
             context.drawImage(this.image, left, top, dw, dh)
           }
 
-          if (this.cropping || ! this.disabled) {
+          if (this.cropping && ! this.disabled && this.crop) {
+            context.strokeStyle = "white"
             context.strokeRect(this.rectangleOffsetX -1, this.rectangleOffsetY - 1, this.rectangleWidth + 2, this.rectangleHeight + 2)
+            context.strokeStyle = "black"
+            context.strokeRect(this.rectangleOffsetX -2, this.rectangleOffsetY - 2, this.rectangleWidth + 4, this.rectangleHeight + 4)
 
             let imageData = context.getImageData(this.rectangleOffsetX, this.rectangleOffsetY, this.rectangleWidth, this.rectangleHeight);
             let tempCanvas = document.createElement("canvas");
