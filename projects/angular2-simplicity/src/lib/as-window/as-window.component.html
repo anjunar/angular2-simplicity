@@ -17,11 +17,7 @@
         <button translate="no" type="button" class="material-icons" (click)="close()">close</button>
       </div>
     </div>
-    <as-scroll-area style="width: 100%; flex: 1">
-      <div class="content">
-        <ng-content select="[content]"></ng-content>
-      </div>
-    </as-scroll-area>
+    <ng-content select="[content]"></ng-content>
     <div class="footer" [style.display]="count(footer) > 1 ? 'block' : 'none'" #footer style="height: 20px; background-color: var(--main-dark1-color)">
       <ng-content select="[footer]"></ng-content>
     </div>
