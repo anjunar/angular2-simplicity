@@ -14,5 +14,5 @@ as-scroll-area .viewport {
 }
 
 as-scroll-area .content {
-  width: fit-content;
+  width: 100%;
 }
