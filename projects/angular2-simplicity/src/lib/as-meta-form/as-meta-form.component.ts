@@ -13,6 +13,7 @@ import {Link, Model} from "./as-meta-form.classes";
 import {KeyValue} from "@angular/common";
 import {AsMetaFormService} from "./as-meta-form.service";
 import {SelectQuery} from "../as-lazy-select/as-lazy-select.component";
+import {updateValues} from "../app.classes";
 
 @Component({
   selector: 'as-meta-form',
@@ -43,26 +44,8 @@ export class AsMetaFormComponent implements OnInit {
     })
   }
 
-  updateValues(form : any, model : any) {
-    for (const key of Object.keys(form)) {
-      let formProperty = form[key];
-      let modelProperty = model[key];
-      if (formProperty instanceof Array) {
-        formProperty.forEach((element, index) => {
-          this.updateValues(element, modelProperty[index])
-        })
-      } else {
-        if (formProperty instanceof Object) {
-          this.updateValues(formProperty, modelProperty)
-        } else {
-          model[key] = form[key];
-        }
-      }
-    }
-  }
-
   onSubmit(link : {key : string, value : Link}) {
-    this.updateValues(this.form.value, this.model)
+    updateValues(this.form.value, this.model)
     this.modelChange.emit(this.model);
     this.submit.emit({link : link, model : this.model})
   }

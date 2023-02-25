@@ -1,11 +1,36 @@
 import {ActivatedRoute} from "@angular/router";
-import {ApplicationRef, ComponentFactoryResolver, ComponentRef, createComponent, Injector, Type} from "@angular/core";
+import {ApplicationRef, ComponentRef, createComponent, Injector, Type} from "@angular/core";
 import {Window, WindowManagerService, WindowOptions, WindowRef} from "./window-manager.service";
 import {ContextManagerService, ContextOptions, ContextRef} from "./context-manager.service";
 import {AsViewportComponent} from "./as-viewport/as-viewport.component";
 import {AsDialogComponent} from "./as-dialog/as-dialog.component";
 import {AsWindowComponent} from "./as-window/as-window.component";
 import {AsContextComponent} from "./as-context/as-context.component";
+
+export function generateURL(value : string) {
+  if (value.startsWith("/")) {
+    return new URL(window.location.origin + value)
+  }
+  return new URL(window.location.origin + "/" + value)
+}
+
+export function updateValues(form : any, model : any) {
+  for (const key of Object.keys(form)) {
+    let formProperty = form[key];
+    let modelProperty = model[key];
+    if (formProperty instanceof Array) {
+      formProperty.forEach((element, index) => {
+        updateValues(element, modelProperty[index])
+      })
+    } else {
+      if (formProperty instanceof Object) {
+        updateValues(formProperty, modelProperty)
+      } else {
+        model[key] = form[key];
+      }
+    }
+  }
+}
 
 export abstract class AppView {
 
