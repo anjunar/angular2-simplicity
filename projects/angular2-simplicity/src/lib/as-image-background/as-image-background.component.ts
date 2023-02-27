@@ -55,36 +55,9 @@ export class AsImageBackgroundComponent implements ControlValueAccessor, AfterVi
   constructor(private elementRef : ElementRef) {}
 
   ngAfterViewInit(): void {
-    if (this.src) {
-      this.fetch(this.src);
-    }
-
     setTimeout(() => {
       this.scale();
     })
-  }
-
-  fetch(src : string) {
-    fetch(src)
-      .then((res) => res.blob())
-      .then((blob) => {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          this.ngModel = {
-            data : "",
-            name : "",
-            width : 0,
-            height : 0,
-            cropped : {
-              data : reader.result as string,
-              name : "",
-              width : 0,
-              height : 0
-            }
-          }
-        };
-        reader.readAsDataURL(blob);
-      });
   }
 
   scale() {
@@ -160,6 +133,9 @@ export class AsImageBackgroundComponent implements ControlValueAccessor, AfterVi
           }
         }
         this.move = false;
+
+        this.ngModelChange.emit(this.ngModel);
+        this.onChange(this.ngModel)
       }
     }
   }

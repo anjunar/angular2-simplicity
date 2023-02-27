@@ -53,7 +53,6 @@ export class AsImageUploadComponent implements ControlValueAccessor, AfterViewIn
   rectangleOffsetY = 0
   @Input("cropWidth") rectangleWidth = 100
   @Input("cropHeight") rectangleHeight = 100
-  @Input() cropping = false;
 
   crop = false;
 
@@ -72,9 +71,13 @@ export class AsImageUploadComponent implements ControlValueAccessor, AfterViewIn
   ngAfterViewInit(): void {
 
     let handler = (model: AsImageModel) => {
-      if (model.name.length > 0 && model.data.length > 0) {
+      if (model?.name?.length > 0 && model?.data?.length > 0) {
         this.image = new Image();
-        this.image.src = model.data;
+        if (this.model.cropped?.data) {
+          this.image.src = this.model.cropped.data
+        } else {
+          this.image.src = model.data;
+        }
         this.imageOffsetX = 0;
         this.imageOffsetY = 0;
         this.imageSizing = 1;
@@ -101,13 +104,14 @@ export class AsImageUploadComponent implements ControlValueAccessor, AfterViewIn
 
   onCrop() {
     this.crop = ! this.crop
-    if (! this.crop) {
-      this.model.cropped = {
-        data : "",
-        name : "",
-        width : 0,
-        height : 0
+    if (this.crop) {
+      this.image.src = this.model.data
+    } else {
+      if (this.model.cropped) {
+        this.image.src = this.model.cropped?.data
       }
+      this.ngModelChange.emit(this.ngModel)
+      this.onChange(this.ngModel)
     }
     this.draw();
   }
@@ -194,7 +198,7 @@ export class AsImageUploadComponent implements ControlValueAccessor, AfterViewIn
             context.drawImage(this.image, left, top, dw, dh)
           }
 
-          if (this.cropping && ! this.disabled && this.crop) {
+          if (! this.disabled && this.crop) {
             this.model.cropped = {
               data : canvas.toDataURL(),
               name : this.model.name,

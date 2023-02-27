@@ -45,7 +45,7 @@
 
     <div style="margin: 20px;position: relative;">
 
-      <as-image-background src="assets/basic/app-image-background/background2.jpg" style="width: 100%;"></as-image-background>
+      <as-image-background [(ngModel)]="image" (ngModelChange)="onSave($event)" style="width: 100%;"></as-image-background>
 
     </div>
 
