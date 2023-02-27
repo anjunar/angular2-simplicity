@@ -24,4 +24,11 @@ as-image-upload div.center {
   transform: translate(-50%, -50%);
 }
 
+as-image-upload button.button {
+  display: none;
+}
+
+as-image-upload:hover button.button{
+  display: inline;
+}
 

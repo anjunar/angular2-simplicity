@@ -1,3 +1,11 @@
 as-image-background {
   display: block;
 }
+
+as-image-background button.button {
+  display: none;
+}
+
+as-image-background:hover button.button{
+  display: inline;
+}
