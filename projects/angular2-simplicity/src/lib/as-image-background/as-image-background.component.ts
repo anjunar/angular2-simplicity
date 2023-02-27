@@ -135,7 +135,9 @@ export class AsImageBackgroundComponent implements ControlValueAccessor, AfterVi
         this.move = false;
 
         this.ngModelChange.emit(this.ngModel);
-        this.onChange(this.ngModel)
+        if (this.onChange) {
+          this.onChange(this.ngModel)
+        }
       }
     }
   }

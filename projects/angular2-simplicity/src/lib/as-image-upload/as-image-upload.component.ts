@@ -111,7 +111,9 @@ export class AsImageUploadComponent implements ControlValueAccessor, AfterViewIn
         this.image.src = this.model.cropped?.data
       }
       this.ngModelChange.emit(this.ngModel)
-      this.onChange(this.ngModel)
+      if (this.onChange) {
+        this.onChange(this.ngModel)
+      }
     }
     this.draw();
   }
@@ -132,7 +134,9 @@ export class AsImageUploadComponent implements ControlValueAccessor, AfterViewIn
       height : 0
     }
     this.ngModelChange.emit(this.model)
-    this.onChange(this.model)
+    if (this.onChange) {
+      this.onChange(this.model)
+    }
   }
 
   onMouseDown(event : MouseEvent) {
