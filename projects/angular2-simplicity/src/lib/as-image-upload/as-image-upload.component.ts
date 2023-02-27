@@ -65,6 +65,8 @@ export class AsImageUploadComponent implements ControlValueAccessor, AfterViewIn
   @Input() placeholder = ""
   disabled = false;
 
+  onChange!: (value: any) => void
+
   constructor(private changeDetector : ChangeDetectorRef) {}
 
   ngAfterViewInit(): void {
@@ -232,8 +234,6 @@ export class AsImageUploadComponent implements ControlValueAccessor, AfterViewIn
     }
   }
 
-  onChange!: (value: any) => void
-
   get input() {
     return this.inputRef.nativeElement;
   }
@@ -262,7 +262,9 @@ export class AsImageUploadComponent implements ControlValueAccessor, AfterViewIn
               width : 0,
               height : 0
             }
-            this.onChange(this.model);
+            if (this.onChange) {
+              this.onChange(this.model);
+            }
             this.ngModelChange.emit(this.model);
           }
         }
