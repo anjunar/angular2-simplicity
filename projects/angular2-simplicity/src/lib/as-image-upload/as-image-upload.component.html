@@ -2,7 +2,7 @@
   <div *ngIf="image.src; else elseIf" style="width: 100%; height: 100%">
     <canvas #canvas [width]="width" [height]="height" (mousedown)="onMouseDown($event)"></canvas>
     <button *ngIf="! disabled" class="material-icons" style="position: absolute; top: 5px; right: 5px" (click)="onDelete($event)">delete</button>
-    <button *ngIf="! disabled" class="material-icons" style="position: absolute; top: 5px; right: 30px" (click)="onCrop()" [style.color]="crop ? 'var(--main-font-color)' : 'var(--main-dark1-color)'">crop</button>
+    <button *ngIf="! disabled" class="material-icons" style="position: absolute; top: 5px; right: 30px; text-shadow: 1px 1px white" (click)="onCrop()" [style.color]="crop ? 'var(--main-font-color)' : 'var(--main-dark1-color)'">crop</button>
     <input *ngIf="!disabled && cropping && crop" type="range" [(ngModel)]="range" (ngModelChange)="onRange($event)" style="position: absolute; bottom: -10px; left: calc(50% - 130px / 2)">
   </div>
   <ng-template #elseIf>
@@ -14,5 +14,4 @@
   </ng-template>
 </div>
 <input #input (change)="onLoad($event)" type="file" style="display: none">
-<img *ngIf="model.cropped?.data" [style.width]="rectangleWidth + 'px'" [style.height]="rectangleHeight + 'px'" [style.right]="- rectangleWidth - 10 + 'px'" style="position : absolute; top: 0" [src]="model.cropped?.data" >
 
