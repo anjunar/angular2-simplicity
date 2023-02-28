@@ -3,23 +3,23 @@
 </div>
 
 <div style="display: flex">
-  <div  style="line-height: 42px;">{{index}} - {{index + limit}} of {{size}}</div>
+  <div  style="line-height: 42px; font-size: small">{{index}} - {{index + limit}} of {{size}}</div>
 
   <button class="material-icons" translate="no"
-          style="color: var(--main-font-color)"
+          style="color: var(--main-font-color); font-size: small"
           (click)="skipPrevious()">
     skip_previous
   </button>
 
   <button class="material-icons" translate="no"
-          style="color: var(--main-font-color)"
+          style="color: var(--main-font-color); font-size: small"
           (click)="arrowLeft()"
           [disabled]="! (index > 0)">
     keyboard_arrow_left
   </button>
 
   <button class="material-icons" translate="no"
-          style="color: var(--main-font-color)"
+          style="color: var(--main-font-color); font-size: small"
           (click)="arrowRight()"
           [disabled]="! ((index + limit) < size)">
     keyboard_arrow_right
@@ -27,7 +27,7 @@
 
 
   <button class="material-icons" translate="no"
-          style="color: var(--main-font-color)"
+          style="color: var(--main-font-color); font-size: small"
           (click)="skipNext()">
     skip_next
   </button>
