@@ -121,6 +121,15 @@ export class AsLazySelectComponent implements OnInit, ControlValueAccessor, Inpu
     this.doRender();
   }
 
+  getLabel(value : any, label : string) {
+    let split = label.split(".");
+    let cursor = value;
+    for (const string of split) {
+      cursor = cursor[string]
+    }
+    return cursor;
+  }
+
   doRender() {
     let label = this.label;
 
@@ -129,16 +138,16 @@ export class AsLazySelectComponent implements OnInit, ControlValueAccessor, Inpu
       if (this.multiSelect) {
         if (label instanceof Array) {
           let labelArray: string[] = label;
-          this.display = this.model.map((model: any) => labelArray.map((label: string) => model[label]).join(" ")).join(", ")
+          this.display = this.model.map((model: any) => labelArray.map((label: string) => this.getLabel(model, label)).join(" ")).join(", ")
         } else {
           let labelString: string = label;
-          this.display = this.model.map((model: any) => model[labelString]).join(", ")
+          this.display = this.model.map((model: any) => this.getLabel(model, labelString)).join(", ")
         }
       } else {
         if (label instanceof Array) {
-          this.display = label.map((label) => this.model[label]).join(" ")
+          this.display = label.map((label) => this.getLabel(this.model, label)).join(" ")
         } else {
-          this.display = this.model[label]
+          this.display = this.getLabel(this.model, label)
         }
       }
     } else {
