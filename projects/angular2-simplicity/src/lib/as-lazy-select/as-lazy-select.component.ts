@@ -265,15 +265,24 @@ export class AsLazySelectComponent implements OnInit, ControlValueAccessor, Inpu
     return false;
   }
 
+  getProperty(value : any) {
+    let split = this.trackBy.split(".");
+    let cursor = value;
+    for (const string of split) {
+      cursor = cursor[string]
+    }
+    return cursor;
+  }
+
   selected(item: any) {
     if (this.multiSelect) {
       if (this.model instanceof Array) {
-        return this.model.some((model) => model[this.trackBy] === item[this.trackBy])
+        return this.model.some((model) => this.getProperty(model) === this.getProperty(item))
       }
     } else {
       if (this.model) {
         let model = this.model;
-        return model[this.trackBy] === item[this.trackBy];
+        return this.getProperty(model) === this.getProperty(item);
       }
       return false;
     }
