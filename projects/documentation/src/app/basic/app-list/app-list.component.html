@@ -35,7 +35,7 @@
     </table>
 
     <div style="margin: 20px;">
-      <as-lazy-list [items]="items">
+      <as-lazy-list (items)="items($event)">
         <ng-template let-item>
           <div style="display: flex">
             <div>{{item.position}}</div>

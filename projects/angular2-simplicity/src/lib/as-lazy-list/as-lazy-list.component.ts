@@ -1,36 +1,46 @@
-import {AfterContentInit, Component, ContentChild, Input, TemplateRef, ViewEncapsulation} from '@angular/core';
+import {
+  AfterContentInit,
+  Component,
+  ContentChild,
+  EventEmitter,
+  Output,
+  TemplateRef,
+  ViewEncapsulation
+} from '@angular/core';
 
 export interface ListQuery {
-  index : number;
-  limit : number
+  index: number;
+  limit: number
 }
 
 @Component({
   selector: 'as-lazy-list',
   templateUrl: 'as-lazy-list.component.html',
   styleUrls: ['as-lazy-list.component.css'],
-  encapsulation : ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None
 })
 export class AsLazyListComponent implements AfterContentInit {
 
-  window : any[] = [];
-  size : number = 0;
+  window: any[] = [];
+  size: number = 0;
 
-  index : number = 0;
-  limit : number = 5
+  index: number = 0;
+  limit: number = 5
 
-  @Input() items! : (query : ListQuery, callback : (data : any[], size : number) => void) => void;
+  @Output() items = new EventEmitter<{ query: ListQuery, callback: (rows: any[], size: number) => void }>();
 
-  @ContentChild(TemplateRef) templateRef! : TemplateRef<any>
+  @ContentChild(TemplateRef) templateRef!: TemplateRef<any>
 
   ngAfterContentInit(): void {
     this.load();
   }
 
   load() {
-    this.items({index : this.index, limit : this.limit}, (rows, size) => {
-      this.window = rows;
-      this.size = size;
+    this.items.emit({
+      query: {index: this.index, limit: this.limit}, callback: (data: any[], size: number) => {
+        this.window = data;
+        this.size = size;
+      }
     })
   }
 
