@@ -8,12 +8,11 @@ import {
   TemplateRef,
   ViewEncapsulation
 } from '@angular/core';
-import {AbstractControl, FormArray, FormGroup} from "@angular/forms";
+import {AbstractControl, FormArray} from "@angular/forms";
 import {Link, Model} from "./as-meta-form.classes";
 import {KeyValue} from "@angular/common";
-import {AsMetaFormService} from "./as-meta-form.service";
+import {AsMetaFormService, MetaFormGroup} from "./as-meta-form.service";
 import {SelectQuery} from "../as-lazy-select/as-lazy-select.component";
-import {updateValues} from "../app.classes";
 
 @Component({
   selector: 'as-meta-form',
@@ -28,26 +27,26 @@ export class AsMetaFormComponent implements OnInit {
 
   @Output() submit = new EventEmitter<any>();
 
-  @ContentChild(TemplateRef) security! : TemplateRef<any>;
+  @ContentChild(TemplateRef) security!: TemplateRef<any>;
 
-  form!: FormGroup
+  form!: MetaFormGroup
 
-  links : any[] = []
+  links: any[] = []
 
-  constructor(private service: AsMetaFormService) {}
+  constructor(private service: AsMetaFormService) {
+  }
 
   ngOnInit(): void {
     this.form = this.service.create(this.model.$schema.properties || {}, this.model)
-    this.form.patchValue(this.model)
     this.links = Object.entries(this.model.$schema.links).filter(([key, value]) => value.method !== "GET").map(([key, value]) => {
       return {key, value}
     })
   }
 
-  onSubmit(link : {key : string, value : Link}) {
-    updateValues(this.form.value, this.model)
-    this.modelChange.emit(this.model);
-    this.submit.emit({link : link, model : this.model})
+  onSubmit(link: { key: string, value: Link }) {
+    let model = this.form.getValue();
+    this.modelChange.emit(model);
+    this.submit.emit({link: link, model: model})
   }
 
   onReset() {
@@ -68,7 +67,7 @@ export class AsMetaFormComponent implements OnInit {
     this.form.markAsDirty();
   }
 
-  lazySelectLoader(event : {query: SelectQuery, callback: (rows: any[], size: number) => void}, link: any) {
+  lazySelectLoader(event: { query: SelectQuery, callback: (rows: any[], size: number) => void }, link: any) {
     if (link) {
       fetch(`${link.url}?index=${event.query.index}&limit=${event.query.limit}&value=${event.query.value}`)
         .then(response => response.json())

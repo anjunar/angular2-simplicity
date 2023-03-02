@@ -1,5 +1,25 @@
 import { Injectable } from '@angular/core';
-import {FormBuilder, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {updateValues} from "../app.classes";
+
+export class MetaFormGroup extends FormGroup {
+
+  private readonly model : any;
+  private readonly form : FormGroup
+
+  constructor(model: any, form: FormGroup) {
+    super(form.controls, form.validator, form.asyncValidator);
+    this.model = model;
+    this.form = form;
+    this.form.patchValue(model)
+  }
+
+  getValue() {
+    updateValues(this.form.getRawValue(), this.model)
+    return this.model;
+  }
+
+}
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +29,8 @@ export class AsMetaFormService {
   constructor(private formBuilder : FormBuilder) {}
 
   create(properties: any, model : any) {
-    return this.formBuilder.group(this.schema2Form(properties, model))
+    let group : FormGroup = this.formBuilder.group(this.schema2Form(properties, model));
+    return new MetaFormGroup(model, group);
   }
 
   schema2Form(properties: any, model : any): any {
