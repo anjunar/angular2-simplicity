@@ -1,4 +1,4 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import {Component, ContentChild, TemplateRef, ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'as-page',
@@ -10,5 +10,6 @@ export class AsPageComponent {
 
   active = false;
 
+  @ContentChild(TemplateRef) templateRef! : TemplateRef<any>
 
 }
