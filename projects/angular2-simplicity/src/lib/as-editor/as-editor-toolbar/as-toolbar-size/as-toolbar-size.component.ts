@@ -7,7 +7,7 @@ import {AsEditorContentDirective} from "../../as-editor-content.directive";
   styleUrls: ['as-toolbar-size.component.css'],
   encapsulation : ViewEncapsulation.None
 })
-export class AsToolbarSizeComponent implements AfterViewInit, OnDestroy {
+export class AsToolbarSizeComponent implements AfterViewInit {
 
   @Input() content!: AsEditorContentDirective
 
@@ -83,10 +83,6 @@ export class AsToolbarSizeComponent implements AfterViewInit, OnDestroy {
     }
 
     this.content.clickChange.subscribe(handler)
-  }
-
-  ngOnDestroy(): void {
-    this.content.clickChange.unsubscribe();
   }
 
 }

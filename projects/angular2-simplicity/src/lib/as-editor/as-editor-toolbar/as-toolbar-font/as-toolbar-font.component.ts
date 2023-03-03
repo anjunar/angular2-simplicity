@@ -7,7 +7,7 @@ import {AsEditorContentDirective} from "../../as-editor-content.directive";
   styleUrls: ['as-toolbar-font.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class AsToolbarFontComponent implements AfterViewInit, OnDestroy {
+export class AsToolbarFontComponent implements AfterViewInit {
 
   @Input() content!: AsEditorContentDirective
 
@@ -130,22 +130,19 @@ export class AsToolbarFontComponent implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    let handler = (event : Event) => {
-      this.fontName.handler(event);
-      this.bold.handler(event);
-      this.italic.handler(event);
-      this.strikeThrough.handler(event);
-      this.subScript.handler(event);
-      this.superScript.handler(event);
-    }
+    setTimeout(() => {
+      let handler = (event : Event) => {
+        this.fontName.handler(event);
+        this.bold.handler(event);
+        this.italic.handler(event);
+        this.strikeThrough.handler(event);
+        this.subScript.handler(event);
+        this.superScript.handler(event);
+      }
 
-    this.content.clickChange.subscribe(handler)
+      this.content.clickChange.subscribe(handler)
+    })
   }
-
-  ngOnDestroy(): void {
-    this.content.clickChange.unsubscribe();
-  }
-
-
 
 }
+

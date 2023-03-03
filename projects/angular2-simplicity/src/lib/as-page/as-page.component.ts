@@ -1,4 +1,4 @@
-import {Component, ContentChild, TemplateRef, ViewEncapsulation} from '@angular/core';
+import {Component, ContentChild, ElementRef, TemplateRef, ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'as-page',
@@ -8,8 +8,22 @@ import {Component, ContentChild, TemplateRef, ViewEncapsulation} from '@angular/
 })
 export class AsPageComponent {
 
-  active = false;
+  _active = false;
 
   @ContentChild(TemplateRef) templateRef! : TemplateRef<any>
 
+  constructor(private elementRef : ElementRef) {}
+
+  get active() {
+    return this._active;
+  }
+
+  set active(value)  {
+    this._active = value;
+    if (value) {
+      this.elementRef.nativeElement.style.display = "block"
+    } else {
+      this.elementRef.nativeElement.style.display = "none"
+    }
+  }
 }

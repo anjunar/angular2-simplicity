@@ -8,7 +8,7 @@ import {AsEditorContentDirective} from "../../as-editor-content.directive";
   styleUrls: ['as-toolbar-colors.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class AsToolbarColorsComponent implements AfterViewInit, OnDestroy {
+export class AsToolbarColorsComponent implements AfterViewInit {
 
   @Input() content!: AsEditorContentDirective
 
@@ -69,10 +69,6 @@ export class AsToolbarColorsComponent implements AfterViewInit, OnDestroy {
       this.color.handler(event);
       this.backGroundColor.handler(event);
     })
-  }
-
-  ngOnDestroy(): void {
-    this.content.clickChange.unsubscribe();
   }
 
 }

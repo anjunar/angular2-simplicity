@@ -13,7 +13,7 @@ import {AsDialogTextComponent} from "../../as-editor-dialog/as-dialog-text/as-di
   styleUrls: ['as-toolbar-inserts.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class AsToolbarInsertsComponent implements AfterViewInit, OnDestroy {
+export class AsToolbarInsertsComponent implements AfterViewInit {
 
   @Input() content!: AsEditorContentDirective
 
@@ -170,10 +170,6 @@ export class AsToolbarInsertsComponent implements AfterViewInit, OnDestroy {
       this.paragraph.handler(event);
     }
     this.content.clickChange.subscribe(handler)
-  }
-
-  ngOnDestroy(): void {
-    this.content.clickChange.unsubscribe();
   }
 
 }

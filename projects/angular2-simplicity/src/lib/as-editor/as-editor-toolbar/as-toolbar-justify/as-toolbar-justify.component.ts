@@ -7,7 +7,7 @@ import {AsEditorContentDirective} from "../../as-editor-content.directive";
   styleUrls: ['as-toolbar-justify.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class AsToolbarJustifyComponent implements AfterViewInit, OnDestroy {
+export class AsToolbarJustifyComponent implements AfterViewInit {
 
   @Input() content!: AsEditorContentDirective
 
@@ -168,10 +168,6 @@ export class AsToolbarJustifyComponent implements AfterViewInit, OnDestroy {
 
     this.content.clickChange.subscribe(handler)
 
-  }
-
-  ngOnDestroy(): void {
-    this.content.clickChange.unsubscribe()
   }
 
 }
