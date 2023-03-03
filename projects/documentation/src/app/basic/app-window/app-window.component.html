@@ -36,38 +36,42 @@
     </as-tabs>
     <as-pages [page]="page">
       <as-page>
-        <div>
-          <h3>HTML5</h3>
-          <p >The rest of the HTML file is not displayed</p>
-          <div style="margin-top: 20px;">
-            <div>
-              <as-code [code]="html" type="html"></as-code>
-            </div>
-          </div>
-          <h3>Typescript</h3>
+        <ng-template>
           <div>
+            <h3>HTML5</h3>
+            <p >The rest of the HTML file is not displayed</p>
+            <div style="margin-top: 20px;">
+              <div>
+                <as-code [code]="html" type="html"></as-code>
+              </div>
+            </div>
+            <h3>Typescript</h3>
             <div>
-              <as-code [code]="typescript" type="typescript"></as-code>
+              <div>
+                <as-code [code]="typescript" type="typescript"></as-code>
+              </div>
             </div>
           </div>
-        </div>
+        </ng-template>
       </as-page>
       <as-page>
-        <div>
-          <h3>HTML5</h3>
-
-          <div style="margin-top: 20px;">
-            <div>
-              <as-code [code]="html2" type="html"></as-code>
-            </div>
-          </div>
-          <h3>Typescript</h3>
+        <ng-template>
           <div>
+            <h3>HTML5</h3>
+
+            <div style="margin-top: 20px;">
+              <div>
+                <as-code [code]="html2" type="html"></as-code>
+              </div>
+            </div>
+            <h3>Typescript</h3>
             <div>
-              <as-code [code]="typescript2" type="typescript"></as-code>
+              <div>
+                <as-code [code]="typescript2" type="typescript"></as-code>
+              </div>
             </div>
           </div>
-        </div>
+        </ng-template>
       </as-page>
     </as-pages>
   </div>
