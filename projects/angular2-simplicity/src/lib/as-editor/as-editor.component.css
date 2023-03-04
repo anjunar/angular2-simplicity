@@ -8,7 +8,7 @@ as-editor as-editor-content {
   border: var(--main-dark1-color) solid 1px;
   overflow-x: hidden;
   overflow-y: auto;
-  height: 100%;
+  height: calc(100% - 61px);
   width: 100%;
 }
 
