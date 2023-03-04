@@ -6,15 +6,10 @@ as-editor as-editor-content {
   display: block;
   outline: 0 solid transparent;
   border: var(--main-dark1-color) solid 1px;
-  margin: 2px;
   overflow-x: hidden;
   overflow-y: auto;
   height: 100%;
   width: 100%;
-}
-
-as-editor as-editor-content * {
-  border: 1px solid var(--main-dark2-color);
 }
 
 as-editor as-editor-content table tr td:empty::after {

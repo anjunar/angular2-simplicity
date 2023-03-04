@@ -47,7 +47,7 @@ export class AsToolbarSizeComponent implements AfterViewInit {
     }
   }
   formatBlock = {
-    value: "none",
+    value: "div",
     click(event : string) {
       document.execCommand("formatBlock", false, event)
     },

@@ -1,33 +1,6 @@
-<div style="display: flex; width: 100%">
-  <as-pages [page]="page" style="width: 100%">
-    <as-page style="width: 100%">
-      <ng-template>
-        <as-editor-toolbar [content]="content"></as-editor-toolbar>
-      </ng-template>
-    </as-page>
-    <as-page>
-      <ng-template>
-        <div style="height: 61px"></div>
-      </ng-template>
-    </as-page>
-  </as-pages>
+<div style="width: 100%">
+  <as-editor-toolbar [content]="content"></as-editor-toolbar>
 </div>
-<as-pages [page]="page" style="height: calc(100% - 110px)" >
-  <as-page style="height: 100%">
-    <ng-template>
-      <div style="height: 100%" (contextmenu)="contextMenuClick($event)">
-        <as-editor-content [(model)]="model"></as-editor-content>
-      </div>
-    </ng-template>
-  </as-page>
-  <as-page style="height: 100%">
-    <ng-template>
-      <div style="height: 100%; width: 100%" [innerHTML]="model.html"></div>
-    </ng-template>
-  </as-page>
-</as-pages>
-
-<as-tabs [(page)]="page" style="flex: 1">
-  <as-tab>Write</as-tab>
-  <as-tab>Preview</as-tab>
-</as-tabs>
+<div style="height: 100%" (contextmenu)="contextMenuClick($event)">
+  <as-editor-content [(model)]="model"></as-editor-content>
+</div>

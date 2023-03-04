@@ -23,9 +23,10 @@ export class AsEditorComponent implements ControlValueAccessor, AsEditorInterfac
   @Input() name! : string
 
   @Output() ngModelChange = new EventEmitter<AsEditorModel>();
-  @ViewChild(AsEditorContentDirective) content!: AsEditorContentDirective
+  @ViewChild(AsEditorContentDirective, {static : true}) content!: AsEditorContentDirective
   page = 0;
   disabled = false;
+  display = false
 
   onChange!: (_: any) => {}
 

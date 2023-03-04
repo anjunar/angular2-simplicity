@@ -1,5 +1,4 @@
-import {ChangeDetectorRef, Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
-import {AsEditorInterface} from "../as-editor.classes";
+import {Component, Input, ViewEncapsulation} from '@angular/core';
 import {AsEditorContentDirective} from "../as-editor-content.directive";
 
 @Component({
@@ -8,15 +7,9 @@ import {AsEditorContentDirective} from "../as-editor-content.directive";
   styleUrls: ['as-editor-toolbar.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class AsEditorToolbarComponent implements OnInit {
+export class AsEditorToolbarComponent {
 
   @Input() content!: AsEditorContentDirective
   page = 0;
-
-  ngOnInit(): void {
-
-
-  }
-
 
 }

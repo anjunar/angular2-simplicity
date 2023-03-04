@@ -1,12 +1,14 @@
 <div style="width: 100%">
-  <as-tabs [(page)]="page">
-    <as-tab>Font</as-tab>
-    <as-tab>Size</as-tab>
-    <as-tab>Colors</as-tab>
-    <as-tab>Justify</as-tab>
-    <as-tab>Tools</as-tab>
-    <as-tab>Inserts</as-tab>
-  </as-tabs>
+  <div style="display: flex; align-items: baseline">
+    <as-tabs style="flex: 1" [(page)]="page">
+      <as-tab>Font</as-tab>
+      <as-tab>Size</as-tab>
+      <as-tab>Colors</as-tab>
+      <as-tab>Justify</as-tab>
+      <as-tab>Tools</as-tab>
+      <as-tab>Inserts</as-tab>
+    </as-tabs>
+  </div>
   <as-pages [page]="page">
     <as-page>
       <ng-template>
