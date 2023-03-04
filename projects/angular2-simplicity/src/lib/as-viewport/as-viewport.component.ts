@@ -13,6 +13,6 @@ export class AsViewportComponent {
   constructor(private elementRef : ElementRef) {}
 
   get element() : HTMLElement  {
-    return this.elementRef.nativeElement;
+    return this.elementRef.nativeElement.querySelector("div.container");
   }
 }
