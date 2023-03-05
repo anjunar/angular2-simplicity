@@ -55,8 +55,8 @@ export class AsScrollAreaComponent implements AfterViewInit {
     let clientOffsetHeight = contentDiv.offsetHeight - this.content.offsetHeight;
     let clientOffsetWidth = contentDiv.offsetWidth - this.content.offsetWidth;
 
-    this.scrollbarVerticalVisible = clientOffsetHeight <= 0
-    this.scrollbarHorizontalVisible = clientOffsetWidth <= 0
+    this.scrollbarVerticalVisible = clientOffsetHeight < 0
+    this.scrollbarHorizontalVisible = clientOffsetWidth < 0
   }
 
   onScrollY(event: number) {
@@ -73,8 +73,8 @@ export class AsScrollAreaComponent implements AfterViewInit {
 
   onScroll() {
     let viewport = this.viewport;
-    let clientOffsetHeight = this.content.offsetHeight - viewport.offsetHeight + 16;
-    let clientOffsetWidth = this.content.offsetWidth - viewport.offsetWidth + 16;
+    let clientOffsetHeight = this.content.offsetHeight - viewport.offsetHeight;
+    let clientOffsetWidth = this.content.offsetWidth - viewport.offsetWidth;
     let top = clientOffsetHeight * (this.scrollY || 0);
     let left = clientOffsetWidth * (this.scrollX || 0);
 
@@ -107,7 +107,7 @@ export class AsScrollAreaComponent implements AfterViewInit {
     event.preventDefault();
     let matrix = getMatrix(this.content);
     let top = -matrix.y + event.deltaY;
-    let clientOffsetHeight = this.content.offsetHeight - viewport.offsetHeight + 16;
+    let clientOffsetHeight = this.content.offsetHeight - viewport.offsetHeight;
     if (clientOffsetHeight > 0) {
       if (top < 0) {
         top = 0;
