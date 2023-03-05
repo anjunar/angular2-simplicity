@@ -1,4 +1,5 @@
 import {
+  AfterContentChecked,
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
@@ -17,7 +18,7 @@ import {AsScrollbarVerticalComponent} from "../as-scrollbar-vertical/as-scrollba
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.Default
 })
-export class AsScrollAreaComponent implements AfterViewInit {
+export class AsScrollAreaComponent implements AfterContentChecked {
 
   @ViewChild("viewport") viewportRef!: ElementRef<HTMLElement>;
   @ViewChild("content") contentRef!: ElementRef<HTMLElement>;
@@ -44,7 +45,7 @@ export class AsScrollAreaComponent implements AfterViewInit {
     return this.content.offsetHeight - this.viewport.offsetHeight;
   }
 
-  ngAfterViewInit(): void {
+  ngAfterContentChecked(): void {
     setTimeout(() => {
       this.checkScrollBars()
     })

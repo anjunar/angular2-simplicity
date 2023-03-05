@@ -26,7 +26,7 @@ export interface InfinityQuery {
   styleUrls: ['as-infinite-scroll.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class AsInfiniteScrollComponent implements AfterViewInit, OnDestroy {
+export class AsInfiniteScrollComponent implements AfterViewInit {
 
   index = 0;
   @Input() limit = 10;
@@ -82,7 +82,8 @@ export class AsInfiniteScrollComponent implements AfterViewInit, OnDestroy {
     })
   }
 
-  ngOnDestroy(): void {
+  delete(value : string) {
+    this.components.forEach((component) => component.instance.delete(value))
   }
 
   loadDownward() {
