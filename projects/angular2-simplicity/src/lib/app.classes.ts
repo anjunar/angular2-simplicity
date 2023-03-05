@@ -75,6 +75,8 @@ export abstract class AppMain {
       let contentPlaceholder = document.createElement("div");
       let footerPlaceholder = document.createElement("div");
 
+      contentPlaceholder.style.height = "100%"
+
       let window: Type<Window> = options.dialog ? AsDialogComponent : AsWindowComponent
 
       let windowRef = this.viewport.windowContainer.createComponent(window, {
