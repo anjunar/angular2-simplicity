@@ -51,17 +51,16 @@ export class AsImageUploadComponent implements ControlValueAccessor, AfterViewIn
 
   rectangleOffsetX = 0
   rectangleOffsetY = 0
-  @Input("cropWidth") rectangleWidth = 100
-  @Input("cropHeight") rectangleHeight = 100
 
   crop = false;
+  @Input() cropping = false;
 
   width: number = 0;
   height: number = 0;
 
   range: number = 25;
 
-  @Input() placeholder = ""
+  @Input() placeholder = "Click here..."
   disabled = false;
 
   onChange!: (value: any) => void
@@ -82,8 +81,6 @@ export class AsImageUploadComponent implements ControlValueAccessor, AfterViewIn
         this.imageOffsetY = 0;
         this.imageSizing = 1;
         this.range = 25
-        this.rectangleOffsetX = this.containerRef.nativeElement.offsetWidth / 2 - this.rectangleWidth / 2
-        this.rectangleOffsetY = this.containerRef.nativeElement.offsetHeight / 2 - this.rectangleHeight / 2
         this.model.width = this.image.width
         this.model.height = this.image.height
         this.width = this.containerRef.nativeElement.offsetWidth;
@@ -154,11 +151,7 @@ export class AsImageUploadComponent implements ControlValueAccessor, AfterViewIn
         deltaX = pointerX - event.clientX;
         pointerX = event.clientX;
 
-        if (
-          event.layerY > this.rectangleOffsetY &&
-          event.layerY < this.rectangleOffsetY + this.rectangleWidth &&
-          event.layerX > this.rectangleOffsetX &&
-          event.layerX < this.rectangleOffsetX + this.rectangleHeight) {
+        if (event.layerY > this.rectangleOffsetY && event.layerX > this.rectangleOffsetX) {
           this.rectangleOffsetX -= deltaX
           this.rectangleOffsetY -= deltaY
         } else {

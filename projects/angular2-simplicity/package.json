@@ -1,6 +1,6 @@
 {
   "name": "angular2-simplicity",
-  "version": "2.3.1",
+  "version": "2.3.2",
   "peerDependencies": {
     "@angular/common": "^15.1.4",
     "@angular/core": "^15.1.4",
