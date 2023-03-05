@@ -39,9 +39,11 @@ export class AsScrollbarVerticalComponent {
   }
 
   set position(value) {
-    let element = this.cursor;
-    let number = (this.element.offsetHeight - 16) * value;
-    element.style.top = number + "px";
+    if (this.cursorRef) {
+      let element = this.cursor;
+      let number = (this.element.offsetHeight - 16) * value;
+      element.style.top = number + "px";
+    }
   }
 
   sliderVertical(event : MouseEvent) {

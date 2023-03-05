@@ -39,9 +39,11 @@ export class AsScrollbarHorizontalComponent {
   }
 
   set position(value: number) {
-    let element = this.cursor;
-    let number = (this.element.offsetWidth - 16) * value;
-    element.style.left = number + "px";
+    if (this.cursorRef) {
+      let element = this.cursor;
+      let number = (this.element.offsetWidth - 16) * value;
+      element.style.left = number + "px";
+    }
   }
 
   sliderHorizontal(event : MouseEvent) {
