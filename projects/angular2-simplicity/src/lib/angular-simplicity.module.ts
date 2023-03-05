@@ -136,6 +136,7 @@ import { AsImageBackgroundComponent } from './as-image-background/as-image-backg
     AsTableComponent,
     AsScrollbarHorizontalComponent,
     AsScrollbarVerticalComponent,
+    AsScrollAreaComponent,
     AsDrawerComponent,
     AsDrawerContainerComponent,
     AsDrawerContentComponent,

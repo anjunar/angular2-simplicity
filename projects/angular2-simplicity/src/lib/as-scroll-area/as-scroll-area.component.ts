@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   ElementRef,
@@ -16,10 +17,10 @@ import {AsScrollbarVerticalComponent} from "../as-scrollbar-vertical/as-scrollba
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.Default
 })
-export class AsScrollAreaComponent {
+export class AsScrollAreaComponent implements AfterViewInit {
 
   @ViewChild("viewport") viewportRef!: ElementRef<HTMLElement>;
-  @ViewChild("inner") contentRef!: ElementRef<HTMLElement>;
+  @ViewChild("content") contentRef!: ElementRef<HTMLElement>;
 
   @ViewChild(AsScrollbarVerticalComponent) verticalScrollBar!: AsScrollbarVerticalComponent
 
@@ -37,6 +38,16 @@ export class AsScrollAreaComponent {
 
   get viewport() {
     return this.viewportRef.nativeElement;
+  }
+
+  get height() {
+    return this.content.offsetHeight - this.viewport.offsetHeight;
+  }
+
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.checkScrollBars()
+    })
   }
 
   checkScrollBars() {
@@ -107,9 +118,12 @@ export class AsScrollAreaComponent {
       let position = top / clientOffsetHeight;
       let matScrollbarVertical = this.verticalScrollBar;
       matScrollbarVertical.position = position;
+      this.scrollY = position;
 
       this.content.style.transition = "all .5s cubic-bezier(0.2, .84, .5, 1)"
       this.content.style.transform = `translate3d(0px, ${-top}px, 0px)`
+
+      this.scroll.emit(position);
     }
     return false;
 

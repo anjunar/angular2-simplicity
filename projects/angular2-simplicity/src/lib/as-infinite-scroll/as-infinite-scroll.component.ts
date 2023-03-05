@@ -5,7 +5,7 @@ import {
   ContentChild,
   ElementRef, EventEmitter,
   Input, OnDestroy,
-  OnInit, Output,
+  OnInit, Optional, Output,
   TemplateRef,
   ViewChild,
   ViewContainerRef,
@@ -13,6 +13,7 @@ import {
 } from '@angular/core';
 import {AsScrollPartComponent} from "./as-scroll-part/as-scroll-part.component";
 import {AsViewportComponent} from "../as-viewport/as-viewport.component";
+import {AsScrollAreaComponent} from "../as-scroll-area/as-scroll-area.component";
 
 export interface InfinityQuery {
   index: number
@@ -32,92 +33,56 @@ export class AsInfiniteScrollComponent implements AfterViewInit, OnDestroy {
 
   loading = false;
 
-  @Input() scrollOnViewport = true;
-
   components: ComponentRef<AsScrollPartComponent>[] = [];
 
   @ContentChild(TemplateRef) templateRef!: TemplateRef<any>
 
-  @ViewChild("viewport", {read: ElementRef}) viewportSelfRef!: ElementRef<HTMLDivElement>
   @ViewChild("container", {read: ElementRef}) containerRef!: ElementRef<HTMLDivElement>
   @ViewChild("viewContainerRef", {read: ViewContainerRef}) viewContainerRef!: ViewContainerRef
 
   @Output() items = new EventEmitter<{query: InfinityQuery, callback: (rows: any[]) => void}>();
 
-  onScroll!: (event: Event) => void
-
-  constructor(private viewport : AsViewportComponent) {}
-
-  get scroll() {
-    if (this.scrollOnViewport) {
-      return this.viewport.element
-    }
-    return this.viewportSelf
-  }
-
-  get viewportSelf() : HTMLDivElement {
-    return this.viewportSelfRef.nativeElement;
-  }
-
-  get container() : HTMLDivElement {
-    return this.containerRef.nativeElement;
-  }
+  constructor(private scroll : AsScrollAreaComponent) {}
 
   ngAfterViewInit(): void {
-    let prevScrollPos = this.scroll.scrollTop;
+    setTimeout(() => {
+      let prevScrollPos = this.scroll.scrollY;
 
-    let handler = () => {
-      let currentScrollPos = this.scroll.scrollTop;
+      let handler = () => {
+        let currentScrollPos = this.scroll.scrollY;
 
-      if (prevScrollPos < currentScrollPos) {
-        // scrolling down
-        const scrollTop = this.scroll.scrollTop;
-        const scrollHeight = this.container.offsetHeight
-        const windowHeight = this.scroll.offsetHeight
+        if (prevScrollPos < currentScrollPos) {
+          // scrolling down
+          const scrollTop = this.scroll.scrollY;
 
 
-        if (((scrollTop + windowHeight * 2) >= scrollHeight) && ! this.loading) {
-          let component = this.components[this.components.length - 1];
-          this.index = component.instance.index + this.limit;
-          this.loadDownward()
+          if (scrollTop > 0.8 && ! this.loading) {
+            let component = this.components[this.components.length - 1];
+            this.index = component.instance.index + this.limit;
+            this.loadDownward()
+          }
+        } else {
+          // scrolling up
+          const scrollTop = this.scroll.scrollY;
+          let component = this.components[0];
+
+          if ((scrollTop < 0.2 && component.instance.index > 0) && ! this.loading) {
+            this.index = component.instance.index - this.limit;
+            this.loadUpward();
+          }
         }
-      } else {
-        // scrolling up
-        let component = this.components[0];
-
-        if ((this.scroll.scrollTop < (this.scroll.offsetHeight) && component.instance.index > 0) && ! this.loading) {
-          this.index = component.instance.index - this.limit;
-          this.loadUpward();
-        }
+        prevScrollPos = currentScrollPos;
       }
-      prevScrollPos = currentScrollPos;
-    }
 
-    this.onScroll = (event: Event) => {
-      if (this.scrollOnViewport) {
-        if (event.target === this.scroll) {
-          handler();
-        }
-      } else {
-        if (event.target === this.viewportSelf) {
-          handler();
-        }
-      }
-    }
+      this.scroll.scroll.subscribe(() => {
+        handler();
+      })
 
-    this.viewportSelf.addEventListener("scroll", this.onScroll)
-    if (this.viewport) {
-      this.viewport.element.addEventListener("scroll", this.onScroll)
-    }
-
-    this.loadDownward();
+      this.loadDownward();
+    })
   }
 
   ngOnDestroy(): void {
-    this.viewportSelf.removeEventListener("scroll", this.onScroll)
-    if (this.viewport) {
-      this.viewport.element.removeEventListener("scroll", this.onScroll)
-    }
   }
 
   loadDownward() {
@@ -134,6 +99,12 @@ export class AsInfiniteScrollComponent implements AfterViewInit, OnDestroy {
             this.components.splice(0, 1)
           }
           this.loading = false;
+
+          setTimeout(() => {
+            let offsetPosition = componentRef.location.nativeElement.offsetHeight / this.scroll.height;
+            this.scroll.scrollY -= offsetPosition;
+            this.scroll.onScrollY(this.scroll.scrollY)
+          })
         }
       }})
   }
@@ -159,9 +130,10 @@ export class AsInfiniteScrollComponent implements AfterViewInit, OnDestroy {
             this.components.splice(this.components.length - 1, 1)
           }
 
-
-          this.scroll.scrollTo({
-            top : this.viewportSelf.offsetHeight / (this.limit / 2)
+          setTimeout(() => {
+            let offsetPosition = componentRef.location.nativeElement.offsetHeight / this.scroll.height;
+            this.scroll.scrollY += offsetPosition;
+            this.scroll.onScrollY(this.scroll.scrollY)
           })
         }
         this.loading = false

@@ -4,7 +4,5 @@ as-viewport {
 }
 
 as-viewport div.container {
-  overflow-x: hidden;
-  overflow-y: auto;
   height: 100%
 }

@@ -5,7 +5,6 @@ import {
   EventEmitter,
   HostListener,
   Input, OnDestroy,
-  OnInit,
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
@@ -18,7 +17,7 @@ import {AsScrollAreaComponent} from "../as-scroll-area/as-scroll-area.component"
   styleUrls: ['as-window.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class AsWindowComponent implements Window, OnInit, OnDestroy, AfterViewInit {
+export class AsWindowComponent implements Window, OnDestroy, AfterViewInit {
 
   @Input() modal!: Window
 
@@ -380,12 +379,6 @@ export class AsWindowComponent implements Window, OnInit, OnDestroy, AfterViewIn
       document.onmousemove = elementDrag;
       this.windowStartResize.emit();
     }
-  }
-
-  ngOnInit(): void {
-    this.windowEndResize.subscribe(() => {
-      this.asScrollArea.checkScrollBars();
-    })
   }
 
   ngOnDestroy(): void {
