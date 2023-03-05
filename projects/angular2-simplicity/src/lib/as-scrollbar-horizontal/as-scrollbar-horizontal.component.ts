@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  EventEmitter,
+  EventEmitter, Input,
   Output,
   ViewChild,
   ViewEncapsulation
@@ -19,7 +19,7 @@ export class AsScrollbarHorizontalComponent {
 
   @ViewChild("cursor") cursorRef! : ElementRef<HTMLDivElement>
 
-  @Output() scroll : EventEmitter<number> = new EventEmitter<number>();
+  @Output() positionChange : EventEmitter<number> = new EventEmitter<number>();
 
   constructor(private elementRef: ElementRef) { }
 
@@ -31,6 +31,7 @@ export class AsScrollbarHorizontalComponent {
     return this.elementRef.nativeElement;
   }
 
+  @Input()
   get position() : number {
     let element = this.cursor;
     let left = Number.parseInt(element.style.left.replace("px", ""))
@@ -62,7 +63,7 @@ export class AsScrollbarHorizontalComponent {
       let position = number / (this.element.offsetWidth - 16);
       this.position = position;
       cursor.style.left = number + "px";
-      this.scroll.emit(position);
+      this.positionChange.emit(position);
     }
 
     let closeDragElement = () => {

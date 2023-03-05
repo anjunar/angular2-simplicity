@@ -24,8 +24,8 @@ export class AsScrollAreaComponent implements AfterViewInit {
 
   @ViewChild(AsScrollbarVerticalComponent) verticalScrollBar!: AsScrollbarVerticalComponent
 
-  scrollX!: number;
-  scrollY!: number;
+  scrollX: number = 0;
+  scrollY: number = 0;
 
   scrollbarVerticalVisible: boolean = false;
   scrollbarHorizontalVisible: boolean = false;

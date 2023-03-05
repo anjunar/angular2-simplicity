@@ -97,14 +97,13 @@ export class AsInfiniteScrollComponent implements AfterViewInit, OnDestroy {
           if (this.viewContainerRef.length > 3) {
             this.viewContainerRef.remove(0)
             this.components.splice(0, 1)
+            setTimeout(() => {
+              let offsetPosition = componentRef.location.nativeElement.offsetHeight / this.scroll.height;
+              this.scroll.scrollY -= offsetPosition;
+              this.scroll.onScrollY(this.scroll.scrollY)
+            })
           }
           this.loading = false;
-
-          setTimeout(() => {
-            let offsetPosition = componentRef.location.nativeElement.offsetHeight / this.scroll.height;
-            this.scroll.scrollY -= offsetPosition;
-            this.scroll.onScrollY(this.scroll.scrollY)
-          })
         }
       }})
   }
@@ -128,13 +127,13 @@ export class AsInfiniteScrollComponent implements AfterViewInit, OnDestroy {
           if (this.viewContainerRef.length > 3) {
             this.viewContainerRef.remove(this.viewContainerRef.length - 1)
             this.components.splice(this.components.length - 1, 1)
+            setTimeout(() => {
+              let offsetPosition = componentRef.location.nativeElement.offsetHeight / this.scroll.height;
+              this.scroll.scrollY += offsetPosition;
+              this.scroll.onScrollY(this.scroll.scrollY)
+            })
           }
 
-          setTimeout(() => {
-            let offsetPosition = componentRef.location.nativeElement.offsetHeight / this.scroll.height;
-            this.scroll.scrollY += offsetPosition;
-            this.scroll.onScrollY(this.scroll.scrollY)
-          })
         }
         this.loading = false
       }})

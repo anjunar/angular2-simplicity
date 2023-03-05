@@ -4,6 +4,6 @@
       <ng-content></ng-content>
     </div>
   </div>
-  <as-scrollbar-vertical *ngIf="scrollbarVerticalVisible" (scroll)="onScrollY($event)"></as-scrollbar-vertical>
+  <as-scrollbar-vertical *ngIf="scrollbarVerticalVisible" [position]="scrollY" (positionChange)="onScrollY($event)"></as-scrollbar-vertical>
 </div>
-<as-scrollbar-horizontal *ngIf="scrollbarHorizontalVisible" style="margin-top: -16px" (scroll)="onScrollX($event)"></as-scrollbar-horizontal>
+<as-scrollbar-horizontal *ngIf="scrollbarHorizontalVisible" style="margin-top: -16px" [position]="scrollX" (positionChange)="onScrollX($event)"></as-scrollbar-horizontal>
