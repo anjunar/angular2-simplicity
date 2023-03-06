@@ -57,7 +57,7 @@ import { AsToolbarSizeComponent } from './as-editor/as-editor-toolbar/as-toolbar
 import { AsCarouselComponent } from './as-carousel/as-carousel.component';
 import { AsInfiniteScrollComponent } from './as-infinite-scroll/as-infinite-scroll.component';
 import { AsScrollPartComponent } from './as-infinite-scroll/as-scroll-part/as-scroll-part.component';
-import { AsImageBackgroundComponent } from './as-image-background/as-image-background.component';
+import { AsVideoUploadComponent } from './as-video-upload/as-video-upload.component';
 
 
 @NgModule({
@@ -118,7 +118,7 @@ import { AsImageBackgroundComponent } from './as-image-background/as-image-backg
     AsCarouselComponent,
     AsInfiniteScrollComponent,
     AsScrollPartComponent,
-    AsImageBackgroundComponent,
+    AsVideoUploadComponent,
   ],
     imports: [
         NgTemplateOutlet,
@@ -170,7 +170,7 @@ import { AsImageBackgroundComponent } from './as-image-background/as-image-backg
     AsErrorDirective,
     AsCarouselComponent,
     AsInfiniteScrollComponent,
-    AsImageBackgroundComponent
+    AsVideoUploadComponent
   ]
 })
 export class Angular2SimplicityModule {}

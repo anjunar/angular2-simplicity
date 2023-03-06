@@ -31,7 +31,7 @@ import { AppMetaFormLayoutComponent } from './advanced/app-meta-form-layout/app-
 import { AppCarouselComponent } from './basic/app-carousel/app-carousel.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AppInfiniteScrollComponent} from "./basic/app-infinite-scroll/app-infinite-scroll.component";
-import { AppImageBackgroundComponent } from './basic/app-image-background/app-image-background.component';
+import { AppVideoUploadComponent } from './basic/app-video-upload/app-video-upload.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +61,7 @@ import { AppImageBackgroundComponent } from './basic/app-image-background/app-im
     AppMetaFormLayoutComponent,
     AppCarouselComponent,
     AppInfiniteScrollComponent,
-    AppImageBackgroundComponent
+    AppVideoUploadComponent
   ],
     imports: [
         BrowserModule,

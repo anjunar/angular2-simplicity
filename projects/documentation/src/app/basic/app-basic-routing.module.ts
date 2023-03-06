@@ -16,27 +16,12 @@ import {AppProgressBarComponent} from "./app-progress-bar/app-progress-bar.compo
 import {AppDrawerComponent} from "./app-drawer/app-drawer.component";
 import {AppCarouselComponent} from "./app-carousel/app-carousel.component";
 import {AppInfiniteScrollComponent} from "./app-infinite-scroll/app-infinite-scroll.component";
-import {AppImageBackgroundComponent} from "./app-image-background/app-image-background.component";
+import {AppVideoUploadComponent} from "./app-video-upload/app-video-upload.component";
 
 export const routes = [
   {
-    path : "image/background",
-    component: AppImageBackgroundComponent,
-    resolve: {
-      data: AsGenericResolver,
-    },
-    data: {
-      assets: [
-        {
-          name : "html",
-          url: 'assets/basic/app-image-background/example.html'
-        },
-        {
-          name : "typescript",
-          url: 'assets/basic/app-image-background/example.ts'
-        }
-      ]
-    }
+    path : "video/upload",
+    component : AppVideoUploadComponent
   },
   {
     path : "infinite",

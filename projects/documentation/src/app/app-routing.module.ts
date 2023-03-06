@@ -6,6 +6,7 @@ import {routes as advanced} from "./advanced/app-advanced-routing.module"
 import {AppHomeComponent} from "./home/app-home/app-home.component";
 import {AsGenericResolver} from "../../../angular2-simplicity/src/lib/as-generic.resolver";
 import {AppAdvancedComponent} from "./advanced/app-advanced/app-advanced.component";
+import {AppVideoUploadComponent} from "./basic/app-video-upload/app-video-upload.component";
 
 const routes: Routes = [
   {

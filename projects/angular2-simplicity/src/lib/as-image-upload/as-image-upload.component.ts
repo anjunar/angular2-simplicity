@@ -12,8 +12,6 @@ import {
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
 
 export interface AsImageModel {
-  width : number
-  height : number;
   data: string,
   name: string
   cropped? : AsImageModel
@@ -81,8 +79,6 @@ export class AsImageUploadComponent implements ControlValueAccessor, AfterViewIn
         this.imageOffsetY = 0;
         this.imageSizing = 1;
         this.range = 25
-        this.model.width = this.image.width
-        this.model.height = this.image.height
         this.width = this.containerRef.nativeElement.offsetWidth;
         this.height = this.containerRef.nativeElement.offsetHeight;
         this.changeDetector.detectChanges();
@@ -121,14 +117,10 @@ export class AsImageUploadComponent implements ControlValueAccessor, AfterViewIn
     this.model = {
       cropped : {
         data : "",
-        name : "",
-        width : 0,
-        height : 0
+        name : ""
       },
       data : "",
-      name : "",
-      width : 0,
-      height : 0
+      name : ""
     }
     this.ngModelChange.emit(this.model)
     if (this.onChange) {
@@ -186,23 +178,20 @@ export class AsImageUploadComponent implements ControlValueAccessor, AfterViewIn
             let left = (width / 2 - dw / 2) - this.imageOffsetX
             let top = (height / 2 - dh / 2) - this.imageOffsetY
             context.drawImage(this.image, left, top, dw, dh)
-          } else
-          if (verticalRatio <= 1) {
-            let dh = width * verticalRatio * this.imageSizing;
-            let dw = width * this.imageSizing;
-            let left = (width / 2 - dw / 2) - this.imageOffsetX
-            let top = (height / 2 - dh / 2) - this.imageOffsetY
-            context.drawImage(this.image, left, top, dw, dh)
-          }
+          } else if (verticalRatio <= 1) {
+                  let dh = width * verticalRatio * this.imageSizing;
+                  let dw = width * this.imageSizing;
+                  let left = (width / 2 - dw / 2) - this.imageOffsetX
+                  let top = (height / 2 - dh / 2) - this.imageOffsetY
+                  context.drawImage(this.image, left, top, dw, dh)
+                }
 
           if (! this.disabled && this.crop) {
-            this.model.cropped = {
-              data : canvas.toDataURL(),
-              name : this.model.name,
-              width : width,
-              height : height
+              this.model.cropped = {
+                data : canvas.toDataURL(),
+                name : this.model.name
+              }
             }
-          }
         }
       })
     }
@@ -246,9 +235,7 @@ export class AsImageUploadComponent implements ControlValueAccessor, AfterViewIn
           if (event.target.result) {
             this.model = {
               data: <string>event.target.result,
-              name: file.name,
-              width : 0,
-              height : 0
+              name: file.name
             }
             if (this.onChange) {
               this.onChange(this.model);

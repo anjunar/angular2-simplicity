@@ -74,7 +74,7 @@ export * from "./lib/as-carousel/as-carousel.component";
 
 export * from "./lib/as-infinite-scroll/as-infinite-scroll.component";
 
-export * from "./lib/as-image-background/as-image-background.component";
+export * from "./lib/as-video-upload/as-video-upload.component";
 
 
 
