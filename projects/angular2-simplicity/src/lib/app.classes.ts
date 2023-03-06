@@ -18,9 +18,22 @@ export function updateValues(form : any, model : any) {
   for (const key of Object.keys(form)) {
     let formProperty = form[key];
     let modelProperty = model[key];
+
+    if (! modelProperty) {
+      if (formProperty instanceof Array) {
+        modelProperty = model[key] = [];
+      } else if (formProperty instanceof Object) {
+        modelProperty = model[key] = {}
+      }
+    }
+
     if (formProperty instanceof Array) {
       formProperty.forEach((element, index) => {
-        updateValues(element, modelProperty[index])
+        if (modelProperty[index]) {
+          updateValues(element, modelProperty[index])
+        } else {
+          modelProperty.push(element);
+        }
       })
     } else {
       if (formProperty instanceof Object) {
