@@ -11,13 +11,14 @@ import {
 } from '@angular/core';
 import {DomSanitizer} from "@angular/platform-browser";
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
+import {AsImageModel} from "../as-image-upload/as-image-upload.component";
 
 export interface AsVideoUploadModel {
   name : string,
   lastModified : number,
   data : string | ArrayBuffer,
   type : string,
-  thumbnail : string
+  thumbnail : AsImageModel
 }
 
 const generateVideoThumbnailImmediate = (video: HTMLVideoElement) : Promise<string> => {
@@ -105,7 +106,10 @@ export class AsVideoUploadComponent implements AfterViewInit, ControlValueAccess
           let thumbnail = generateVideoThumbnail(event.target as HTMLVideoElement);
           if (thumbnail) {
             if (this.ngModel) {
-              this.ngModel.thumbnail = thumbnail
+              this.ngModel.thumbnail = {
+                data : thumbnail,
+                name : this.ngModel.name
+              }
             }
 
           }
@@ -113,7 +117,10 @@ export class AsVideoUploadComponent implements AfterViewInit, ControlValueAccess
         generateVideoThumbnailImmediate(elementRef.nativeElement)
           .then((thumbnail : string) => {
             if (this.ngModel) {
-              this.ngModel.thumbnail = thumbnail
+              this.ngModel.thumbnail = {
+                data : thumbnail,
+                name : this.ngModel.name
+              }
             }
           })
       }
@@ -145,7 +152,10 @@ export class AsVideoUploadComponent implements AfterViewInit, ControlValueAccess
             lastModified : file.lastModified,
             type : file.type,
             data : reader.result,
-            thumbnail : ""
+            thumbnail : {
+              name : "",
+              data : ""
+            }
           }
           this.ngModelChange.emit(this.ngModel);
 

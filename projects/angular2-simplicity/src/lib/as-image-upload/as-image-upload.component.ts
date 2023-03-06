@@ -12,9 +12,9 @@ import {
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
 
 export interface AsImageModel {
-  data: string,
+  data: string
   name: string
-  cropped? : AsImageModel
+  thumbnail? : AsImageModel
 }
 
 @Component({
@@ -70,8 +70,8 @@ export class AsImageUploadComponent implements ControlValueAccessor, AfterViewIn
     let handler = (model: AsImageModel) => {
       if (model?.name?.length > 0 && model?.data?.length > 0) {
         this.image = new Image();
-        if (this.model.cropped?.data) {
-          this.image.src = this.model.cropped.data
+        if (this.model.thumbnail?.data) {
+          this.image.src = this.model.thumbnail.data
         } else {
           this.image.src = model.data;
         }
@@ -100,8 +100,8 @@ export class AsImageUploadComponent implements ControlValueAccessor, AfterViewIn
     if (this.crop) {
       this.image.src = this.model.data
     } else {
-      if (this.model.cropped) {
-        this.image.src = this.model.cropped?.data
+      if (this.model.thumbnail) {
+        this.image.src = this.model.thumbnail?.data
       }
       this.ngModelChange.emit(this.ngModel)
       if (this.onChange) {
@@ -115,7 +115,7 @@ export class AsImageUploadComponent implements ControlValueAccessor, AfterViewIn
     event.stopPropagation();
     this.image = new Image();
     this.model = {
-      cropped : {
+      thumbnail : {
         data : "",
         name : ""
       },
@@ -187,7 +187,7 @@ export class AsImageUploadComponent implements ControlValueAccessor, AfterViewIn
                 }
 
           if (! this.disabled && this.crop) {
-              this.model.cropped = {
+              this.model.thumbnail = {
                 data : canvas.toDataURL(),
                 name : this.model.name
               }

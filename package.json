@@ -1,6 +1,6 @@
 {
   "name": "angular2-simplicity",
-  "version": "2.3.4",
+  "version": "2.3.5",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -32,7 +32,7 @@
     "jasmine-core": "~4.5.0",
     "karma": "~6.4.1",
     "karma-chrome-launcher": "~3.1.1",
-    "karma-coverage": "~2.3.4",
+    "karma-coverage": "~2.3.5",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
     "ng-packagr": "^15.1.1",
