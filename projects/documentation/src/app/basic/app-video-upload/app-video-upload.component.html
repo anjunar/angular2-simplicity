@@ -1,1 +1,42 @@
-<as-video-upload style="width: 320px; height: 200px;"></as-video-upload>
+<div style="flex-wrap: wrap; display: flex">
+
+  <div style="flex: 1; padding: 20px; flex-basis: 400px;">
+
+    <h2 style="margin-left: 0;">Video Upload</h2>
+    <hr class="line">
+
+    <p >
+    </p>
+    <p>
+    </p>
+
+    <div style="margin: 20px;">
+      <as-video-upload [(ngModel)]="video" style="width: 320px; height: 200px;"></as-video-upload>
+
+      <img style="max-width: 320px; max-height: 200px" [src]="video?.thumbnail">
+
+    </div>
+
+
+  </div>
+
+  <div style="flex: 1; padding: 20px; flex-basis: 400px;">
+
+    <h2>Source Code</h2>
+    <hr class="line">
+    <h3>HTML5</h3>
+    <p >The rest of the HTML file is not displayed</p>
+    <div style="margin-top: 20px;">
+      <div>
+        <as-code [code]="html" type="html"></as-code>
+      </div>
+    </div>
+    <h3>Typescript</h3>
+    <div>
+      <div>
+        <as-code [code]="typescript" type="typescript"></as-code>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -21,7 +21,22 @@ import {AppVideoUploadComponent} from "./app-video-upload/app-video-upload.compo
 export const routes = [
   {
     path : "video/upload",
-    component : AppVideoUploadComponent
+    component : AppVideoUploadComponent,
+    resolve: {
+      data: AsGenericResolver,
+    },
+    data: {
+      assets: [
+        {
+          name : "html",
+          url: 'assets/basic/app-video-upload/example.html'
+        },
+        {
+          name : "typescript",
+          url: 'assets/basic/app-video-upload/example.ts'
+        }
+      ]
+    }
   },
   {
     path : "infinite",

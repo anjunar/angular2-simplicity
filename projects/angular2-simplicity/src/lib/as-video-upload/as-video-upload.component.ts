@@ -2,7 +2,7 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
-  EventEmitter,
+  EventEmitter, forwardRef,
   Input,
   Output, QueryList,
   ViewChild,
@@ -10,11 +10,12 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import {DomSanitizer} from "@angular/platform-browser";
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
 
-interface Model {
+export interface AsVideoUploadModel {
   name : string,
   lastModified : number,
-  data : any,
+  data : string | ArrayBuffer,
   type : string,
   thumbnail : string
 }
@@ -62,21 +63,32 @@ const generateVideoThumbnail = (video : HTMLVideoElement) => {
   selector: 'as-video-upload',
   templateUrl: 'as-video-upload.component.html',
   styleUrls: ['as-video-upload.component.css'],
-  encapsulation : ViewEncapsulation.None
+  encapsulation : ViewEncapsulation.None,
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => AsVideoUploadComponent),
+      multi: true
+    }
+  ]
 })
-export class AsVideoUploadComponent implements AfterViewInit {
+export class AsVideoUploadComponent implements AfterViewInit, ControlValueAccessor {
 
   @Input() placeholder : string = "Click here..."
   @ViewChild("input") inputRef! : ElementRef<HTMLInputElement>
   @ViewChildren("video") videoRef! : QueryList<ElementRef<HTMLVideoElement>>
 
-  @Input() ngModel! : Model | null
-  @Output() ngModelChange = new EventEmitter<Model | null>();
+  @Input() ngModel! : AsVideoUploadModel | null
+  @Output() ngModelChange = new EventEmitter<AsVideoUploadModel | null>();
 
   image : any;
 
   width! : number;
   height! : number;
+
+  onChange!: (value: any) => void
+
+  @Input() disabled : boolean = false;
 
   constructor(private sanitizer: DomSanitizer, private elementRef : ElementRef) {}
 
@@ -111,6 +123,9 @@ export class AsVideoUploadComponent implements AfterViewInit {
   onDeleteClick() {
     this.ngModel = null;
     this.ngModelChange.emit(this.ngModel)
+    if (this.onChange) {
+      this.onChange(this.ngModel)
+    }
   }
 
   onPlaceholderClick() {
@@ -124,16 +139,41 @@ export class AsVideoUploadComponent implements AfterViewInit {
       let file = input.files[0];
       let reader = new FileReader();
       reader.onload = (e : Event) => {
-        this.ngModel = {
-          name : file.name,
-          lastModified : file.lastModified,
-          type : file.type,
-          data : reader.result,
-          thumbnail : ""
+        if (reader.result) {
+          this.ngModel = {
+            name : file.name,
+            lastModified : file.lastModified,
+            type : file.type,
+            data : reader.result,
+            thumbnail : ""
+          }
+          this.ngModelChange.emit(this.ngModel);
+
+          if (this.onChange) {
+            this.onChange(this.ngModel)
+          }
         }
-        this.ngModelChange.emit(this.ngModel);
       }
       reader.readAsDataURL(file);
     }
   }
+
+  registerOnChange(fn: any): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: any): void {
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
+  }
+
+  writeValue(obj: any): void {
+    if (obj) {
+      this.ngModel = obj;
+    }
+  }
+
+
 }
