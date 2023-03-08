@@ -15,7 +15,7 @@ export class MetaFormGroup extends FormGroup {
   }
 
   getValue() {
-    updateValues(this.form.value, this.model)
+    updateValues(this.value, this.model)
     return this.model;
   }
 
