@@ -82,6 +82,13 @@ export class AsInfiniteScrollComponent implements AfterViewInit {
     })
   }
 
+  add(model : any) {
+    let componentRef = this.components.find(component => component.instance.items.length < this.limit);
+    if (componentRef) {
+      componentRef.instance.items.push(model)
+    }
+  }
+
   delete(value : string) {
     this.components.forEach((component) => component.instance.delete(value))
   }
