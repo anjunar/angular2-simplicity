@@ -84,7 +84,7 @@ export class AsToolbarInsertsComponent implements AfterViewInit {
       if (selection) {
         let rangeAt = selection.getRangeAt(0);
 
-        let windowRef = this.windowManager.create(AsDialogImageUploadComponent, {header : "Image Upload", width : 640, height : 480});
+        let windowRef = this.windowManager.create(AsDialogImageUploadComponent, {header : "Image Upload", width : "640px", height : "480px"});
 
         windowRef.instance.onOk.subscribe((value) => {
           let selection = document.getSelection();
@@ -114,7 +114,7 @@ export class AsToolbarInsertsComponent implements AfterViewInit {
       if (selection) {
         let rangeAt = selection.getRangeAt(0);
 
-        let windowRef = this.windowManager.create(AsDialogTextComponent, {header : "Text input", width : 640, height: 480});
+        let windowRef = this.windowManager.create(AsDialogTextComponent, {header : "Text input", width : "640px", height: "480px"});
 
         windowRef.instance.onOk.subscribe((value) => {
           let selection = document.getSelection();

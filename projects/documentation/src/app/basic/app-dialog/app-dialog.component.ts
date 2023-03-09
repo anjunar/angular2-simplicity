@@ -34,8 +34,8 @@ export class AppDialogComponent extends AppView {
 
     let options = {
       header : "Header",
-      width : 320,
-      height : 200,
+      width : "320px",
+      height : "200px",
       dialog : true,
       centerFn : (window : Window) => {
         return {

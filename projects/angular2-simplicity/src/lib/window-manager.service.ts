@@ -17,16 +17,16 @@ export interface Window {
 export interface WindowOptions {
 
   header : string
-  width? : number
-  height? : number
-  minWidth? : number
-  minHeight? : number
-  maxWidth? : number,
-  maxHeight? : number,
-  top? : number
-  left? : number
-  right? : number
-  bottom? : number
+  width? : string
+  height? : string
+  minWidth? : string
+  minHeight? : string
+  maxWidth? : string,
+  maxHeight? : string,
+  top? : string
+  left? : string
+  right? : string
+  bottom? : string
   dialog? : boolean,
   draggable? : boolean
   resizeable? : boolean

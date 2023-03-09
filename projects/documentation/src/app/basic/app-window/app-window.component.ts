@@ -50,8 +50,8 @@ export class AppWindowComponent extends AppView {
 
     let options : WindowOptions = {
       header : "Example",
-      top : 80,
-      right : 40,
+      top : "80px",
+      right : "40px",
       resizeable : false,
       draggable : false
     };

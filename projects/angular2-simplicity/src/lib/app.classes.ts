@@ -138,38 +138,38 @@ export abstract class AppMain {
 
         if (options) {
           if (options.width) {
-            instance.element.style.width = options.width + "px"
+            instance.element.style.width = options.width;
           }
           if (options.height) {
-            instance.element.style.height = options.height + "px"
+            instance.element.style.height = options.height;
           }
 
           if (options.minWidth) {
-            instance.element.style.minWidth = options.minWidth + "px"
+            instance.element.style.minWidth = options.minWidth;
           }
           if (options.minHeight) {
-            instance.element.style.minHeight = options.minHeight + "px"
+            instance.element.style.minHeight = options.minHeight;
           }
 
           if (options.maxWidth) {
-            instance.element.style.maxWidth = options.maxWidth + "px"
+            instance.element.style.maxWidth = options.maxWidth;
           }
           if (options.maxHeight) {
-            instance.element.style.maxHeight = options.maxHeight + "px"
+            instance.element.style.maxHeight = options.maxHeight;
           }
 
           if (options.top || options.left || options.right || options.bottom) {
             if (options.top) {
-              instance.element.style.top = options.top + "px"
+              instance.element.style.top = options.top;
             }
             if (options.left) {
-              instance.element.style.left = options.left + "px"
+              instance.element.style.left = options.left;
             }
             if (options.right) {
-              instance.element.style.right = options.right + "px"
+              instance.element.style.right = options.right;
             }
             if (options.bottom) {
-              instance.element.style.bottom = options.bottom + "px"
+              instance.element.style.bottom = options.bottom;
             }
           } else {
             if (options.centerFn) {
