@@ -135,6 +135,7 @@ export abstract class AppMain {
       }
 
       windowRef.instance.afterViewInitChange.subscribe(() => {
+
         if (options) {
           if (options.width) {
             instance.element.style.width = options.width + "px"
@@ -156,10 +157,17 @@ export abstract class AppMain {
               instance.element.style.bottom = options.bottom + "px"
             }
           } else {
-            instance.element.style.left = `calc(50% - ${instance.element.offsetWidth / 2}px)`
-            instance.element.style.top = `calc(50% - ${instance.element.offsetHeight / 2}px)`
+            if (options.centerFn) {
+              let centerFn = options.centerFn(instance);
+              instance.element.style.left = centerFn.left;
+              instance.element.style.top = centerFn.top;
+            } else {
+              instance.element.style.left = `calc(50% - ${instance.element.offsetWidth / 2}px)`
+              instance.element.style.top = `calc(50% - ${instance.element.offsetHeight / 2}px)`
+            }
           }
         }
+
       })
 
       this.windowManager.register(windowRef, options, componentRef);

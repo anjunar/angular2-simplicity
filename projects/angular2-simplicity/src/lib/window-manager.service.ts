@@ -26,8 +26,7 @@ export interface WindowOptions {
   dialog? : boolean,
   draggable? : boolean
   resizeable? : boolean
-  hasHeader? : boolean
-  hasFooter? : boolean
+  centerFn? : (window : Window) => {left : string, top : string}
 }
 
 interface Maximized {
