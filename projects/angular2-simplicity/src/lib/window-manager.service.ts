@@ -19,6 +19,10 @@ export interface WindowOptions {
   header : string
   width? : number
   height? : number
+  minWidth? : number
+  minHeight? : number
+  maxWidth? : number,
+  maxHeight? : number,
   top? : number
   left? : number
   right? : number

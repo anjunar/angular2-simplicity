@@ -143,6 +143,21 @@ export abstract class AppMain {
           if (options.height) {
             instance.element.style.height = options.height + "px"
           }
+
+          if (options.minWidth) {
+            instance.element.style.minWidth = options.minWidth + "px"
+          }
+          if (options.minHeight) {
+            instance.element.style.minHeight = options.minHeight + "px"
+          }
+
+          if (options.maxWidth) {
+            instance.element.style.maxWidth = options.maxWidth + "px"
+          }
+          if (options.maxHeight) {
+            instance.element.style.maxHeight = options.maxHeight + "px"
+          }
+
           if (options.top || options.left || options.right || options.bottom) {
             if (options.top) {
               instance.element.style.top = options.top + "px"
