@@ -1,6 +1,6 @@
 {
-  "name": "angular2-simplicity",
-  "version": "2.4.3",
+  "name": "ng2-simplicity",
+  "version": "0.9.0",
   "peerDependencies": {
     "@angular/common": "^15.1.4",
     "@angular/core": "^15.1.4",
@@ -9,8 +9,5 @@
   "dependencies": {
     "tslib": "^2.5.0"
   },
-  "sideEffects": false,
-  "publishConfig": {
-    "registry": "http://127.0.0.1:8081/repository/npm-private/"
-  }
+  "sideEffects": false
 }

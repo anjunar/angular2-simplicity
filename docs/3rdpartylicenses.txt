@@ -16,7 +16,7 @@ MIT
 @angular/router
 MIT
 
-angular2-simplicity
+@angular/simplicity
 
 highlight.js
 BSD-3-Clause
