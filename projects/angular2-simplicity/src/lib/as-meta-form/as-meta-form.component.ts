@@ -86,6 +86,14 @@ export class AsMetaFormComponent implements OnInit {
     return label.map(value => model[value]).join(" ")
   }
 
+  lazySelectTrackBy(properties: { key: string, value: any }) {
+    let find = Object.entries(properties).find(([key, value]) => value.id);
+    if (find) {
+      return find[0];
+    }
+    return "id";
+  }
+
   originalOrder = (a: KeyValue<number, string>, b: KeyValue<number, string>): number => {
     return 0;
   }
