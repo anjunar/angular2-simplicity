@@ -16,7 +16,9 @@
                 "min" : 4,
                 "max" : 80
               }
-            }},
+            },
+            "visibility" : true
+          },
           "lastName": {
             "type": "string",
             "title": "Last Name",
@@ -84,7 +86,8 @@
                   "widget": "email",
                   "validators" : {
                     "email" : true
-                  }
+                  },
+                  "visibility" : true
                 }
               }
             }
