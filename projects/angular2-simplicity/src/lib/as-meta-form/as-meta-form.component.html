@@ -50,8 +50,8 @@
               <div *ngIf="model[$any(entry).key].data">
                 <as-image-upload style="width: 320px; height: 200px" [formControlName]="$any(entry).key" [attr.name]="$any(entry).key" [placeholder]="$any(entry).value.title"></as-image-upload>
               </div>
-              <div *ngIf="model[$any(entry).key].url" style="max-width: 320px; max-height: 200px">
-                <img [src]="model[$any(entry).key].url">
+              <div *ngIf="model[$any(entry).key].url">
+                <img [src]="model[$any(entry).key].url" style="max-width: 320px; max-height: 200px">
               </div>
             </ng-container>
             <ng-container *ngSwitchCase="'text'">
