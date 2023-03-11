@@ -47,12 +47,12 @@
               </as-input-container>
             </ng-container>
             <ng-container *ngSwitchCase="'image'">
-              <div *ngIf="model[$any(entry).key].data">
-                <as-image-upload style="width: 320px; height: 200px" [formControlName]="$any(entry).key" [attr.name]="$any(entry).key" [placeholder]="$any(entry).value.title"></as-image-upload>
-              </div>
-              <div *ngIf="model[$any(entry).key].url">
+              <div *ngIf="model[$any(entry).key]?.url; else elseIf2">
                 <img [src]="model[$any(entry).key].url" style="max-width: 320px; max-height: 200px">
               </div>
+              <ng-template #elseIf2>
+                <as-image-upload style="width: 320px; height: 200px" [formControlName]="$any(entry).key" [attr.name]="$any(entry).key" [placeholder]="$any(entry).value.title"></as-image-upload>
+              </ng-template>
             </ng-container>
             <ng-container *ngSwitchCase="'text'">
               <as-input-container [placeholder]="$any(entry).value.title">
