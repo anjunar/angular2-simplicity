@@ -85,6 +85,9 @@ export class AsScrollAreaComponent implements AfterContentChecked {
 
   @HostListener("wheel", ["$event"])
   onWheel(event: WheelEvent) {
+    event.stopPropagation();
+    event.preventDefault();
+
     let viewport = this.viewport;
 
     function getMatrix(element: HTMLElement) {
