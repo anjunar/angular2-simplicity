@@ -17,8 +17,28 @@ import {AppDrawerComponent} from "./app-drawer/app-drawer.component";
 import {AppCarouselComponent} from "./app-carousel/app-carousel.component";
 import {AppInfiniteScrollComponent} from "./app-infinite-scroll/app-infinite-scroll.component";
 import {AppVideoUploadComponent} from "./app-video-upload/app-video-upload.component";
+import {AppExpandableListComponent} from "./app-expandable-list/app-expandable-list.component";
 
 export const routes = [
+  {
+    path: "expendable-list",
+    component: AppExpandableListComponent,
+    resolve: {
+      data: AsGenericResolver,
+    },
+    data: {
+      assets: [
+        {
+          name : "html",
+          url: 'assets/basic/app-expandable-list/example.html'
+        },
+        {
+          name : "typescript",
+          url: 'assets/basic/app-expandable-list/example.ts'
+        }
+      ]
+    }
+  },
   {
     path : "video/upload",
     component : AppVideoUploadComponent,

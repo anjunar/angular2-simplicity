@@ -1,0 +1,91 @@
+<div style="margin: auto; flex-wrap: wrap; display: flex">
+
+  <div style="flex: 1; padding: 20px; flex-basis: 400px;">
+
+    <h2 style="margin-left: 0;">Expandable List</h2>
+    <hr class="line">
+
+    <p>
+      An expandable list UI component is a user interface element that allows users to view and interact with a list of
+      items, with the ability to expand or collapse individual items to show or hide additional content associated with each item.
+    </p>
+
+    <p>
+      An expandable list typically consists of a series of items, each of which can be expanded to reveal additional
+      details or options. When an item is expanded, the additional content associated with that item is displayed beneath
+      the item in the list. When an item is collapsed, the additional content is hidden, and only the item's summary
+      information is displayed.
+    </p>
+
+    <p>
+      The expandable list UI component can be used in a variety of contexts, such as a navigation menu, a list of
+      items in an e-commerce site, or a list of tasks in a productivity app. By allowing users to expand and collapse
+      individual items, the component provides a way to display a lot of information in a compact space, while still
+      providing users with the ability to view details when needed.
+    </p>
+
+    <p>
+      Typically, expandable lists are designed to be intuitive and easy to use, with clear indicators of which items
+      are expandable and which are not. In some cases, the component may also provide additional functionality, such
+      as the ability to reorder items or perform actions on individual items.
+    </p>
+
+    <p>
+      Overall, an expandable list UI component is a versatile and useful tool for displaying complex information in a
+      way that is easy for users to navigate and understand.
+    </p>
+
+
+    <h3>DOM-API</h3>
+    <table style="width: 100%; font-size: small">
+      <thead>
+      <tr>
+        <td><strong>Element</strong></td>
+        <td><strong>Attribute</strong></td>
+        <td><strong>Description</strong></td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>as-expandable-list</td>
+        <td>items</td>
+        <td>The Event for loading items</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div style="margin: 20px;">
+      <as-expandable-list (items)="loader($event)">
+        <ng-template let-material>
+          <p>
+            <span>{{material.position}}</span>
+            <span>{{material.name}}</span>
+            <span>{{material.weight}}</span>
+            <span>{{material.symbol}}</span>
+          </p>
+        </ng-template>
+      </as-expandable-list>
+    </div>
+
+
+  </div>
+
+  <div style="flex: 1; padding: 20px; flex-basis: 400px;">
+
+    <h2>Source Code</h2>
+    <hr class="line">
+    <h3>HTML5</h3>
+
+    <div style="margin-top: 20px;">
+      <div>
+        <as-code [code]="html" type="xml"></as-code>
+      </div>
+    </div>
+    <h3>Typescript</h3>
+    <div>
+      <div>
+        <as-code [code]="typescript" type="typescript"></as-code>
+      </div>
+    </div>
+  </div>
+</div>

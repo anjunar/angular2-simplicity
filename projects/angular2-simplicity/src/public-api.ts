@@ -74,6 +74,8 @@ export * from "./lib/as-carousel/as-carousel.component";
 
 export * from "./lib/as-infinite-scroll/as-infinite-scroll.component";
 
+export * from "./lib/as-expandable-list/as-expandable-list.component";
+
 export * from "./lib/as-video-upload/as-video-upload.component";
 
 

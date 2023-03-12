@@ -1,0 +1,5 @@
+<a *ngIf="lowerIndex > 0" style="cursor: pointer" (click)="prev()">Click here to show more...</a>
+<ng-container *ngFor="let item of window">
+  <ng-container *ngTemplateOutlet="templateRef; context : {$implicit : item}"></ng-container>
+</ng-container>
+<a *ngIf="upperIndex < size - 1" style="cursor: pointer" (click)="next()">Click here to show more...</a>

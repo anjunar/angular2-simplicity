@@ -58,6 +58,7 @@ import { AsCarouselComponent } from './as-carousel/as-carousel.component';
 import { AsInfiniteScrollComponent } from './as-infinite-scroll/as-infinite-scroll.component';
 import { AsScrollPartComponent } from './as-infinite-scroll/as-scroll-part/as-scroll-part.component';
 import { AsVideoUploadComponent } from './as-video-upload/as-video-upload.component';
+import { AsExpandableListComponent } from './as-expandable-list/as-expandable-list.component';
 
 
 @NgModule({
@@ -119,6 +120,7 @@ import { AsVideoUploadComponent } from './as-video-upload/as-video-upload.compon
     AsInfiniteScrollComponent,
     AsScrollPartComponent,
     AsVideoUploadComponent,
+    AsExpandableListComponent,
   ],
     imports: [
         NgTemplateOutlet,
@@ -170,7 +172,8 @@ import { AsVideoUploadComponent } from './as-video-upload/as-video-upload.compon
     AsErrorDirective,
     AsCarouselComponent,
     AsInfiniteScrollComponent,
-    AsVideoUploadComponent
+    AsVideoUploadComponent,
+    AsExpandableListComponent
   ]
 })
 export class Angular2SimplicityModule {}

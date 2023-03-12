@@ -32,6 +32,7 @@ import { AppCarouselComponent } from './basic/app-carousel/app-carousel.componen
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AppInfiniteScrollComponent} from "./basic/app-infinite-scroll/app-infinite-scroll.component";
 import { AppVideoUploadComponent } from './basic/app-video-upload/app-video-upload.component';
+import { AppExpandableListComponent } from './basic/app-expandable-list/app-expandable-list.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { AppVideoUploadComponent } from './basic/app-video-upload/app-video-uplo
     AppMetaFormLayoutComponent,
     AppCarouselComponent,
     AppInfiniteScrollComponent,
-    AppVideoUploadComponent
+    AppVideoUploadComponent,
+    AppExpandableListComponent
   ],
     imports: [
         BrowserModule,
