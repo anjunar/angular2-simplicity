@@ -1,4 +1,8 @@
 <div #container>
-  <ng-container #viewContainerRef></ng-container>
+  <div #steps *ngFor="let part of window">
+    <div *ngFor="let item of part.window">
+      <ng-container *ngTemplateOutlet="templateRef; context : {$implicit : item}"></ng-container>
+    </div>
+  </div>
 </div>
 

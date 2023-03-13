@@ -19,7 +19,7 @@ export class AppTableComponent extends AppView {
   }
 
   items(event : {query : TableQuery, callback : (rows : any[], size : number) => void}) {
-    fetch("assets/materials.json")
+    secureFetch("assets/materials.json")
       .then(response => response.json())
       .then(response => {
         let data = response.rows.slice(event.query.index, event.query.index + event.query.limit)

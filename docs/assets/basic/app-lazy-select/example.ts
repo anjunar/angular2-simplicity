@@ -13,7 +13,7 @@ export class AppLazySelectComponent {
   values = []
 
   items(query : SelectQuery, callback : (rows : any[], size : number) => void) {
-    fetch("assets/materials.json")
+    secureFetch("assets/materials.json")
       .then(response => response.json())
       .then(response => {
         let data = response.rows.slice(query.index, query.index + query.limit)

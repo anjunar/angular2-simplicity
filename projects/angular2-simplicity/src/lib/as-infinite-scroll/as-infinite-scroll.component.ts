@@ -1,23 +1,30 @@
 import {
-  AfterViewInit,
+  AfterViewInit, ChangeDetectorRef,
   Component,
-  ComponentRef,
   ContentChild,
-  ElementRef, EventEmitter,
-  Input, OnDestroy,
-  OnInit, Optional, Output,
+  ElementRef,
+  EventEmitter,
+  Output, QueryList,
   TemplateRef,
-  ViewChild,
-  ViewContainerRef,
+  ViewChild, ViewChildren,
   ViewEncapsulation
 } from '@angular/core';
-import {AsScrollPartComponent} from "./as-scroll-part/as-scroll-part.component";
-import {AsViewportComponent} from "../as-viewport/as-viewport.component";
 import {AsScrollAreaComponent} from "../as-scroll-area/as-scroll-area.component";
+import {VerticalPositionChange} from "../as-scrollbar-vertical/as-scrollbar-vertical.component";
 
 export interface InfinityQuery {
   index: number
   limit: number
+}
+
+class InfiniteScrollPart {
+  readonly index;
+  readonly window : any[];
+
+  constructor(index: number, window: any[]) {
+    this.index = index;
+    this.window = window;
+  }
 }
 
 @Component({
@@ -29,123 +36,95 @@ export interface InfinityQuery {
 export class AsInfiniteScrollComponent implements AfterViewInit {
 
   index = 0;
-  @Input() limit = 10;
-
+  limit = 10;
+  threshold = 3
+  window: InfiniteScrollPart[] = [];
   loading = false;
 
-  components: ComponentRef<AsScrollPartComponent>[] = [];
-
   @ContentChild(TemplateRef) templateRef!: TemplateRef<any>
-
   @ViewChild("container", {read: ElementRef}) containerRef!: ElementRef<HTMLDivElement>
-  @ViewChild("viewContainerRef", {read: ViewContainerRef}) viewContainerRef!: ViewContainerRef
+  @ViewChildren("steps", {read : ElementRef}) steps! : QueryList<ElementRef<HTMLDivElement>>
 
-  @Output() items = new EventEmitter<{query: InfinityQuery, callback: (rows: any[]) => void}>();
+  @Output() items = new EventEmitter<{ query: InfinityQuery, callback: (rows: any[]) => void }>();
 
-  constructor(private scroll : AsScrollAreaComponent) {}
+  constructor(private scrollArea: AsScrollAreaComponent) {}
 
   ngAfterViewInit(): void {
-    setTimeout(() => {
-      let prevScrollPos = this.scroll.scrollY;
+    this.downWard();
 
-      let handler = () => {
-        let currentScrollPos = this.scroll.scrollY;
+    this.scrollArea.scrollYChange.subscribe((value : VerticalPositionChange) => {
+      if (! this.loading) {
+        let upperPart = this.window[0];
+        let lowerPart = this.window[this.window.length - 1];
 
-        if (prevScrollPos < currentScrollPos) {
-          // scrolling down
-          const scrollTop = this.scroll.scrollY;
-
-
-          if (scrollTop > 0.8 && ! this.loading) {
-            let component = this.components[this.components.length - 1];
-            this.index = component.instance.index + this.limit;
-            this.loadDownward()
-          }
-        } else {
-          // scrolling up
-          const scrollTop = this.scroll.scrollY;
-          let component = this.components[0];
-
-          if ((scrollTop < 0.2 && component.instance.index > 0) && ! this.loading) {
-            this.index = component.instance.index - this.limit;
-            this.loadUpward();
-          }
+        switch (value.direction) {
+          case "top" : {
+            if (value.value < 0.2 && upperPart.index > 0) {
+              this.index = upperPart.index - this.limit;
+              this.upWard();
+            }
+          } break
+          case "bottom" : {
+            if (value.value > 0.8) {
+              this.index = lowerPart.index + this.limit;
+              this.downWard();
+            }
+          } break
         }
-        prevScrollPos = currentScrollPos;
       }
 
-      this.scroll.scroll.subscribe(() => {
-        handler();
-      })
-
-      this.loadDownward();
     })
   }
 
-  add(model : any) {
-    let componentRef = this.components.find(component => component.instance.items.length < this.limit);
-    if (componentRef) {
-      componentRef.instance.items.push(model)
-    }
-  }
-
-  delete(value : string) {
-    this.components.forEach((component) => component.instance.delete(value))
-  }
-
-  loadDownward() {
-    this.loading = true
-    this.items.emit({query : {index: this.index, limit: this.limit}, callback : (rows) => {
-        if (rows.length > 0) {
-          let componentRef = this.viewContainerRef.createComponent(AsScrollPartComponent);
-          componentRef.instance.index = this.index
-          componentRef.instance.items = rows;
-          componentRef.instance.templateRef = this.templateRef;
-          this.components.push(componentRef)
-          if (this.viewContainerRef.length > 3) {
-            this.viewContainerRef.remove(0)
-            this.components.splice(0, 1)
-            setTimeout(() => {
-              let offsetPosition = componentRef.location.nativeElement.offsetHeight / this.scroll.height;
-              this.scroll.scrollY -= offsetPosition;
-              this.scroll.onScrollY(this.scroll.scrollY)
-            })
-          }
-          this.loading = false;
-        }
-      }})
-  }
-
-  loadUpward() {
+  upWard() {
     this.loading = true;
-    this.items.emit({query : {index: this.index, limit: this.limit}, callback : (rows) => {
-        let component = this.components[0];
+    this.items.emit({
+      query: {index: this.index, limit: this.limit}, callback: (rows) => {
+        this.window = [new InfiniteScrollPart(this.index, rows), ...this.window];
+        if (this.window.length > this.threshold) {
 
-        if (component.instance.index > -1) {
-          let componentRef = this.viewContainerRef.createComponent(AsScrollPartComponent);
-          this.viewContainerRef.move(componentRef.hostView, 0)
+          this.window.pop();
 
-
-          componentRef.instance.index = this.index
-          componentRef.instance.items = rows;
-          componentRef.instance.templateRef = this.templateRef;
-
-          this.components = [componentRef, ...this.components]
-
-          if (this.viewContainerRef.length > 3) {
-            this.viewContainerRef.remove(this.viewContainerRef.length - 1)
-            this.components.splice(this.components.length - 1, 1)
-            setTimeout(() => {
-              let offsetPosition = componentRef.location.nativeElement.offsetHeight / this.scroll.height;
-              this.scroll.scrollY += offsetPosition;
-              this.scroll.onScrollY(this.scroll.scrollY)
-            })
+          let lastStep = this.steps.get(this.steps.length - 1);
+          if (lastStep) {
+            let containerHeight = this.containerRef.nativeElement.offsetHeight;
+            let stepHeight = lastStep.nativeElement.offsetHeight;
+            let position = stepHeight / (containerHeight - this.scrollArea.elementRef.nativeElement.offsetHeight);
+            this.scrollArea.scrollY += position;
+            this.scrollArea.onScroll();
           }
 
         }
-        this.loading = false
-      }})
+
+        this.loading = false;
+      }
+    })
   }
 
+  downWard() {
+    this.loading = true;
+    this.items.emit({
+      query: {index: this.index, limit: this.limit}, callback: (rows) => {
+        this.window.push(new InfiniteScrollPart(this.index, rows));
+
+        if (this.window.length > this.threshold) {
+
+          this.window.shift();
+
+          let firstStep = this.steps.get(0);
+          if (firstStep) {
+            let containerHeight = this.containerRef.nativeElement.offsetHeight;
+            let stepHeight = firstStep.nativeElement.offsetHeight;
+            let position = stepHeight / (containerHeight - this.scrollArea.elementRef.nativeElement.offsetHeight);
+            this.scrollArea.scrollY -= position;
+            this.scrollArea.onScroll();
+          }
+
+        }
+
+        this.loading = false;
+      }
+    })
+  }
 
 }

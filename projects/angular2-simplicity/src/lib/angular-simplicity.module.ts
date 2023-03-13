@@ -56,7 +56,6 @@ import { AsErrorDirective } from './as-input-container/as-error/as-error.directi
 import { AsToolbarSizeComponent } from './as-editor/as-editor-toolbar/as-toolbar-size/as-toolbar-size.component';
 import { AsCarouselComponent } from './as-carousel/as-carousel.component';
 import { AsInfiniteScrollComponent } from './as-infinite-scroll/as-infinite-scroll.component';
-import { AsScrollPartComponent } from './as-infinite-scroll/as-scroll-part/as-scroll-part.component';
 import { AsVideoUploadComponent } from './as-video-upload/as-video-upload.component';
 import { AsExpandableListComponent } from './as-expandable-list/as-expandable-list.component';
 
@@ -118,7 +117,6 @@ import { AsExpandableListComponent } from './as-expandable-list/as-expandable-li
     AsToolbarSizeComponent,
     AsCarouselComponent,
     AsInfiniteScrollComponent,
-    AsScrollPartComponent,
     AsVideoUploadComponent,
     AsExpandableListComponent,
   ],

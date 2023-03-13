@@ -44,19 +44,21 @@
 
     <div style="margin: 20px;">
       <div>
-        <as-infinity-scroll (items)="loader($event)">
-          <ng-template let-item>
-            <div style="border: 1px solid var(--main-dark1-color); margin: 10px">
-              <ul>
-                <li>{{item.position}}</li>
-                <li>{{item.id}}</li>
-                <li>{{item.type}}</li>
-                <li>{{item.public}}</li>
-                <li>{{item.created_at}}</li>
-              </ul>
-            </div>
-          </ng-template>
-        </as-infinity-scroll>
+        <as-scroll-area style="height: 400px">
+          <as-infinity-scroll (items)="loader($event)">
+            <ng-template let-item>
+              <div style="border: 1px solid var(--main-dark1-color); margin: 10px">
+                <ul>
+                  <li>{{item.position}}</li>
+                  <li>{{item.id}}</li>
+                  <li>{{item.type}}</li>
+                  <li>{{item.public}}</li>
+                  <li>{{item.created_at}}</li>
+                </ul>
+              </div>
+            </ng-template>
+          </as-infinity-scroll>
+        </as-scroll-area>
       </div>
     </div>
 

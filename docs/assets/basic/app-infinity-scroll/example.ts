@@ -10,7 +10,7 @@ import {InfinityQuery} from "angular2-simplicity";
 export class AppInfinityScrollComponent {
 
   loader(query: InfinityQuery, callback: (rows: any[]) => void) {
-    fetch(`assets/materials.json?query=${query.index}&limit=${query.limit}`)
+    secureFetch(`assets/materials.json?query=${query.index}&limit=${query.limit}`)
       .then(response => response.json())
       .then(response => {
         let rows: any[] = response.rows;

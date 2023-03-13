@@ -10,7 +10,7 @@ import {CarouselQuery} from "angular2-simplicity";
 export class AppCarouselComponent {
 
   loader(query : CarouselQuery, callback : (rows : any[]) => void) {
-    fetch("assets/materials.json")
+    secureFetch("assets/materials.json")
       .then(response => response.json())
       .then(response => {
         let rows : any[] = response.rows;

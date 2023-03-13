@@ -8,6 +8,11 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
+export interface VerticalPositionChange {
+  value : number;
+  direction : "top" | "bottom"
+}
+
 @Component({
   selector: 'as-scrollbar-vertical',
   templateUrl: 'as-scrollbar-vertical.component.html',
@@ -19,7 +24,7 @@ export class AsScrollbarVerticalComponent {
 
   @ViewChild("cursor") cursorRef! : ElementRef<HTMLDivElement>
 
-  @Output() positionChange : EventEmitter<number> = new EventEmitter<number>();
+  @Output() positionChange : EventEmitter<VerticalPositionChange> = new EventEmitter<VerticalPositionChange>();
 
   constructor(private elementRef: ElementRef) { }
 
@@ -65,7 +70,10 @@ export class AsScrollbarVerticalComponent {
       let position = number / (this.element.offsetHeight - 16);
       this.position = position;
       cursor.style.top = number + "px";
-      this.positionChange.emit(position);
+      this.positionChange.emit({
+        value : position,
+        direction : delta > 0 ? "top" : "bottom"
+      });
     }
 
     let closeDragElement = () => {

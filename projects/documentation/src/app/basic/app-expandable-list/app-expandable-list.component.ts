@@ -21,7 +21,7 @@ export class AppExpandableListComponent extends AppView {
   }
 
   loader(event : {query : ExpandableQuery, callback : (rows : any[], size : number) => void}) {
-    fetch("assets/materials.json")
+    secureFetch("assets/materials.json")
       .then(response => response.json())
       .then(response => {
         let data = response.rows.slice(event.query.index, event.query.index + event.query.limit)

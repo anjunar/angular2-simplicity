@@ -19,7 +19,7 @@ export class AppCarouselComponent extends AppView {
   }
 
   loader(query : CarouselQuery, callback : (rows : any[]) => void) {
-    fetch("assets/materials.json")
+    secureFetch("assets/materials.json")
       .then(response => response.json())
       .then(response => {
         let rows : any[] = response.rows;

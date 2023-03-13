@@ -10,7 +10,7 @@ import {TableQuery} from "angular2-simplicity";
 export class AppMetaTableComponent {
 
   items(query : TableQuery, callback : (rows : any[], size : number, schema : any) => void) {
-    fetch("assets/materials.json")
+    secureFetch("assets/materials.json")
       .then(response => response.json())
       .then(response => {
         let data = response.rows.slice(query.index, query.index + query.limit)

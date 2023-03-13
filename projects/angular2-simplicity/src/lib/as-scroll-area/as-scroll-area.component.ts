@@ -5,11 +5,15 @@ import {
   Component,
   ElementRef,
   EventEmitter,
-  HostListener,
+  HostListener, Optional, SkipSelf,
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
-import {AsScrollbarVerticalComponent} from "../as-scrollbar-vertical/as-scrollbar-vertical.component";
+import {
+  AsScrollbarVerticalComponent,
+  VerticalPositionChange
+} from "../as-scrollbar-vertical/as-scrollbar-vertical.component";
+import {HorizontalPositionChange} from "../as-scrollbar-horizontal/as-scrollbar-horizontal.component";
 
 @Component({
   selector: 'as-scroll-area',
@@ -31,7 +35,10 @@ export class AsScrollAreaComponent implements AfterContentChecked {
   scrollbarVerticalVisible: boolean = false;
   scrollbarHorizontalVisible: boolean = false;
 
-  scroll: EventEmitter<number> = new EventEmitter<number>();
+  scrollXChange: EventEmitter<HorizontalPositionChange> = new EventEmitter<HorizontalPositionChange>();
+  scrollYChange: EventEmitter<VerticalPositionChange> = new EventEmitter<VerticalPositionChange>();
+
+  constructor(@SkipSelf() @Optional() private scrollArea : AsScrollAreaComponent, public elementRef : ElementRef) {}
 
   get content() {
     return this.contentRef.nativeElement;
@@ -60,15 +67,15 @@ export class AsScrollAreaComponent implements AfterContentChecked {
     this.scrollbarHorizontalVisible = clientOffsetWidth < 0
   }
 
-  onScrollY(event: number) {
-    this.scrollY = event;
-    this.scroll.emit(event);
+  onScrollY(event: VerticalPositionChange) {
+    this.scrollY = event.value;
+    this.scrollYChange.emit(event);
     this.onScroll()
   }
 
-  onScrollX(event: number) {
-    this.scrollX = event;
-    this.scroll.emit(event);
+  onScrollX(event: HorizontalPositionChange) {
+    this.scrollX = event.value;
+    this.scrollXChange.emit(event);
     this.onScroll()
   }
 
@@ -85,9 +92,20 @@ export class AsScrollAreaComponent implements AfterContentChecked {
 
   @HostListener("wheel", ["$event"])
   onWheel(event: WheelEvent) {
-    event.stopPropagation();
-    event.preventDefault();
+    if (this.scrollArea && event.shiftKey) {
+      event.stopPropagation();
+      event.preventDefault();
+      return this.onWheelIntern(event);
+    }
 
+    if (! this.scrollArea) {
+      return this.onWheelIntern(event);
+    }
+
+    return false;
+  }
+
+  private onWheelIntern(event: WheelEvent) {
     let viewport = this.viewport;
 
     function getMatrix(element: HTMLElement) {
@@ -127,10 +145,11 @@ export class AsScrollAreaComponent implements AfterContentChecked {
       this.content.style.transition = "all .5s cubic-bezier(0.2, .84, .5, 1)"
       this.content.style.transform = `translate3d(0px, ${-top}px, 0px)`
 
-      this.scroll.emit(position);
+      this.scrollYChange.emit({
+        value : position,
+        direction : event.deltaY < 0 ? "top" : "bottom"
+      });
     }
     return false;
-
   }
-
 }

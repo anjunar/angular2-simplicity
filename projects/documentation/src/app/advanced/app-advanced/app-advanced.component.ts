@@ -1,4 +1,12 @@
-import {AfterViewInit, Component, EventEmitter, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {
+  AfterViewInit,
+  ApplicationRef,
+  Component,
+  EventEmitter,
+  OnInit,
+  ViewChild,
+  ViewEncapsulation
+} from '@angular/core';
 import {AsViewportComponent} from "angular2-simplicity";
 
 @Component({
@@ -13,6 +21,7 @@ export class AppAdvancedComponent implements OnInit, AfterViewInit {
   @ViewChild(AsViewportComponent) viewport!: AsViewportComponent
 
   onViewport = new EventEmitter<AsViewportComponent>();
+
   ngOnInit(): void {
     let matchMedia = window.matchMedia("(max-width: 800px)");
     this.open = ! matchMedia.matches;

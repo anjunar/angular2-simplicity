@@ -8,6 +8,11 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
+export interface HorizontalPositionChange {
+  value : number;
+  direction : "left" | "right"
+}
+
 @Component({
   selector: 'as-scrollbar-horizontal',
   templateUrl: 'as-scrollbar-horizontal.component.html',
@@ -19,7 +24,7 @@ export class AsScrollbarHorizontalComponent {
 
   @ViewChild("cursor") cursorRef! : ElementRef<HTMLDivElement>
 
-  @Output() positionChange : EventEmitter<number> = new EventEmitter<number>();
+  @Output() positionChange : EventEmitter<HorizontalPositionChange> = new EventEmitter<HorizontalPositionChange>();
 
   constructor(private elementRef: ElementRef) { }
 
@@ -65,7 +70,10 @@ export class AsScrollbarHorizontalComponent {
       let position = number / (this.element.offsetWidth - 16);
       this.position = position;
       cursor.style.left = number + "px";
-      this.positionChange.emit(position);
+      this.positionChange.emit({
+        value : position,
+        direction : delta > 0 ? "left" : "right"
+      });
     }
 
     let closeDragElement = () => {
