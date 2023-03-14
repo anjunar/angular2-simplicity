@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 import {AsScrollAreaComponent} from "../as-scroll-area/as-scroll-area.component";
 import {VerticalPositionChange} from "../as-scrollbar-vertical/as-scrollbar-vertical.component";
+import {TableLike} from "../app.classes";
 
 export interface InfinityQuery {
   index: number
@@ -42,7 +43,7 @@ class InfiniteScrollPart {
   styleUrls: ['as-infinite-scroll.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class AsInfiniteScrollComponent implements AfterViewInit {
+export class AsInfiniteScrollComponent implements AfterViewInit, TableLike {
 
   index = 0;
   limit = 5;

@@ -7,6 +7,7 @@ import {
   TemplateRef,
   ViewEncapsulation
 } from '@angular/core';
+import {TableLike} from "../app.classes";
 
 export interface ListQuery {
   index: number;
@@ -19,7 +20,7 @@ export interface ListQuery {
   styleUrls: ['as-lazy-list.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class AsLazyListComponent implements AfterContentInit {
+export class AsLazyListComponent implements AfterContentInit, TableLike {
 
   window: any[] = [];
   size: number = 0;
@@ -33,6 +34,17 @@ export class AsLazyListComponent implements AfterContentInit {
 
   ngAfterContentInit(): void {
     this.load();
+  }
+
+  add(value: any): void {
+    if (this.window.length < this.limit) {
+      this.window.push(value);
+    }
+  }
+
+  delete(value: any): void {
+    let index = this.window.findIndex((item) => item === value);
+    this.window.splice(index, 1)
   }
 
   load() {

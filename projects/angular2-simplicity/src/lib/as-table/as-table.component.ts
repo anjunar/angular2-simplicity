@@ -14,6 +14,7 @@ import {
 import {WindowManagerService, WindowRef} from "../window-manager.service";
 import {AsTableConfigurationComponent} from "./as-table-configuration/as-table-configuration.component";
 import {AsTableInterface, TableColumn, TableQuery} from "./as-table.classes";
+import {TableLike} from "../app.classes";
 
 @Component({
   selector: 'as-table',
@@ -21,7 +22,7 @@ import {AsTableInterface, TableColumn, TableQuery} from "./as-table.classes";
   styleUrls: ['./as-table.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class AsTableComponent implements OnInit, AfterContentInit, AsTableInterface {
+export class AsTableComponent implements OnInit, AfterContentInit, AsTableInterface, TableLike {
 
   @ContentChildren("filter", {descendants: true}) templateRefsFilter!: QueryList<TemplateRef<any>>
   @ContentChildren("col", {descendants: true}) templateRefsCol!: QueryList<ElementRef>
@@ -70,6 +71,17 @@ export class AsTableComponent implements OnInit, AfterContentInit, AsTableInterf
     })
 
     this.templateRefsCol.notifyOnChanges();
+  }
+
+  add(value: any): void {
+    if (this.window.length < this.limit) {
+      this.window.push(value);
+    }
+  }
+
+  delete(value: any): void {
+    let index = this.window.findIndex((item) => item === value);
+    this.window.splice(index, 1)
   }
 
   configuration(columns : TableColumn[], allVisible: boolean) : TableColumn[] {

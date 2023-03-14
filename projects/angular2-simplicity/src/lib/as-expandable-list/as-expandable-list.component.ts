@@ -8,6 +8,7 @@ import {
   TemplateRef,
   ViewEncapsulation
 } from '@angular/core';
+import {TableLike} from "../app.classes";
 
 export interface ExpandableQuery {
   index: number
@@ -20,7 +21,7 @@ export interface ExpandableQuery {
   styleUrls: ['as-expandable-list.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class AsExpandableListComponent implements OnInit {
+export class AsExpandableListComponent implements OnInit, TableLike {
 
   lowerIndex = 0;
   upperIndex = 0;

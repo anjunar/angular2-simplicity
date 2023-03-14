@@ -7,6 +7,11 @@ import {AsDialogComponent} from "./as-dialog/as-dialog.component";
 import {AsWindowComponent} from "./as-window/as-window.component";
 import {AsContextComponent} from "./as-context/as-context.component";
 
+export interface TableLike {
+  add(value : any) : void;
+  delete(value : any) : void
+}
+
 export function generateURL(value : string) {
   if (value.startsWith("/")) {
     return new URL(window.location.origin + value)
