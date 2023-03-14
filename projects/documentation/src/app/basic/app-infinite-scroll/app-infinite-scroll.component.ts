@@ -1,4 +1,4 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import {ChangeDetectorRef, Component, ViewEncapsulation} from '@angular/core';
 import {AppView, InfinityQuery} from "angular2-simplicity";
 import {ActivatedRoute} from "@angular/router";
 
@@ -17,7 +17,7 @@ export class AppInfiniteScrollComponent extends AppView {
 
   data!: any[];
 
-  constructor(private activatedRoute: ActivatedRoute) {
+  constructor(private activatedRoute: ActivatedRoute, private changeDetector: ChangeDetectorRef) {
     super(activatedRoute);
   }
 
@@ -29,5 +29,7 @@ export class AppInfiniteScrollComponent extends AppView {
     })
 
     event.callback(slice)
+    this.changeDetector.detectChanges()
   }
+
 }

@@ -11,7 +11,6 @@ export class AppInfinityScrollComponent {
 
   loader(query: InfinityQuery, callback: (rows: any[]) => void) {
     secureFetch(`assets/materials.json?query=${query.index}&limit=${query.limit}`)
-      .then(response => response.json())
       .then(response => {
         let rows: any[] = response.rows;
         let slice = rows.slice(query.index, query.index + query.limit);

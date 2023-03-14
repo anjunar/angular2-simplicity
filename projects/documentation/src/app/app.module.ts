@@ -33,6 +33,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AppInfiniteScrollComponent} from "./basic/app-infinite-scroll/app-infinite-scroll.component";
 import { AppVideoUploadComponent } from './basic/app-video-upload/app-video-upload.component';
 import { AppExpandableListComponent } from './basic/app-expandable-list/app-expandable-list.component';
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { AppExpandableListComponent } from './basic/app-expandable-list/app-expa
         AppRoutingModule,
         Angular2SimplicityModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        HttpClientModule
     ],
   providers: [],
   bootstrap: [AppComponent]

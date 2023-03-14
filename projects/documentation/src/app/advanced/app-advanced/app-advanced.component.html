@@ -52,7 +52,7 @@
   </as-drawer>
   <as-drawer-content>
     <as-scroll-area>
-      <router-outlet></router-outlet>
+      <router-outlet (activate)="onActivate()"></router-outlet>
     </as-scroll-area>
   </as-drawer-content>
 </as-drawer-container>

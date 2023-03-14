@@ -11,7 +11,6 @@ export class AppCarouselComponent {
 
   loader(query : CarouselQuery, callback : (rows : any[]) => void) {
     secureFetch("assets/materials.json")
-      .then(response => response.json())
       .then(response => {
         let rows : any[] = response.rows;
         callback(rows.slice(query.index, query.index + query.limit))

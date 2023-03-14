@@ -14,7 +14,6 @@ export class AppLazySelectComponent {
 
   items(query : SelectQuery, callback : (rows : any[], size : number) => void) {
     secureFetch("assets/materials.json")
-      .then(response => response.json())
       .then(response => {
         let data = response.rows.slice(query.index, query.index + query.limit)
         callback(data, response.size)

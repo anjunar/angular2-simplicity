@@ -1,5 +1,5 @@
 import {AfterViewInit, ApplicationRef, Component, Injector, ViewChild, ViewEncapsulation} from '@angular/core';
-import {AppMain, ContextManagerService, WindowManagerService, AsViewportComponent} from "angular2-simplicity";
+import {AppMain, AsViewportComponent, ContextManagerService, WindowManagerService} from "angular2-simplicity";
 import {Router} from "@angular/router";
 
 @Component({
@@ -17,10 +17,36 @@ export class AppComponent extends AppMain implements AfterViewInit {
     contextManager: ContextManagerService,
     injector: Injector,
     application: ApplicationRef,
-    router : Router) {
+    router: Router) {
     super(windowManager, contextManager, injector, application);
 
-    window.secureFetch = function (url : string, method : string = "GET", data? : any) {
+    let registry = new WeakMap();
+
+    EventTarget.prototype.addEventListener = (function (_super) {
+      return function (name, callback: (event: Event) => void) {
+        let handler = (event: Event) => {
+          callback(event)
+          application.tick();
+        };
+
+        registry.set(callback, handler);
+
+        // @ts-ignore
+        return _super.apply(this, [name, handler])
+      }
+    })(EventTarget.prototype.addEventListener)
+
+    EventTarget.prototype.removeEventListener = (function (_super) {
+      return function (name, callback: (event: Event) => void) {
+
+        let handler = registry.get(callback);
+
+        // @ts-ignore
+        return _super.apply(this, [name, handler])
+      }
+    })(EventTarget.prototype.removeEventListener)
+
+    window.secureFetch = function (url: string, method: string = "GET", data?: any) {
       return new Promise((resolve, reject) => {
         let options = {
           method: method
@@ -35,22 +61,31 @@ export class AppComponent extends AppMain implements AfterViewInit {
           })
         }
 
-        fetch(url, options).then(response => {
-          if (response.ok) {
-            resolve(response);
-          } else {
-            switch (response.status) {
-              case 401:
-                router.navigate(["/security/login"])
-                break;
-              default:
-                console.log('Some error occured');
-                break;
+        fetch(url, options)
+          .then(response => {
+            if (response.ok) {
+              return response.json();
+            } else {
+              switch (response.status) {
+                case 401:
+                  router.navigate(["/security/login"])
+                  throw new Error(response.status + "");
+                default:
+                  throw new Error(response.status + "");
+              }
             }
-
+          })
+          .then((response) => {
+            resolve(response);
+          })
+          .catch((response) => {
             reject(response);
-          }
-        })
+          })
+          .finally(() => {
+            setTimeout(() => {
+              application.tick()
+            })
+          })
       });
     }
   }
@@ -61,6 +96,10 @@ export class AppComponent extends AppMain implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.initialize();
+  }
+
+  onActivate() {
+    this.application.tick();
   }
 
 }

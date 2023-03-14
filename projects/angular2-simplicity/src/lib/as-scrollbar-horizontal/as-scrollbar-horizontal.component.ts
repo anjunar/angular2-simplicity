@@ -77,14 +77,14 @@ export class AsScrollbarHorizontalComponent {
     }
 
     let closeDragElement = () => {
-      document.onmouseup = null;
-      document.onmousemove = null;
+      document.removeEventListener("mouseup", closeDragElement)
+      document.removeEventListener("mousemove", elementDrag)
     }
 
     event.preventDefault();
     pointer = event.clientX;
-    document.onmouseup = closeDragElement;
-    document.onmousemove = elementDrag;
+    document.addEventListener("mouseup", closeDragElement)
+    document.addEventListener("mousemove", elementDrag)
   }
 
 }

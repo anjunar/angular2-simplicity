@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   Component,
   ContentChild,
   ElementRef, EventEmitter,
@@ -86,7 +87,13 @@ export class AsLazySelectComponent implements OnInit, ControlValueAccessor, Inpu
 
   onSearch! : (value : string) => void;
 
-  constructor(private elementRef: ElementRef<HTMLElement>, private injector: Injector, private inputService : AsInputService,@Optional() private viewport : AsViewportComponent) {
+  constructor(
+    private elementRef: ElementRef<HTMLElement>,
+    private injector: Injector,
+    private inputService : AsInputService,@Optional()
+    private viewport : AsViewportComponent,
+    private changeDetector : ChangeDetectorRef
+  ) {
     inputService.input = this;
     inputService.element = elementRef.nativeElement;
     elementRef.nativeElement.tabIndex = 0;
@@ -317,23 +324,23 @@ export class AsLazySelectComponent implements OnInit, ControlValueAccessor, Inpu
           this.showSelected = false;
           this.window = data;
 
-          setTimeout(() => {
-            if (this.viewport) {
-              data = data || [];
-              let viewport = this.viewport.element;
-              let height = 14 + 39 + data.length * 42;
-              let selectBoundingClientRect = this.elementRef.nativeElement.getBoundingClientRect();
-              let viewPortBoundingClientRect = viewport.getBoundingClientRect();
-              let overlay = this.overlay.nativeElement;
-              if (selectBoundingClientRect.top + height > viewPortBoundingClientRect.top + viewPortBoundingClientRect.height) {
-                overlay.style.top = "initial"
-                overlay.style.bottom = "24px"
-              } else {
-                overlay.style.top = "14px";
-                overlay.style.bottom = "initial";
-              }
+          this.changeDetector.detectChanges();
+
+          if (this.viewport) {
+            data = data || [];
+            let viewport = this.viewport.element;
+            let height = 14 + 39 + data.length * 42;
+            let selectBoundingClientRect = this.elementRef.nativeElement.getBoundingClientRect();
+            let viewPortBoundingClientRect = viewport.getBoundingClientRect();
+            let overlay = this.overlay.nativeElement;
+            if (selectBoundingClientRect.top + height > viewPortBoundingClientRect.top + viewPortBoundingClientRect.height) {
+              overlay.style.top = "initial"
+              overlay.style.bottom = "24px"
+            } else {
+              overlay.style.top = "14px";
+              overlay.style.bottom = "initial";
             }
-          })
+          }
       }});
     }
   }

@@ -21,6 +21,7 @@ export class AppBasicComponent {
 
   onActivate() {
     setTimeout(() => {
+      this.application.tick();
       this.scroll.scrollX = 0;
       this.scroll.scrollY = 0;
       this.scroll.onScroll();

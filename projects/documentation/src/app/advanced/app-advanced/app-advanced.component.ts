@@ -22,6 +22,8 @@ export class AppAdvancedComponent implements OnInit, AfterViewInit {
 
   onViewport = new EventEmitter<AsViewportComponent>();
 
+  constructor(private application : ApplicationRef) {}
+
   ngOnInit(): void {
     let matchMedia = window.matchMedia("(max-width: 800px)");
     this.open = ! matchMedia.matches;
@@ -30,5 +32,10 @@ export class AppAdvancedComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.onViewport.emit(this.viewport)
   }
+
+  onActivate() {
+    this.application.tick();
+  }
+
 
 }

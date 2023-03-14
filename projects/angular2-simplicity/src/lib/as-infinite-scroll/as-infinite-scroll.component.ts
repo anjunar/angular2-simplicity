@@ -36,7 +36,7 @@ class InfiniteScrollPart {
 export class AsInfiniteScrollComponent implements AfterViewInit {
 
   index = 0;
-  limit = 10;
+  limit = 5;
   threshold = 3
   window: InfiniteScrollPart[] = [];
   loading = false;
@@ -47,7 +47,7 @@ export class AsInfiniteScrollComponent implements AfterViewInit {
 
   @Output() items = new EventEmitter<{ query: InfinityQuery, callback: (rows: any[]) => void }>();
 
-  constructor(private scrollArea: AsScrollAreaComponent) {}
+  constructor(private scrollArea: AsScrollAreaComponent, private changeDetector : ChangeDetectorRef) {}
 
   ngAfterViewInit(): void {
     this.downWard();
@@ -65,7 +65,7 @@ export class AsInfiniteScrollComponent implements AfterViewInit {
             }
           } break
           case "bottom" : {
-            if (value.value > 0.8) {
+            if (value.value > 0.8 && lowerPart.window.length === this.limit) {
               this.index = lowerPart.index + this.limit;
               this.downWard();
             }
@@ -85,10 +85,12 @@ export class AsInfiniteScrollComponent implements AfterViewInit {
 
           this.window.pop();
 
-          let lastStep = this.steps.get(this.steps.length - 1);
-          if (lastStep) {
+          this.changeDetector.detectChanges()
+
+          let firstStep = this.steps.get(0);
+          if (firstStep) {
             let containerHeight = this.containerRef.nativeElement.offsetHeight;
-            let stepHeight = lastStep.nativeElement.offsetHeight;
+            let stepHeight = firstStep.nativeElement.offsetHeight;
             let position = stepHeight / (containerHeight - this.scrollArea.elementRef.nativeElement.offsetHeight);
             this.scrollArea.scrollY += position;
             this.scrollArea.onScroll();
@@ -97,6 +99,7 @@ export class AsInfiniteScrollComponent implements AfterViewInit {
         }
 
         this.loading = false;
+        this.scrollArea.onWheelIntern(0)
       }
     })
   }
@@ -111,10 +114,12 @@ export class AsInfiniteScrollComponent implements AfterViewInit {
 
           this.window.shift();
 
-          let firstStep = this.steps.get(0);
-          if (firstStep) {
+          this.changeDetector.detectChanges();
+
+          let lastStep = this.steps.get(this.steps.length - 1);
+          if (lastStep) {
             let containerHeight = this.containerRef.nativeElement.offsetHeight;
-            let stepHeight = firstStep.nativeElement.offsetHeight;
+            let stepHeight = lastStep.nativeElement.offsetHeight;
             let position = stepHeight / (containerHeight - this.scrollArea.elementRef.nativeElement.offsetHeight);
             this.scrollArea.scrollY -= position;
             this.scrollArea.onScroll();
@@ -123,6 +128,7 @@ export class AsInfiniteScrollComponent implements AfterViewInit {
         }
 
         this.loading = false;
+        this.scrollArea.onWheelIntern(0)
       }
     })
   }

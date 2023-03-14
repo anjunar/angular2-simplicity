@@ -1,7 +1,7 @@
 import {
   AfterContentChecked,
   AfterViewInit,
-  ChangeDetectionStrategy,
+  ChangeDetectionStrategy, ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
@@ -38,7 +38,10 @@ export class AsScrollAreaComponent implements AfterContentChecked {
   scrollXChange: EventEmitter<HorizontalPositionChange> = new EventEmitter<HorizontalPositionChange>();
   scrollYChange: EventEmitter<VerticalPositionChange> = new EventEmitter<VerticalPositionChange>();
 
-  constructor(@SkipSelf() @Optional() private scrollArea : AsScrollAreaComponent, public elementRef : ElementRef) {}
+  constructor(
+    @SkipSelf() @Optional() private scrollArea : AsScrollAreaComponent,
+    public elementRef : ElementRef,
+    private changeDetector : ChangeDetectorRef) {}
 
   get content() {
     return this.contentRef.nativeElement;
@@ -55,6 +58,7 @@ export class AsScrollAreaComponent implements AfterContentChecked {
   ngAfterContentChecked(): void {
     setTimeout(() => {
       this.checkScrollBars()
+      this.changeDetector.detectChanges()
     })
   }
 
@@ -95,17 +99,17 @@ export class AsScrollAreaComponent implements AfterContentChecked {
     if (this.scrollArea && event.shiftKey) {
       event.stopPropagation();
       event.preventDefault();
-      return this.onWheelIntern(event);
+      return this.onWheelIntern(event.deltaY);
     }
 
     if (! this.scrollArea) {
-      return this.onWheelIntern(event);
+      return this.onWheelIntern(event.deltaY);
     }
 
     return false;
   }
 
-  private onWheelIntern(event: WheelEvent) {
+  public onWheelIntern(deltaY : number) {
     let viewport = this.viewport;
 
     function getMatrix(element: HTMLElement) {
@@ -126,9 +130,8 @@ export class AsScrollAreaComponent implements AfterContentChecked {
       };
     }
 
-    event.preventDefault();
     let matrix = getMatrix(this.content);
-    let top = -matrix.y + event.deltaY;
+    let top = -matrix.y + deltaY;
     let clientOffsetHeight = this.content.offsetHeight - viewport.offsetHeight;
     if (clientOffsetHeight > 0) {
       if (top < 0) {
@@ -147,7 +150,7 @@ export class AsScrollAreaComponent implements AfterContentChecked {
 
       this.scrollYChange.emit({
         value : position,
-        direction : event.deltaY < 0 ? "top" : "bottom"
+        direction : deltaY < 0 ? "top" : "bottom"
       });
     }
     return false;
