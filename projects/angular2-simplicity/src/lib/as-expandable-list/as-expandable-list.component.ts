@@ -40,6 +40,17 @@ export class AsExpandableListComponent implements OnInit {
     this.loadNext();
   }
 
+  add(value : any) {
+    if (this.upperIndex > this.size - this.limit) {
+      this.window.push(value);
+    }
+  }
+
+  delete(value : any) {
+    let index = this.window.findIndex((item) => item === value);
+    this.window.splice(index, 1)
+  }
+
   prev() {
     this.lowerIndex -= this.limit;
     this.loadPrev();

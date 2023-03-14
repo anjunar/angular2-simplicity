@@ -25,6 +25,15 @@ class InfiniteScrollPart {
     this.index = index;
     this.window = window;
   }
+
+  delete(value : any) {
+    let index = this.window.findIndex((item) => item === value);
+    this.window.splice(index, 1);
+  }
+
+  add(value : any) {
+    this.window.push(value)
+  }
 }
 
 @Component({
@@ -74,6 +83,19 @@ export class AsInfiniteScrollComponent implements AfterViewInit {
       }
 
     })
+  }
+
+  add(value : any) {
+    let part = this.window[this.window.length -1];
+    if (part.window.length < this.limit) {
+      part.add(value);
+    }
+  }
+
+  delete(value : any) {
+    for (const part of this.window) {
+      part.delete(value);
+    }
   }
 
   upWard() {
