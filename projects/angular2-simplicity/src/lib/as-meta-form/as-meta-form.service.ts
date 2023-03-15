@@ -60,9 +60,9 @@ export class AsMetaFormService {
                 default : return Validators.compose([])
               }
             });
-            return [{value : "", disabled : node.readOnly}, validators]
+            return [{value : null, disabled : node.readOnly}, validators]
           }
-          return [{value : "", disabled : node.readOnly}]
+          return [{value : null, disabled : node.readOnly}]
         }
       }
     }
