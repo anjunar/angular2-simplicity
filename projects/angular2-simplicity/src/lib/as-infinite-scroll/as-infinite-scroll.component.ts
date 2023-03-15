@@ -3,7 +3,7 @@ import {
   Component,
   ContentChild,
   ElementRef,
-  EventEmitter,
+  EventEmitter, Input,
   Output, QueryList,
   TemplateRef,
   ViewChild, ViewChildren,
@@ -46,8 +46,8 @@ class InfiniteScrollPart {
 export class AsInfiniteScrollComponent implements AfterViewInit, TableLike {
 
   index = 0;
-  limit = 5;
-  threshold = 3
+  @Input() limit = 5;
+  @Input() threshold = 3
   window: InfiniteScrollPart[] = [];
   loading = false;
 
