@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   Component,
   ContentChild,
   EventEmitter,
@@ -35,7 +36,7 @@ export class AsMetaFormComponent implements OnInit {
 
   links: any[] = []
 
-  constructor(private service: AsMetaFormService) {
+  constructor(private service: AsMetaFormService, private changeDetector : ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
@@ -79,8 +80,10 @@ export class AsMetaFormComponent implements OnInit {
       }
 
       fetch(url.toString())
+        .then(response => response.json())
         .then((response :any) => {
           event.callback(response.rows, response.size)
+          this.changeDetector.detectChanges()
         })
     }
   }
