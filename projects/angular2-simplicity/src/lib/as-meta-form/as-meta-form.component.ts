@@ -78,7 +78,7 @@ export class AsMetaFormComponent implements OnInit {
         url.searchParams.append("value", event.query.value);
       }
 
-      fetch(`${link.url}?index=${event.query.index}&limit=${event.query.limit}&value=${event.query.value}`)
+      fetch(url.toString())
         .then((response :any) => {
           event.callback(response.rows, response.size)
         })

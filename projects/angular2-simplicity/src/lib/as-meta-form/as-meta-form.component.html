@@ -121,7 +121,7 @@
               </as-checkbox-container>
             </ng-container>
             <ng-container *ngSwitchCase="'reference'">
-              <p>Reference: {{model["@type"]}} {{model.id}}</p>
+              <p *ngIf="model[$any(entry).key]"><small>Reference: {{model[$any(entry).key]["@type"]}} {{model[$any(entry).key].id}}</small></p>
             </ng-container>
             <ng-container *ngSwitchDefault>
               <as-input-container [placeholder]="$any(entry).value.title">
