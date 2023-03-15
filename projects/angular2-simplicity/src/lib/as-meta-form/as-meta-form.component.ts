@@ -13,6 +13,8 @@ import {Link, Model} from "./as-meta-form.classes";
 import {KeyValue} from "@angular/common";
 import {AsMetaFormService, MetaFormGroup} from "./as-meta-form.service";
 import {SelectQuery} from "../as-lazy-select/as-lazy-select.component";
+import {generateURL} from "../app.classes";
+import {query} from "@angular/animations";
 
 @Component({
   selector: 'as-meta-form',
@@ -69,6 +71,13 @@ export class AsMetaFormComponent implements OnInit {
 
   lazySelectLoader(event: { query: SelectQuery, callback: (rows: any[], size: number) => void }, link: any) {
     if (link) {
+      let url = generateURL(link.url);
+      url.searchParams.append("index", event.query.index + "")
+      url.searchParams.append("limit", event.query.limit + "")
+      if (event.query.value) {
+        url.searchParams.append("value", event.query.value);
+      }
+
       fetch(`${link.url}?index=${event.query.index}&limit=${event.query.limit}&value=${event.query.value}`)
         .then((response :any) => {
           event.callback(response.rows, response.size)

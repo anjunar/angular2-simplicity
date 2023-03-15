@@ -12,11 +12,11 @@ export interface TableLike {
   delete(value : any) : void
 }
 
-export function generateURL(value : string) {
-  if (value.startsWith("/")) {
-    return new URL(window.location.origin + value)
+export function generateURL(url : string) {
+  if (url.startsWith("/")) {
+    return new URL(window.location.origin + url)
   }
-  return new URL(window.location.origin + "/" + value)
+  return new URL(window.location.origin + "/" + url)
 }
 
 export function updateValues(form : any, model : any) {
