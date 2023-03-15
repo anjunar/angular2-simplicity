@@ -135,7 +135,7 @@ export class AsImageUploadComponent implements ControlValueAccessor, AfterViewIn
       let deltaY = 0, pointerY = event.clientY;
       let deltaX = 0, pointerX = event.clientX;
 
-      document.onmousemove = (event: any) => {
+      let onmousemove = (event: any) => {
         event.preventDefault();
 
         deltaY = pointerY - event.clientY;
@@ -154,10 +154,14 @@ export class AsImageUploadComponent implements ControlValueAccessor, AfterViewIn
         this.draw();
       };
 
-      document.onmouseup = () => {
-        document.onmouseup = null;
-        document.onmousemove = null;
+      let mouseup = () => {
+        document.removeEventListener("mousemove", onmousemove)
+        document.removeEventListener("mouseup", mouseup)
       };
+
+      document.addEventListener("mousemove", onmousemove)
+      document.addEventListener("mouseup", mouseup)
+
     }
 
   }
