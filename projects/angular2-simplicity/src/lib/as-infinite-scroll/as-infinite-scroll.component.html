@@ -1,8 +1,5 @@
-<div #container>
-  <div #steps *ngFor="let part of window">
-    <div *ngFor="let item of part.window">
-      <ng-container *ngTemplateOutlet="templateRef; context : {$implicit : item}"></ng-container>
-    </div>
+<div #steps *ngFor="let part of window">
+  <div *ngFor="let item of part.window" style="display: flex; flex-wrap: wrap">
+    <ng-container *ngTemplateOutlet="templateRef; context : {$implicit : item}"></ng-container>
   </div>
 </div>
-

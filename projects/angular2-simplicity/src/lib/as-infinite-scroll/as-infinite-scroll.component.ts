@@ -52,12 +52,11 @@ export class AsInfiniteScrollComponent implements AfterViewInit, TableLike {
   loading = false;
 
   @ContentChild(TemplateRef) templateRef!: TemplateRef<any>
-  @ViewChild("container", {read: ElementRef}) containerRef!: ElementRef<HTMLDivElement>
   @ViewChildren("steps", {read : ElementRef}) steps! : QueryList<ElementRef<HTMLDivElement>>
 
   @Output() items = new EventEmitter<{ query: InfinityQuery, callback: (rows: any[]) => void }>();
 
-  constructor(private scrollArea: AsScrollAreaComponent, private changeDetector : ChangeDetectorRef) {}
+  constructor(private scrollArea: AsScrollAreaComponent, private changeDetector : ChangeDetectorRef, private containerRef : ElementRef) {}
 
   ngAfterViewInit(): void {
     this.downWard();
