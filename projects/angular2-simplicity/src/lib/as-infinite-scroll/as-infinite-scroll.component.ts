@@ -84,7 +84,10 @@ export class AsInfiniteScrollComponent implements AfterViewInit, TableLike {
   }
 
   get limit() {
-    return this._limit * this.multiplier
+    if (this.multiplier > 0) {
+      return this._limit * this.multiplier
+    }
+    return this._limit;
   }
 
   ngAfterViewInit(): void {
