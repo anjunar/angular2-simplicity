@@ -1,4 +1,4 @@
-# Angular2 Simplicity v1.0.8
+# Angular2 Simplicity v1.0.9
 ### Component Library for Beginners
 
 Welcome to Simplicity, the Angular2 Web Component Library!
