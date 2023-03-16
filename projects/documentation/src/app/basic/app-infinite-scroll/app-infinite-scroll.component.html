@@ -45,9 +45,9 @@
     <div style="margin: 20px;">
       <div>
         <as-scroll-area style="height: 400px">
-          <as-infinity-scroll (items)="loader($event)">
+          <as-infinity-scroll (items)="loader($event)" [itemWidth]="200">
             <ng-template let-item>
-              <div style="border: 1px solid var(--main-dark1-color); margin: 10px">
+              <div style="border: 1px solid var(--main-dark1-color); margin: 10px; width: 200px">
                 <ul>
                   <li>{{item.position}}</li>
                   <li>{{item.id}}</li>

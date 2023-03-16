@@ -3,7 +3,7 @@ import {
   Component,
   ContentChild,
   ElementRef,
-  EventEmitter, Input,
+  EventEmitter, HostListener, Input,
   Output, QueryList,
   TemplateRef,
   ViewChild, ViewChildren,
@@ -46,10 +46,15 @@ class InfiniteScrollPart {
 export class AsInfiniteScrollComponent implements AfterViewInit, TableLike {
 
   index = 0;
-  @Input() limit = 5;
+  @Input("limit") _limit = 5;
+  multiplier = 1;
+
+  @Input() itemWidth : number = 200
+
   @Input() threshold = 3
   window: InfiniteScrollPart[] = [];
   loading = false;
+
 
   @ContentChild(TemplateRef) templateRef!: TemplateRef<any>
   @ViewChildren("steps", {read : ElementRef}) steps! : QueryList<ElementRef<HTMLDivElement>>
@@ -58,8 +63,36 @@ export class AsInfiniteScrollComponent implements AfterViewInit, TableLike {
 
   constructor(private scrollArea: AsScrollAreaComponent, private changeDetector : ChangeDetectorRef, private containerRef : ElementRef) {}
 
+  private resizeId! : number;
+  @HostListener('window:resize', ['$event'])
+  onResized(event: Event) {
+    clearTimeout(this.resizeId);
+    this.resizeId = setTimeout(() => {
+      let offsetWidth = this.containerRef.nativeElement.offsetWidth;
+      let step = this.steps.get(0);
+      if (step) {
+        let stepWidth = step.nativeElement.offsetWidth;
+        this.multiplier = Math.round(offsetWidth / stepWidth );
+        this.index = 0;
+        this.window = [];
+        this.scrollArea.scrollY = 0
+        this.scrollArea.onScroll();
+        this.scrollArea.onWheelIntern(0)
+        this.downWard();
+      }
+    }, 500);
+  }
+
+  get limit() {
+    return this._limit * this.multiplier
+  }
+
   ngAfterViewInit(): void {
-    this.downWard();
+    setTimeout(() => {
+      let offsetWidth = this.containerRef.nativeElement.offsetWidth;
+      this.multiplier = Math.round(offsetWidth / this.itemWidth);
+      this.downWard();
+    })
 
     this.scrollArea.scrollYChange.subscribe((value : VerticalPositionChange) => {
       if (! this.loading) {
@@ -109,14 +142,17 @@ export class AsInfiniteScrollComponent implements AfterViewInit, TableLike {
 
           this.changeDetector.detectChanges()
 
-          let firstStep = this.steps.get(0);
-          if (firstStep) {
-            let containerHeight = this.containerRef.nativeElement.offsetHeight;
-            let stepHeight = firstStep.nativeElement.offsetHeight;
-            let position = stepHeight / (containerHeight - this.scrollArea.elementRef.nativeElement.offsetHeight);
-            this.scrollArea.scrollY += position;
-            this.scrollArea.onScroll();
-          }
+          let stepHeight = this.steps.reduce((prevValue, curValue, curIndex) => {
+            if (curIndex <= this.limit) {
+              return prevValue + curValue.nativeElement.offsetHeight;
+            }
+            return prevValue;
+          }, 0)
+
+          let containerHeight = this.containerRef.nativeElement.offsetHeight;
+          let position = (stepHeight / this.multiplier) / (containerHeight - this.scrollArea.elementRef.nativeElement.offsetHeight);
+          this.scrollArea.scrollY += position;
+          this.scrollArea.onScroll();
 
         }
 
@@ -138,14 +174,17 @@ export class AsInfiniteScrollComponent implements AfterViewInit, TableLike {
 
           this.changeDetector.detectChanges();
 
-          let lastStep = this.steps.get(this.steps.length - 1);
-          if (lastStep) {
-            let containerHeight = this.containerRef.nativeElement.offsetHeight;
-            let stepHeight = lastStep.nativeElement.offsetHeight;
-            let position = stepHeight / (containerHeight - this.scrollArea.elementRef.nativeElement.offsetHeight);
-            this.scrollArea.scrollY -= position;
-            this.scrollArea.onScroll();
-          }
+          let stepHeight = this.steps.reduce((prevValue, curValue, curIndex) => {
+            if (curIndex >= this.steps.length - this.limit) {
+              return prevValue + curValue.nativeElement.offsetHeight;
+            }
+            return prevValue;
+          }, 0)
+
+          let containerHeight = this.containerRef.nativeElement.offsetHeight;
+          let position = (stepHeight / this.multiplier) / (containerHeight - this.scrollArea.elementRef.nativeElement.offsetHeight);
+          this.scrollArea.scrollY -= position;
+          this.scrollArea.onScroll();
 
         }
 
