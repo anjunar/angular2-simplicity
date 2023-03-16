@@ -1,6 +1,6 @@
 <div style="display: flex; flex-wrap: wrap">
   <ng-container *ngFor="let part of window">
-    <div #steps *ngFor="let item of part.window">
+    <div #steps *ngFor="let item of part.window" style="flex: 1">
       <ng-container *ngTemplateOutlet="templateRef; context : {$implicit : item}"></ng-container>
     </div>
   </ng-container>
