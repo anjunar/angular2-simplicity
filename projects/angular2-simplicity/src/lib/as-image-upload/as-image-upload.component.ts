@@ -190,7 +190,7 @@ export class AsImageUploadComponent implements ControlValueAccessor, AfterViewIn
                   context.drawImage(this.image, left, top, dw, dh)
                 }
 
-          if (! this.disabled && this.crop) {
+          if (! this.disabled) {
               this.model.thumbnail = {
                 data : canvas.toDataURL(),
                 name : this.model.name
@@ -241,6 +241,9 @@ export class AsImageUploadComponent implements ControlValueAccessor, AfterViewIn
               data: <string>event.target.result,
               name: file.name
             }
+
+            this.draw();
+
             if (this.onChange) {
               this.onChange(this.model);
             }
