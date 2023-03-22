@@ -13,6 +13,8 @@ as-table table tr td {
   height: 48px;
   vertical-align: top;
   min-width: 100px;
+  white-space: nowrap;
+  padding-left: 8px;
 }
 
 as-table table tbody td {

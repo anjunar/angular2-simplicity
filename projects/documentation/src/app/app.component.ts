@@ -26,7 +26,9 @@ export class AppComponent extends AppMain implements AfterViewInit {
       return function (name, callback: (event: Event) => void) {
         let handler = (event: Event) => {
           callback(event)
-          application.tick();
+          if (name !== "mousemove") {
+            application.tick();
+          }
         };
 
         registry.set(callback, handler);
