@@ -1,6 +1,6 @@
 <div class="container">
   <div #viewport class="viewport">
-    <div #content class="content">
+    <div #content class="content" [style.width]="fitContent ? 'fit-content' : '100%'">
       <ng-content></ng-content>
     </div>
   </div>

@@ -1,5 +1,9 @@
+as-table {
+  display: block;
+}
+
 as-table table {
-  width: 100%;
+  width: fit-content;
   border-spacing: 0;
   font-size: 14px;
   table-layout: auto;
@@ -8,6 +12,7 @@ as-table table {
 as-table table tr td {
   height: 48px;
   vertical-align: top;
+  min-width: 100px;
 }
 
 as-table table tbody td {

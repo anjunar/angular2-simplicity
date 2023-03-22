@@ -114,8 +114,8 @@ export class AsWindowComponent implements Window, OnDestroy, AfterViewInit {
     }
 
     let closeDragElement = () => {
-      document.onmouseup = null;
-      document.onmousemove = null;
+      document.removeEventListener("mouseup", closeDragElement)
+      document.removeEventListener("mousemove", elementDrag)
       this.windowEndDrag.emit();
     }
 
@@ -123,8 +123,8 @@ export class AsWindowComponent implements Window, OnDestroy, AfterViewInit {
       event.preventDefault();
       pointerX = event.clientX;
       pointerY = event.clientY;
-      document.onmouseup = closeDragElement;
-      document.onmousemove = elementDrag;
+      document.addEventListener("mouseup", closeDragElement)
+      document.addEventListener("mousemove", elementDrag)
       this.windowStartDrag.emit();
     }
   }
@@ -143,16 +143,16 @@ export class AsWindowComponent implements Window, OnDestroy, AfterViewInit {
     }
 
     let closeDragElement = () => {
-      document.onmouseup = null;
-      document.onmousemove = null;
+      document.removeEventListener("mouseup", closeDragElement)
+      document.removeEventListener("mousemove", elementDrag)
       this.windowEndResize.emit();
     }
 
     if (this.resizable && !this.maximized) {
       event.preventDefault();
       pointer = event.clientY;
-      document.onmouseup = closeDragElement;
-      document.onmousemove = elementDrag;
+      document.addEventListener("mouseup", closeDragElement)
+      document.addEventListener("mousemove", elementDrag)
       this.windowStartResize.emit();
     }
   }
@@ -177,8 +177,8 @@ export class AsWindowComponent implements Window, OnDestroy, AfterViewInit {
     }
 
     let closeDragElement = () => {
-      document.onmouseup = null;
-      document.onmousemove = null;
+      document.removeEventListener("mouseup", closeDragElement)
+      document.removeEventListener("mousemove", elementDrag)
       this.windowEndResize.emit();
     }
 
@@ -186,8 +186,8 @@ export class AsWindowComponent implements Window, OnDestroy, AfterViewInit {
       event.preventDefault();
       pointerY = event.clientY;
       pointerX = event.clientX;
-      document.onmouseup = closeDragElement;
-      document.onmousemove = elementDrag;
+      document.addEventListener("mouseup", closeDragElement)
+      document.addEventListener("mousemove", elementDrag)
       this.windowStartResize.emit();
     }
   }
@@ -206,16 +206,16 @@ export class AsWindowComponent implements Window, OnDestroy, AfterViewInit {
     }
 
     let closeDragElement = () => {
-      document.onmouseup = null;
-      document.onmousemove = null;
+      document.removeEventListener("mouseup", closeDragElement)
+      document.removeEventListener("mousemove", elementDrag)
       this.windowEndResize.emit();
     }
 
     if (this.resizable && !this.maximized) {
       event.preventDefault();
       pointer = event.clientX;
-      document.onmouseup = closeDragElement;
-      document.onmousemove = elementDrag;
+      document.addEventListener("mouseup", closeDragElement)
+      document.addEventListener("mousemove", elementDrag)
       this.windowStartResize.emit()
     }
   }
@@ -240,8 +240,8 @@ export class AsWindowComponent implements Window, OnDestroy, AfterViewInit {
     }
 
     let closeDragElement = () => {
-      document.onmouseup = null;
-      document.onmousemove = null;
+      document.removeEventListener("mouseup", closeDragElement)
+      document.removeEventListener("mousemove", elementDrag)
       this.windowEndResize.emit();
     }
 
@@ -249,8 +249,8 @@ export class AsWindowComponent implements Window, OnDestroy, AfterViewInit {
       event.preventDefault();
       pointerY = event.clientY;
       pointerX = event.clientX;
-      document.onmouseup = closeDragElement;
-      document.onmousemove = elementDrag;
+      document.addEventListener("mouseup", closeDragElement)
+      document.addEventListener("mousemove", elementDrag)
       this.windowStartResize.emit();
     }
   }
@@ -275,8 +275,8 @@ export class AsWindowComponent implements Window, OnDestroy, AfterViewInit {
     }
 
     let closeDragElement = () => {
-      document.onmouseup = null;
-      document.onmousemove = null;
+      document.removeEventListener("mouseup", closeDragElement)
+      document.removeEventListener("mousemove", elementDrag)
       this.windowEndResize.emit();
     }
 
@@ -284,8 +284,8 @@ export class AsWindowComponent implements Window, OnDestroy, AfterViewInit {
       event.preventDefault();
       pointerY = event.clientY;
       pointerX = event.clientX;
-      document.onmouseup = closeDragElement;
-      document.onmousemove = elementDrag;
+      document.addEventListener("mouseup", closeDragElement)
+      document.addEventListener("mousemove", elementDrag)
       this.windowStartResize.emit();
     }
   }
@@ -304,16 +304,16 @@ export class AsWindowComponent implements Window, OnDestroy, AfterViewInit {
     }
 
     let closeDragElement = () => {
-      document.onmouseup = null;
-      document.onmousemove = null;
+      document.removeEventListener("mouseup", closeDragElement)
+      document.removeEventListener("mousemove", elementDrag)
       this.windowEndResize.emit();
     }
 
     if (this.resizable && !this.maximized) {
       event.preventDefault();
       pointer = event.clientX;
-      document.onmouseup = closeDragElement;
-      document.onmousemove = elementDrag;
+      document.addEventListener("mouseup", closeDragElement)
+      document.addEventListener("mousemove", elementDrag)
       this.windowStartResize.emit();
     }
   }
@@ -338,8 +338,8 @@ export class AsWindowComponent implements Window, OnDestroy, AfterViewInit {
     }
 
     let closeDragElement = () => {
-      document.onmouseup = null;
-      document.onmousemove = null;
+      document.removeEventListener("mouseup", closeDragElement)
+      document.removeEventListener("mousemove", elementDrag)
       this.windowEndResize.emit();
     }
 
@@ -347,8 +347,8 @@ export class AsWindowComponent implements Window, OnDestroy, AfterViewInit {
       event.preventDefault();
       pointerY = event.clientY;
       pointerX = event.clientX;
-      document.onmouseup = closeDragElement;
-      document.onmousemove = elementDrag;
+      document.addEventListener("mouseup", closeDragElement)
+      document.addEventListener("mousemove", elementDrag)
       this.windowStartResize.emit();
     }
   }
@@ -367,16 +367,16 @@ export class AsWindowComponent implements Window, OnDestroy, AfterViewInit {
     }
 
     let closeDragElement = () => {
-      document.onmouseup = null;
-      document.onmousemove = null;
+      document.removeEventListener("mouseup", closeDragElement)
+      document.removeEventListener("mousemove", elementDrag)
       this.windowEndResize.emit();
     }
 
     if (this.resizable && !this.maximized) {
       event.preventDefault();
       pointer = event.clientY;
-      document.onmouseup = closeDragElement;
-      document.onmousemove = elementDrag;
+      document.addEventListener("mouseup", closeDragElement)
+      document.addEventListener("mousemove", elementDrag)
       this.windowStartResize.emit();
     }
   }

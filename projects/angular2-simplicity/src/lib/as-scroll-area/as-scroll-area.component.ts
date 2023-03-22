@@ -2,10 +2,10 @@ import {
   AfterContentChecked,
   AfterViewInit,
   ChangeDetectionStrategy, ChangeDetectorRef,
-  Component,
+  Component, ContentChild,
   ElementRef,
   EventEmitter,
-  HostListener, Optional, SkipSelf,
+  HostListener, Input, Optional, SkipSelf, TemplateRef,
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
@@ -28,6 +28,8 @@ export class AsScrollAreaComponent implements AfterContentChecked {
   @ViewChild("content") contentRef!: ElementRef<HTMLElement>;
 
   @ViewChild(AsScrollbarVerticalComponent) verticalScrollBar!: AsScrollbarVerticalComponent
+
+  @Input() fitContent = false
 
   scrollX: number = 0;
   scrollY: number = 0;

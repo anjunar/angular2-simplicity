@@ -18,8 +18,8 @@ import {TableLike} from "../app.classes";
 
 @Component({
   selector: 'as-table',
-  templateUrl: './as-table.component.html',
-  styleUrls: ['./as-table.component.css'],
+  templateUrl: 'as-table.component.html',
+  styleUrls: ['as-table.component.css'],
   encapsulation: ViewEncapsulation.None
 })
 export class AsTableComponent implements OnInit, AfterContentInit, AsTableInterface, TableLike {
