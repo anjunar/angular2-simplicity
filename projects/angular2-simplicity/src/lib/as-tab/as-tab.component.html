@@ -1,4 +1,5 @@
-<div [style.border-bottom]="selected ? '2px solid var(--main-selected-color)' : '2px solid var(--main-dark1-color)'"
-     style="line-height: 32px; text-align: center; padding-left: 10px; padding-right: 10px;" [style.font-size]="small ? 'x-small' : 'medium'">
+<div [class]="{'underline_selected' : selected && horizontal, 'underline_normal' : ! selected && horizontal, 'left_selected' : selected && ! horizontal, 'left_normal' : ! selected && ! horizontal}"
+     [style.text-align]="horizontal ? 'center' : 'left'"
+     style="line-height: 32px; padding-left: 10px; padding-right: 10px;" [style.font-size]="small ? 'x-small' : 'medium'">
   <ng-content></ng-content>
 </div>

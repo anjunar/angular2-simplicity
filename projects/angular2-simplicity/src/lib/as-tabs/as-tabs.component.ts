@@ -17,6 +17,9 @@ import {AsTabComponent} from "../as-tab/as-tab.component";
 })
 export class AsTabsComponent implements AfterContentInit {
 
+  @Input() horizontal = true
+
+
   @Input() page : number = 0;
   @Output() pageChange : EventEmitter<number> = new EventEmitter<number>()
   @ContentChildren(AsTabComponent) tabs!: QueryList<AsTabComponent>
@@ -25,6 +28,8 @@ export class AsTabsComponent implements AfterContentInit {
     this.tabs.changes.forEach((value : any) => {
       let queryList : QueryList<AsTabComponent> = value;
       queryList.forEach((tab : AsTabComponent, index: number, array : AsTabComponent[]) => {
+        tab.horizontal = this.horizontal;
+
         tab.click.subscribe((selected : boolean) => {
           this.tabs.forEach((tab) => {
             tab.selected = false;

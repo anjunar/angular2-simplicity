@@ -65,6 +65,32 @@
       </as-pages>
     </div>
 
+    <div style="margin: 20px;">
+      <div style="display: flex">
+        <as-tabs [(page)]="page" [horizontal]="false" style="width: 100px">
+          <as-tab>
+            <div>Tab 1</div>
+          </as-tab>
+          <as-tab>
+            <div>Tab 2</div>
+          </as-tab>
+          <as-tab>
+            <div>Tab 3</div>
+          </as-tab>
+        </as-tabs>
+        <as-pages [page]="page">
+          <as-page>
+            <ng-template>Page 1</ng-template>
+          </as-page>
+          <as-page>
+            <ng-template>Page 2</ng-template>
+          </as-page>
+          <as-page>
+            <ng-template>Page 3</ng-template>
+          </as-page>
+        </as-pages>
+      </div>
+    </div>
 
   </div>
 

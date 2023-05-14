@@ -1,4 +1,4 @@
-<div style="display: flex">
+<div [style.display]="horizontal ? 'flex' : 'block'">
   <ng-content></ng-content>
-  <div style="flex: 1; border-bottom: 2px solid var(--main-dark1-color)"></div>
+  <div *ngIf="horizontal" style="flex: 1; border-bottom: 2px solid var(--main-dark1-color)"></div>
 </div>

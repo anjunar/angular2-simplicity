@@ -2,3 +2,19 @@ as-tab {
   display: block;
   cursor: pointer;
 }
+
+div.underline_selected {
+ border-bottom:  2px solid var(--main-selected-color)
+}
+
+div.underline_normal {
+  border-bottom: 2px solid var(--main-dark1-color)
+}
+
+div.left_selected {
+  border-left:  2px solid var(--main-selected-color)
+}
+
+div.left_normal {
+  border-left: 2px solid var(--main-dark1-color)
+}
